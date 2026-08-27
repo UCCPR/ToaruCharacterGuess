@@ -1,0 +1,48 @@
+.single-lobby-mode-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.toaru-title-mark {
+  display: grid;
+  place-items: center;
+  width: min(780px, 100%);
+  margin: 0 auto;
+  padding: 2px clamp(8px, 3vw, 28px) 0;
+}
+
+.toaru-title-mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: clamp(150px, 29vh, 290px);
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(5, 53, 91, 0.16));
+}
+
+html[data-theme='blast'] .toaru-title-mark img {
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.32));
+}
+
+.single-lobby-subtitle {
+  width: min(1080px, 100%);
+  margin: 0 auto 4px;
+  text-align: center;
+}
+
+.single-game-page .game-rules-trigger {
+  margin-top: 16px;
+}
+
+@media (max-width: 640px) {
+  .toaru-title-mark {
+    padding-inline: 0;
+  }
+
+  .single-lobby-mode-actions > .btn {
+    flex: 1 1 140px;
+  }
+}

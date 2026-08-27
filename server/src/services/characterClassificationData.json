@@ -1,0 +1,67 @@
+{
+  "organizationParents": {
+    "道具（ITEM）": "暗部",
+    "集团（GROUP）": "暗部",
+    "学校（SCHOOL）": "暗部",
+    "猎犬部队（Hound Dog）": "暗部",
+    "成员（MEMBER）": "暗部",
+    "新生（Freshmen）": "暗部"
+  },
+  "identityOnlyOrganizationTypes": [
+    "research-project", "research-family", "special-entity", "special-status",
+    "family", "clan", "space-project"
+  ],
+  "relationshipLabels": {
+    "student": "学生", "teacher": "教师", "educator": "教师", "doctor": "医生",
+    "researcher": "研究人员", "former-researcher": "前研究人员",
+    "leader": "领导者", "former-leader": "前领导者", "commander": "指挥官",
+    "board-director": "理事", "chairperson": "负责人", "archbishop": "大主教",
+    "bishop": "主教", "second-princess": "第二公主", "third-princess": "第三公主",
+    "maid": "侍女", "father": "父亲", "mother": "母亲", "daughter": "女儿",
+    "controller": "控制者", "holder": "", "practitioner": "成员",
+    "manifestation": "化身", "form": "", "subject": "实验对象", "product": "产物",
+    "central-subject": "核心人物", "collective": "整体意识", "member": "成员",
+    "former-member": "前成员", "coerced-member": "成员", "officer": "成员",
+    "agent": "成员", "combat-agent": "成员", "associate": "相关人员",
+    "associated": "相关人员", "cooperator": "协力者", "administrator": "管理者",
+    "adept": "成员", "missionary": "传教士", "pope-substitute": "代理教皇"
+  },
+  "sideIdentities": {
+    "esper": { "name": "能力者", "group": "esper" },
+    "esper-clone": { "name": "克隆能力者", "group": "esper" },
+    "level-zero": { "name": "无能力者", "group": "esper" },
+    "gemstone-esper": { "name": "原石", "group": "esper" },
+    "researcher": { "name": "研究人员", "group": "researcher" },
+    "educator": { "name": "教师", "group": "educator" },
+    "law-enforcement": { "name": "治安人员", "group": "law-enforcement" },
+    "doctor": { "name": "医生", "group": "medical" },
+    "magician": { "name": "魔法师", "group": "magician" },
+    "magician-agent": { "name": "魔法师", "group": "magician" },
+    "freelance-magician": { "name": "自由魔法师", "group": "magician" },
+    "nun-magician": { "name": "修女魔法师", "group": "magician" },
+    "nun": { "name": "修女", "group": "religious" },
+    "bishop-magician": { "name": "主教魔法师", "group": "magician" },
+    "knight-magician": { "name": "骑士魔法师", "group": "magician" },
+    "saint-magician": { "name": "圣人", "group": "saint" },
+    "magic-god": { "name": "魔神", "group": "magic-god" },
+    "royalty": { "name": "王室成员", "group": "royalty" },
+    "dark-side-operative": { "name": "暗部成员", "group": "dark-side" },
+    "infiltrator": { "name": "潜入人员", "group": "operative" },
+    "leader": { "name": "势力领导者", "group": "leader" },
+    "artificial-being": { "name": "人工生命", "group": "artificial-being" },
+    "transcendent-entity": { "name": "超越性存在", "group": "transcendent" },
+    "civilian-associated": { "name": "普通市民", "group": "civilian" },
+    "resident": { "name": "学园都市居民", "group": "civilian" },
+    "corporate-operator": { "name": "企业经营者", "group": "corporate" }
+  },
+  "organizationIdentityGroups": {
+    "school": "student", "dark-side-group": "dark-side",
+    "research-project": "researcher", "research-institute": "researcher",
+    "research-group": "researcher", "research-family": "family", "family": "family",
+    "law-enforcement": "law-enforcement", "church": "religious",
+    "church-branch": "religious", "religious-order": "religious",
+    "magic-cabal": "magic-cabal", "royal-house": "royalty",
+    "network": "clone-network", "clone-network": "clone-network",
+    "special-status": "status:{name}"
+  }
+}

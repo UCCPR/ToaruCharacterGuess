@@ -1,0 +1,138 @@
+import knex from 'knex';
+import { afterEach, describe, expect, it } from 'vitest';
+import { ensureSchema } from '../../src/db/schema';
+import { syncCuratedCharacterCatalog } from '../../src/db/syncCharacterCatalog';
+import catalog from '../../src/db/seeds/characterCatalog.json';
+import roster from '../../src/db/seeds/players.json';
+
+const instances: ReturnType<typeof knex>[] = [];
+const expectedCharacterCount = catalog.length;
+const expectedDifficultyCount = roster.reduce((total, entry) => total + new Set(entry.difficulties).size, 0);
+
+afterEach(async () => {
+  await Promise.all(instances.splice(0).map((instance) => instance.destroy()));
+});
+
+describe('playable character catalog', () => {
+  it('keeps the playable manifest and normalized catalog one-to-one', () => {
+    const rosterNames = roster.map((entry) => entry.nickname);
+    const catalogNames = catalog.map((entry) => entry.nickname);
+
+    expect(new Set(rosterNames).size).toBe(rosterNames.length);
+    expect(new Set(catalogNames).size).toBe(catalogNames.length);
+    expect(new Set(rosterNames)).toEqual(new Set(catalogNames));
+  });
+
+  it('keeps recognition pools cumulative and aligned with the series-based policy', () => {
+    const namesFor = (difficulty: string) => new Set(
+      roster.filter((entry) => entry.difficulties.includes(difficulty)).map((entry) => entry.nickname),
+    );
+    const beginner = namesFor('beginner');
+    const easy = namesFor('easy');
+    const normal = namesFor('normal');
+
+    expect([...beginner].every((name) => easy.has(name))).toBe(true);
+    expect([...easy].every((name) => normal.has(name))).toBe(true);
+    expect(normal.size).toBe(roster.length);
+
+    expect([...beginner]).toEqual(expect.arrayContaining([
+      '上条当麻', '茵蒂克丝', '御坂美琴', '一方通行',
+      '白井黑子', '初春饰利', '佐天泪子', '食蜂操祈',
+    ]));
+    expect(beginner.has('欧提努斯')).toBe(false);
+    expect(beginner.has('埃斯特·罗森塔尔')).toBe(false);
+
+    expect([...easy]).toEqual(expect.arrayContaining([
+      '欧提努斯', '帆风润子', '埃斯特·罗森塔尔', '鸣护艾丽莎',
+      '操齿凉子', '安娜·金斯福德', '爱丽丝·异典',
+      '米娜·马瑟斯', '莉莉丝', '御坂网络整体意识', '迪翁·福春',
+      '山缪·李德·麦奎恩·马瑟斯',
+    ]));
+    expect(easy.has('铁装缀里')).toBe(false);
+    expect(easy.has('木寺实莉')).toBe(false);
+    expect(easy.has('木原乱数')).toBe(false);
+  });
+
+  it('seeds the normalized catalog directly and remains idempotent', async () => {
+    const instance = knex({
+      client: 'better-sqlite3',
+      connection: { filename: ':memory:' },
+      useNullAsDefault: true,
+    });
+    instances.push(instance);
+    await ensureSchema(instance);
+
+    expect(await syncCuratedCharacterCatalog(instance)).toBe(expectedCharacterCount);
+    expect(await syncCuratedCharacterCatalog(instance)).toBe(expectedCharacterCount);
+    expect(await instance.schema.hasTable('players')).toBe(false);
+    expect(await instance.schema.hasTable('abilities')).toBe(false);
+    expect(Number((await instance('characters').count({ count: '*' }).first())?.count)).toBe(expectedCharacterCount);
+    expect(Number((await instance('character_game_profiles').count({ count: '*' }).first())?.count)).toBe(expectedCharacterCount);
+    expect(Number((await instance('character_difficulties').count({ count: '*' }).first())?.count)).toBe(expectedDifficultyCount);
+
+    const accelerator = await instance('characters').where({ canonical_name_zh: '一方通行' }).first();
+    expect(accelerator).toMatchObject({ gender: 'unknown', review_status: 'community_sourced' });
+    const aiwass = await instance('characters').where({ canonical_name_zh: '爱华斯' }).first();
+    expect(aiwass.gender).toBe('none');
+
+    const latestBatch = await instance('characters')
+      .whereIn('canonical_name_zh', [
+        '木原加群', '木原病理', '木原圆周', '罗伯特·卡崔',
+        '阿拉迪娅', '博洛尼魅魔', 'H.T.特利斯墨吉斯忒斯', '逆源质拼图545',
+      ])
+      .pluck('canonical_name_zh');
+    expect(latestBatch).toHaveLength(8);
+
+    const preGenesisBatch = await instance('characters')
+      .whereIn('canonical_name_zh', [
+        '米娜·马瑟斯', '莉莉丝', '芙蕾雅', '发源检体',
+        '木原乱数', '木寺实莉', '御坂网络整体意识', '迪翁·福春',
+      ])
+      .pluck('canonical_name_zh');
+    expect(preGenesisBatch).toHaveLength(8);
+
+    const mathersOrganizations = await instance('character_organizations as membership')
+      .join('characters as character', 'character.id', 'membership.character_id')
+      .join('organizations as organization', 'organization.id', 'membership.organization_id')
+      .where({ 'character.canonical_name_zh': '山缪·李德·麦奎恩·马瑟斯' })
+      .pluck('organization.name_zh');
+    expect(mathersOrganizations).toEqual(expect.arrayContaining(['黄金黎明', '科隆尊召唤者']));
+
+    const preGenesisWorks = await instance('works')
+      .whereIn('key', ['index-biohacker', 'accelerator-anime'])
+      .orderBy('key')
+      .pluck('key');
+    expect(preGenesisWorks).toEqual(['accelerator-anime', 'index-biohacker']);
+
+    const coronzonAliases = await instance('character_aliases as alias')
+      .join('characters as character', 'character.id', 'alias.character_id')
+      .where({ 'character.canonical_name_zh': '萝拉·斯图亚特' })
+      .whereIn('alias.name', ['科隆尊', 'Coronzon'])
+      .pluck('alias.name');
+    expect(coronzonAliases).toEqual(expect.arrayContaining(['科隆尊', 'Coronzon']));
+
+    const kagunOrganizations = await instance('character_organizations as membership')
+      .join('characters as character', 'character.id', 'membership.character_id')
+      .join('organizations as organization', 'organization.id', 'membership.organization_id')
+      .where({ 'character.canonical_name_zh': '木原加群' })
+      .pluck('organization.name_zh');
+    expect(kagunOrganizations).toEqual(expect.arrayContaining(['格雷姆林', '木原一族', '防止落榜']));
+
+    const acceleratorDifficulties = await instance('character_difficulties')
+      .where({ character_id: accelerator.id })
+      .orderBy('difficulty_key')
+      .pluck('difficulty_key');
+    expect(acceleratorDifficulties).toEqual(['beginner', 'easy', 'normal']);
+
+    const darkOrganizations = await instance('organizations as organization')
+      .leftJoin('organizations as parent', 'parent.id', 'organization.parent_id')
+      .whereIn('organization.name_zh', ['道具（ITEM）', '集团（GROUP）', '新生（Freshmen）'])
+      .orderBy('organization.name_zh')
+      .select('organization.name_zh as name', 'parent.name_zh as parent');
+    expect(darkOrganizations).toEqual([
+      { name: '新生（Freshmen）', parent: '暗部' },
+      { name: '道具（ITEM）', parent: '暗部' },
+      { name: '集团（GROUP）', parent: '暗部' },
+    ]);
+  });
+});

@@ -1,0 +1,38 @@
+name: 角色资料纠错 / 新增角色
+description: 提交角色分类纠错或建议加入新的可玩角色
+title: '[角色资料] '
+labels: [character-data]
+body:
+  - type: input
+    id: character
+    attributes:
+      label: 角色名
+      description: 请填写常用中文名；新增角色时不要与现有角色重名。
+    validations:
+      required: true
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: 请求类型
+      options:
+        - 纠正现有角色资料
+        - 新增可玩角色
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: 建议内容
+      description: 请列出需要补充或修改的阵营、组织、身份、地区、性别、首次登场或难度范围。
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: 来源
+      description: 每项资料都应提供可核查的页面级来源；不确定的信息请明确标注“待复核”。
+      placeholder: |
+        - 魔禁维基页面：
+        - 官方 Toaru Project 资料（如有）：
+    validations:
+      required: true

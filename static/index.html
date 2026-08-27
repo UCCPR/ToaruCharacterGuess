@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+    <meta name="theme-color" content="#07172d" />
+    <meta name="description" content="某角色的身份推理——《魔法禁书目录》非官方角色猜测游戏静态版。" />
+    <script>
+      try {
+        var storedUiTheme = localStorage.getItem('ui-theme');
+        if (localStorage.getItem('ui-motion') === 'off') document.documentElement.dataset.motion = 'reduced';
+        var initTheme = storedUiTheme === 'light' ? 'light' : storedUiTheme === 'blast' ? 'blast' : window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'blast';
+        document.documentElement.dataset.theme = initTheme;
+        document.documentElement.style.colorScheme = initTheme === 'blast' ? 'dark' : 'light';
+        document.documentElement.style.background = initTheme === 'blast' ? '#071827' : '#f3f0ea';
+        var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+        if (themeColorMeta) themeColorMeta.content = initTheme === 'blast' ? '#071827' : '#f3f0ea';
+      } catch (_) { document.documentElement.dataset.theme = 'blast'; }
+    </script>
+    <title>某角色的身份推理 · 静态版</title>
+  </head>
+  <body>
+    <noscript>需要启用 JavaScript 才能运行本应用。/ JavaScript is required to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+packages:
+  - server
+  - client
+  - static
+allowBuilds:
+  better-sqlite3: true
+  esbuild: true

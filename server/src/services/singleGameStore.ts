@@ -1,0 +1,202 @@
+import { randomUUID } from 'crypto';
+import { evalCommandScript, redis, redisKey } from '../redis';
+import { GuessFeedback } from '../types';
+
+export type SingleGameMode = string;
+export type SingleGameKind = 'single' | 'daily';
+
+export interface SingleGameState {
+  id: string;
+  kind?: SingleGameKind;
+  identityKey: string;
+  userId: number | null;
+  guestKey: string | null;
+  mode: SingleGameMode;
+  targetPlayerId: number;
+  dailyChallengeId?: number;
+  guesses: GuessFeedback[];
+  /** Milliseconds from game creation for each accepted guess. */
+  guessTimes: Array<number | null>;
+  createdAt: number;
+  lastActiveAt: number;
+  /** Absolute expiry for fixed-window games such as the daily challenge. */
+  expiresAt?: number;
+}
+
+// Active single-player games expire after thirty minutes without a write/guess.
+// This is also the retention window used by the online single-game counter.
+export const SINGLE_GAME_TTL_SECONDS = 1800;
+
+const memoryGames = new Map<string, SingleGameState>();
+const memoryActive = new Map<string, string>();
+
+function gameKey(id: string): string {
+  return redisKey(`single:game:${id}`);
+}
+
+function activeKey(identityKey: string, mode: SingleGameMode): string {
+  return redisKey(`single:active:${identityKey}:${mode}`);
+}
+
+function memoryActiveKey(identityKey: string, mode: SingleGameMode): string {
+  return `${identityKey}:${mode}`;
+}
+
+function isExpired(game: SingleGameState): boolean {
+  const expiresAt = game.expiresAt ?? game.lastActiveAt + SINGLE_GAME_TTL_SECONDS * 1000;
+  return expiresAt <= Date.now();
+}
+
+function deleteMemoryGame(game: SingleGameState): void {
+  memoryGames.delete(game.id);
+  const active = memoryActiveKey(game.identityKey, game.mode);
+  if (memoryActive.get(active) === game.id) memoryActive.delete(active);
+}
+
+function requiredRedis() {
+  const client = redis();
+  if (!client) throw new Error('REDIS_UNAVAILABLE');
+  return client;
+}
+
+function normalizeGuessTimes(game: SingleGameState): void {
+  game.guessTimes = game.guessTimes.map((value) => (
+    typeof value === 'number' && Number.isFinite(value) && value >= 0
+      ? Math.floor(value)
+      : null
+  ));
+  if (game.guessTimes.length > game.guesses.length) {
+    game.guessTimes = game.guessTimes.slice(0, game.guesses.length);
+  }
+  while (game.guessTimes.length < game.guesses.length) game.guessTimes.push(null);
+}
+
+export async function createOrResumeSingleGameWithStatus(input: {
+  identityKey: string;
+  userId: number | null;
+  guestKey: string | null;
+  mode: SingleGameMode;
+  targetPlayerId: number;
+  kind?: SingleGameKind;
+  expiresAt?: number;
+  dailyChallengeId?: number;
+}): Promise<{ game: SingleGameState; created: boolean }> {
+  const existing = await loadActiveSingleGame(input.identityKey, input.mode);
+  if (existing) return { game: existing, created: false };
+
+  const now = Date.now();
+  const game: SingleGameState = {
+    id: randomUUID(),
+    kind: input.kind ?? 'single',
+    identityKey: input.identityKey,
+    userId: input.userId,
+    guestKey: input.guestKey,
+    mode: input.mode,
+    targetPlayerId: input.targetPlayerId,
+    dailyChallengeId: input.dailyChallengeId,
+    guesses: [],
+    guessTimes: [],
+    createdAt: now,
+    lastActiveAt: now,
+    expiresAt: input.expiresAt,
+  };
+  await saveSingleGame(game);
+  return { game, created: true };
+}
+
+export async function loadActiveSingleGame(
+  identityKey: string,
+  mode: SingleGameMode
+): Promise<SingleGameState | null> {
+  const client = redis();
+  if (!client) {
+    const active = memoryActiveKey(identityKey, mode);
+    const existingId = memoryActive.get(active);
+    if (!existingId) return null;
+    const existing = await loadSingleGame(existingId, identityKey);
+    if (existing) return existing;
+    memoryActive.delete(active);
+    return null;
+  }
+  const active = activeKey(identityKey, mode);
+  const existingId = await client.get(active);
+  if (!existingId) return null;
+  // Restoring after a refresh must not extend the inactivity window.
+  const existing = await loadSingleGame(existingId, identityKey);
+  if (existing) return existing;
+  await client.del(active);
+  return null;
+}
+
+export async function loadSingleGame(
+  id: string,
+  identityKey: string,
+  touch = false
+): Promise<SingleGameState | null> {
+  const client = redis();
+  if (!client) {
+    const game = memoryGames.get(id);
+    if (!game || game.identityKey !== identityKey) return null;
+    if (isExpired(game)) {
+      deleteMemoryGame(game);
+      return null;
+    }
+    normalizeGuessTimes(game);
+    if (touch) {
+      game.lastActiveAt = Date.now();
+      memoryGames.set(game.id, game);
+    }
+    return game;
+  }
+  const raw = await client.get(gameKey(id));
+  if (!raw) return null;
+  const game = JSON.parse(raw) as SingleGameState;
+  if (game.identityKey !== identityKey) return null;
+  normalizeGuessTimes(game);
+  const expiresAt = game.expiresAt ?? game.lastActiveAt + SINGLE_GAME_TTL_SECONDS * 1000;
+  if (expiresAt <= Date.now()) {
+    await deleteSingleGame(game);
+    return null;
+  }
+  if (touch) {
+    game.lastActiveAt = Date.now();
+    await saveSingleGame(game);
+  }
+  return game;
+}
+
+export async function saveSingleGame(game: SingleGameState): Promise<void> {
+  normalizeGuessTimes(game);
+  game.lastActiveAt = Date.now();
+  const client = redis();
+  if (!client) {
+    memoryGames.set(game.id, game);
+    memoryActive.set(memoryActiveKey(game.identityKey, game.mode), game.id);
+    return;
+  }
+  const expiresAt = game.expiresAt ?? game.lastActiveAt + SINGLE_GAME_TTL_SECONDS * 1000;
+  const ttlSeconds = Math.max(1, Math.ceil((expiresAt - Date.now()) / 1000));
+  await client.multi()
+    .set(gameKey(game.id), JSON.stringify(game), { EX: ttlSeconds })
+    .set(activeKey(game.identityKey, game.mode), game.id, { EX: ttlSeconds })
+    .zAdd(redisKey('presence:single'), { score: expiresAt, value: game.id })
+    .exec();
+}
+
+export async function deleteSingleGame(game: SingleGameState): Promise<void> {
+  if (!redis()) {
+    deleteMemoryGame(game);
+    return;
+  }
+  const active = activeKey(game.identityKey, game.mode);
+  await evalCommandScript(
+    'single-game-delete-v1',
+    `redis.call('ZREM', KEYS[3], ARGV[1])
+     if redis.call('get', KEYS[1]) == ARGV[1] then
+       return redis.call('del', KEYS[1], KEYS[2])
+     end
+     return redis.call('del', KEYS[2])`,
+    [active, gameKey(game.id), redisKey('presence:single')],
+    [game.id]
+  );
+}
