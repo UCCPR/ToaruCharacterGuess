@@ -91,6 +91,24 @@ describe('playable character catalog', () => {
       .pluck('canonical_name_zh');
     expect(preGenesisBatch).toHaveLength(8);
 
+    const genesisBatch = await instance('characters')
+      .whereIn('canonical_name_zh', [
+        '舞殿星见', '根丘则斗', '梅尔莎白·格萝瑟利', '古老善良的玛利亚',
+        '姆特·忒拜', '吠达特里', '花束之布洛代韦德', '约翰·瓦伦汀·安德烈',
+      ])
+      .pluck('canonical_name_zh');
+    expect(genesisBatch).toHaveLength(8);
+
+    const transcendents = await instance('character_organizations as membership')
+      .join('characters as character', 'character.id', 'membership.character_id')
+      .join('organizations as organization', 'organization.id', 'membership.organization_id')
+      .whereIn('character.canonical_name_zh', [
+        '古老善良的玛利亚', '姆特·忒拜', '吠达特里', '花束之布洛代韦德',
+      ])
+      .where({ 'organization.name_zh': '桥架结社' })
+      .pluck('character.canonical_name_zh');
+    expect(transcendents).toHaveLength(4);
+
     const mathersOrganizations = await instance('character_organizations as membership')
       .join('characters as character', 'character.id', 'membership.character_id')
       .join('organizations as organization', 'organization.id', 'membership.organization_id')

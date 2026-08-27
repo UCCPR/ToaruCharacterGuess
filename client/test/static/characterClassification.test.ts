@@ -37,4 +37,18 @@ describe('static character classification', () => {
       group: 'esper',
     });
   });
+
+  it('includes the Genesis Testament batch with identity-only relations separated', () => {
+    const maidono = character('舞殿星见');
+    expect(maidono.organizations.map((organization) => organization.name))
+      .not.toContain('根丘则斗势力');
+    expect(maidono.identities).toContainEqual({
+      name: '根丘则斗势力成员',
+      group: 'status:根丘则斗势力',
+    });
+
+    const mary = character('古老善良的玛利亚');
+    expect(mary.organizations).toContainEqual({ name: '桥架结社', parent: null });
+    expect(mary.identities).toContainEqual({ name: '超绝者', group: 'status:超绝者' });
+  });
 });
