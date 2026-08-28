@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { GENDER_CODES, MAX_GUESSES } from '@toaru-character-guess/shared';
 import { BarChart3, Check, Gamepad2, Home, Lightbulb, Play, RotateCcw, Target, Trash2, WifiOff } from 'lucide-react';
 import Page from '../../client/src/components/Page';
 import Badge from '../../client/src/components/Badge';
@@ -46,9 +47,6 @@ const suggestions: PlayerSuggestion[] = characters.map((character) => ({
 }));
 setPlayerListSnapshot(suggestions);
 
-const MAX_GUESSES = 8;
-const genderCode: Record<string, number> = { female: 0, male: 1, unknown: 2, none: 3 };
-
 function GitHubIcon() {
   return (
     <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor">
@@ -81,7 +79,7 @@ function toFeedback(guess: Guess): GuessFeedback {
       age: guess.cells.identity,
       role: guess.cells.identity,
       majorChampionships: {
-        value: genderCode[String(guess.cells.gender.value)] ?? 2,
+        value: GENDER_CODES[String(guess.cells.gender.value)] ?? GENDER_CODES.unknown,
         level: guess.cells.gender.level,
       },
       majorAppearances: guess.cells.year,
@@ -100,7 +98,7 @@ function answerInfo(character: Character): AnswerInfo {
     region: character.location,
     team: character.organizations[0]?.name ?? '无所属',
     identities: character.identities.map((identity) => identity.name),
-    majorChampionships: genderCode[character.gender] ?? 2,
+    majorChampionships: GENDER_CODES[character.gender] ?? GENDER_CODES.unknown,
     majorAppearances: character.debutYear,
     debutWork: character.debutWork,
     difficulties: [...character.difficulties],

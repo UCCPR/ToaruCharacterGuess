@@ -1,3 +1,5 @@
+import type { CharacterIdentity } from '@toaru-character-guess/shared';
+
 export interface User {
   id: number;
   username: string;
@@ -27,7 +29,7 @@ export interface Player {
   debut_work: string;
   side_affiliations?: string[];
   organizations?: Array<{ name: string; parent: string | null }>;
-  identities?: Array<{ name: string; group: string }>;
+  identities?: CharacterIdentity[];
   difficulties?: string[];
   is_active: boolean | number;
   is_enabled: boolean | number;

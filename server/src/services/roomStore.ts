@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto';
+import { MAX_GUESSES } from '@toaru-character-guess/shared';
 import { evalStateScript, redisKey, redisState } from '../redis';
 import { GuessFeedback } from '../types';
 import { config } from '../config';
@@ -158,7 +159,7 @@ export interface StoredRoom {
   updatedAt: number;
 }
 
-export const DEFAULT_ROOM_MAX_GUESSES = 8;
+export const DEFAULT_ROOM_MAX_GUESSES = MAX_GUESSES;
 export const MIN_ROOM_MAX_GUESSES = 2;
 export const MAX_ROOM_MAX_GUESSES = 15;
 export const DEFAULT_ROOM_GUESS_INTERVAL_MS = 1_500;

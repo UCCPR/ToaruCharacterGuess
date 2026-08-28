@@ -4,7 +4,10 @@ import { redis, redisKey, redisPublisher, redisSubscriber } from '../redis';
 import { Player } from '../types';
 import { DIFFICULTY_LEVELS } from '../difficulties';
 import {
+  GENDER_CODES,
   IDENTITY_ONLY_ORGANIZATION_TYPES,
+  SIDE_TITLES,
+  characterIdentityKey,
   organizationIdentity,
   sideIdentity,
 } from './characterClassification';
@@ -100,18 +103,12 @@ export async function refreshPlayerCache(): Promise<void> {
           .select('character.id as player_id', 'appearance.debut_year', 'work.title_zh as debut_work'),
         redis()?.get(VERSION_KEY) ?? Promise.resolve(null),
       ]);
-      const sideName: Record<string, string> = {
-        science: '科学侧',
-        magic: '魔法侧',
-        independent: '独立／其他',
-        unknown: '未知',
-      };
       const sidesByPlayer = new Map<number, Set<string>>();
       const primarySideByPlayer = new Map<number, string>();
-      const identitiesByPlayer = new Map<number, Map<string, { name: string; group: string }>>();
+      const identitiesByPlayer = new Map<number, Map<string, ReturnType<typeof organizationIdentity>>>();
       for (const row of sideRows as SideRow[]) {
         const playerId = Number(row.player_id);
-        const name = sideName[String(row.side_key)];
+        const name = SIDE_TITLES[String(row.side_key)];
         if (!name) continue;
         const sides = sidesByPlayer.get(playerId) ?? new Set<string>();
         sides.add(name);
@@ -122,7 +119,7 @@ export async function refreshPlayerCache(): Promise<void> {
         const identity = sideIdentity(String(row.relationship_type));
         if (identity) {
           const identities = identitiesByPlayer.get(playerId) ?? new Map();
-          identities.set(identity.name, identity);
+          identities.set(characterIdentityKey(identity), identity);
           identitiesByPlayer.set(playerId, identities);
         }
       }
@@ -136,7 +133,7 @@ export async function refreshPlayerCache(): Promise<void> {
           type: String(row.organization_type),
           relationship: String(row.relationship_type),
         });
-        identities.set(identity.name, identity);
+        identities.set(characterIdentityKey(identity), identity);
         identitiesByPlayer.set(playerId, identities);
         if (IDENTITY_ONLY_ORGANIZATION_TYPES.has(String(row.organization_type))) continue;
         const organizations = organizationsByPlayer.get(playerId) ?? [];
@@ -161,7 +158,6 @@ export async function refreshPlayerCache(): Promise<void> {
           appearanceByPlayer.set(Number(row.player_id), row);
         }
       }
-      const genderValue: Record<string, number> = { female: 0, male: 1, unknown: 2, none: 3 };
       const hydrated: Player[] = rows.map((row) => {
         const playerId = Number(row.id);
         const primarySide = primarySideByPlayer.get(playerId) ?? '未知';
@@ -180,7 +176,7 @@ export async function refreshPlayerCache(): Promise<void> {
           team_history: [],
           age: 0,
           role: '',
-          major_championships: genderValue[String(row.gender)] ?? 2,
+          major_championships: GENDER_CODES[String(row.gender)] ?? GENDER_CODES.unknown,
           major_appearances: Number(appearance?.debut_year ?? 0),
           debut_work: String(appearance?.debut_work ?? ''),
           side_affiliations: [...(sidesByPlayer.get(playerId) ?? new Set([primarySide]))],

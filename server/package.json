@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "prebuild": "pnpm --filter @toaru-character-guess/shared build",
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
+    "pretest": "pnpm --filter @toaru-character-guess/shared build",
     "test": "vitest run --no-file-parallelism",
     "migrate": "tsx src/db/migrate.ts",
     "seed": "tsx src/db/runSeed.ts",
@@ -15,6 +17,7 @@
     "benchmark:ws-compression": "node scripts/benchmark-websocket-compression.cjs"
   },
   "dependencies": {
+    "@toaru-character-guess/shared": "workspace:*",
     "@socket.io/redis-adapter": "^8.3.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

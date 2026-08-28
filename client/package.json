@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "pretest": "node ../scripts/generate-static-catalog.mjs",
+    "pretest": "pnpm --filter @toaru-character-guess/shared build && node ../scripts/generate-static-catalog.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },

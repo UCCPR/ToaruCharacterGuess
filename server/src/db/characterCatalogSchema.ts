@@ -1,4 +1,5 @@
 import type { Knex } from 'knex';
+import { SIDE_TITLES } from '@toaru-character-guess/shared';
 
 /** Normalized character catalog used directly by gameplay. */
 export async function ensureCharacterCatalogSchema(instance: Knex): Promise<void> {
@@ -98,10 +99,10 @@ export async function ensureCharacterCatalogSchema(instance: Knex): Promise<void
       table.string('name_ja', 64).nullable();
     });
     await instance('sides').insert([
-      { key: 'science', name_zh: '科学侧', name_ja: '科学サイド' },
-      { key: 'magic', name_zh: '魔法侧', name_ja: '魔術サイド' },
-      { key: 'independent', name_zh: '独立／其他', name_ja: null },
-      { key: 'unknown', name_zh: '未知', name_ja: null },
+      { key: 'science', name_zh: SIDE_TITLES.science, name_ja: '科学サイド' },
+      { key: 'magic', name_zh: SIDE_TITLES.magic, name_ja: '魔術サイド' },
+      { key: 'independent', name_zh: SIDE_TITLES.independent, name_ja: null },
+      { key: 'unknown', name_zh: SIDE_TITLES.unknown, name_ja: null },
     ]);
   }
 

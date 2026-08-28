@@ -1,6 +1,17 @@
 import { describe, it, expect } from 'vitest';
 import { compareGuess } from '../../src/services/gameService';
 import { Player } from '../../src/types';
+import type { CharacterIdentity } from '@toaru-character-guess/shared';
+
+function identity(
+  name: string,
+  group: string,
+  kind: string,
+  entity: string | null,
+  role: string,
+): CharacterIdentity {
+  return { name, group, kind, entity, role };
+}
 
 function makePlayer(overrides: Partial<Player>): Player {
   return {
@@ -18,8 +29,8 @@ function makePlayer(overrides: Partial<Player>): Player {
     side_affiliations: ['科学侧'],
     organizations: [{ name: '常盘台中学', parent: null }],
     identities: [
-      { name: '常盘台中学学生', group: 'student' },
-      { name: '能力者', group: 'esper' },
+      identity('常盘台中学学生', 'student', 'school', '常盘台中学', 'student'),
+      identity('能力者', 'esper', 'side-affiliation', null, 'esper'),
     ],
     is_active: true,
     is_enabled: true,
@@ -88,6 +99,21 @@ describe('compareGuess', () => {
       .toEqual({ value: '道具（ITEM）', level: 'close' });
   });
 
+  it('直属上级组织与其子组织互相为 close', () => {
+    const branch = makePlayer({
+      id: 2,
+      organizations: [{ name: '必要之恶教会', parent: '英国清教' }],
+    });
+    const parent = makePlayer({
+      id: 10,
+      organizations: [{ name: '英国清教', parent: null }],
+    });
+    expect(compareGuess(branch, parent).attributes.team)
+      .toEqual({ value: '必要之恶教会', level: 'close' });
+    expect(compareGuess(parent, branch).attributes.team)
+      .toEqual({ value: '英国清教', level: 'close' });
+  });
+
   it('学校之间没有共同直接上级时为 wrong', () => {
     const guess = makePlayer({ id: 2, organizations: [{ name: '栅川中学', parent: null }] });
     expect(compareGuess(guess, target).attributes.team.level).toBe('wrong');
@@ -130,8 +156,8 @@ describe('compareGuess', () => {
     const guess = makePlayer({
       id: 2,
       identities: [
-        { name: '英国清教成员', group: 'religious' },
-        { name: '常盘台中学学生', group: 'student' },
+        identity('英国清教成员', 'religious', 'church', '英国清教', 'member'),
+        identity('常盘台中学学生', 'student', 'school', '常盘台中学', 'student'),
       ],
     });
     expect(compareGuess(guess, target).attributes.role)
@@ -142,20 +168,89 @@ describe('compareGuess', () => {
     const guess = makePlayer({
       id: 2,
       identities: [
-        { name: '魔法师', group: 'magician' },
-        { name: '栅川中学学生', group: 'student' },
+        identity('魔法师', 'magician', 'side-affiliation', null, 'magician'),
+        identity('栅川中学学生', 'student', 'school', '栅川中学', 'student'),
       ],
     });
     expect(compareGuess(guess, target).attributes.role)
       .toEqual({ value: '栅川中学学生', level: 'close' });
   });
 
+  it('不同研究计划及人工生命身份之间不会误判为 close', () => {
+    const researcher = makePlayer({
+      id: 2,
+      identities: [identity(
+        '绝对能力进化计划研究人员',
+        'research-project:绝对能力进化计划',
+        'research-project',
+        '绝对能力进化计划',
+        'researcher',
+      )],
+    });
+    const artificialBeing = makePlayer({
+      id: 10,
+      identities: [
+        identity('人工生命', 'artificial-being', 'side-affiliation', null, 'artificial-being'),
+        identity('克隆多莉计划实验对象', 'research-project:克隆多莉计划', 'research-project', '克隆多莉计划', 'subject'),
+      ],
+    });
+    expect(compareGuess(researcher, artificialBeing).attributes.role.level).toBe('wrong');
+  });
+
+  it('同一研究计划中的不同身份仍为 close', () => {
+    const researcher = makePlayer({
+      id: 2,
+      identities: [identity(
+        '绝对能力进化计划研究人员',
+        'research-project:绝对能力进化计划',
+        'research-project',
+        '绝对能力进化计划',
+        'researcher',
+      )],
+    });
+    const subject = makePlayer({
+      id: 10,
+      identities: [identity(
+        '绝对能力进化计划实验对象',
+        'research-project:绝对能力进化计划',
+        'research-project',
+        '绝对能力进化计划',
+        'subject',
+      )],
+    });
+    expect(compareGuess(researcher, subject).attributes.role.level).toBe('close');
+  });
+
+  it('显示名称相同但结构化身份不同不会误判为 correct', () => {
+    const firstProject = makePlayer({
+      id: 2,
+      identities: [identity(
+        '研究人员',
+        'research-project:绝对能力进化计划',
+        'research-project',
+        '绝对能力进化计划',
+        'researcher',
+      )],
+    });
+    const secondProject = makePlayer({
+      id: 10,
+      identities: [identity(
+        '研究人员',
+        'research-project:克隆多莉计划',
+        'research-project',
+        '克隆多莉计划',
+        'researcher',
+      )],
+    });
+    expect(compareGuess(firstProject, secondProject).attributes.role.level).toBe('wrong');
+  });
+
   it('身份均无关系时稳定选择一个灰色身份', () => {
     const guess = makePlayer({
       id: 2,
       identities: [
-        { name: '魔法师', group: 'magician' },
-        { name: '王室成员', group: 'royalty' },
+        identity('魔法师', 'magician', 'side-affiliation', null, 'magician'),
+        identity('王室成员', 'royalty', 'side-affiliation', null, 'royalty'),
       ],
     });
     const first = compareGuess(guess, target).attributes.role;

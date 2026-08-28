@@ -26,15 +26,45 @@ describe('static character classification', () => {
     expect(mathers.identities).toContainEqual({
       name: '科隆尊召唤者',
       group: 'status:科隆尊召唤者',
+      kind: 'special-status',
+      entity: '科隆尊召唤者',
+      role: 'holder',
     });
   });
 
   it('shares relationship labels and side identities with the server edition', () => {
     expect(character('莉莉丝').identities.map((identity) => identity.name))
       .toContain('克劳利家族女儿');
+    expect(character('莉莉丝').identities).toContainEqual({
+      name: '克劳利家族女儿',
+      group: 'family:克劳利家族',
+      kind: 'family',
+      entity: '克劳利家族',
+      role: 'daughter',
+    });
     expect(character('削板军霸').identities).toContainEqual({
       name: '原石',
       group: 'esper',
+      kind: 'side-affiliation',
+      entity: null,
+      role: 'gemstone-esper',
+    });
+  });
+
+  it('scopes research identities to their exact project', () => {
+    expect(character('芳川桔梗').identities).toContainEqual({
+      name: '绝对能力进化计划前研究人员',
+      group: 'research-project:绝对能力进化计划',
+      kind: 'research-project',
+      entity: '绝对能力进化计划',
+      role: 'former-researcher',
+    });
+    expect(character('多莉').identities).toContainEqual({
+      name: '克隆多莉计划产物',
+      group: 'research-project:克隆多莉计划',
+      kind: 'research-project',
+      entity: '克隆多莉计划',
+      role: 'product',
     });
   });
 
@@ -45,10 +75,19 @@ describe('static character classification', () => {
     expect(maidono.identities).toContainEqual({
       name: '根丘则斗势力成员',
       group: 'status:根丘则斗势力',
+      kind: 'special-status',
+      entity: '根丘则斗势力',
+      role: 'agent',
     });
 
     const mary = character('古老善良的玛利亚');
     expect(mary.organizations).toContainEqual({ name: '桥架结社', parent: null });
-    expect(mary.identities).toContainEqual({ name: '超绝者', group: 'status:超绝者' });
+    expect(mary.identities).toContainEqual({
+      name: '超绝者',
+      group: 'status:超绝者',
+      kind: 'special-status',
+      entity: '超绝者',
+      role: 'holder',
+    });
   });
 });

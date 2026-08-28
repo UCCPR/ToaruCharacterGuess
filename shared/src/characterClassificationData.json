@@ -56,8 +56,10 @@
   },
   "organizationIdentityGroups": {
     "school": "student", "dark-side-group": "dark-side",
-    "research-project": "researcher", "research-institute": "researcher",
-    "research-group": "researcher", "research-family": "family", "family": "family",
+    "research-project": "research-project:{name}",
+    "research-institute": "research-institute:{name}",
+    "research-group": "research-group:{name}",
+    "research-family": "family:{name}", "family": "family:{name}",
     "law-enforcement": "law-enforcement", "church": "religious",
     "church-branch": "religious", "religious-order": "religious",
     "magic-cabal": "magic-cabal", "royal-house": "royalty",

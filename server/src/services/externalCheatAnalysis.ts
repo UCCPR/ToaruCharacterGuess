@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import { z } from 'zod';
+import { MAX_GUESSES } from '@toaru-character-guess/shared';
 import { config } from '../config';
 import { db } from '../db/knex';
 import { HttpError } from '../middleware/common';
@@ -9,7 +10,7 @@ import { normalizeTeamHistory } from './teamHistory';
 const MAX_SINGLE_GAMES = 50;
 const MAX_MATCHES = 50;
 const MAX_ROUNDS_PER_MATCH = 50;
-const MAX_GUESSES_PER_ROUND = 8;
+const MAX_GUESSES_PER_ROUND = MAX_GUESSES;
 const MAX_REQUEST_BYTES = 8 * 1024 * 1024;
 const MAX_RESPONSE_BYTES = 512 * 1024;
 

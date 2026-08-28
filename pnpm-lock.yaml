@@ -81,6 +81,9 @@ importers:
       '@socket.io/redis-adapter':
         specifier: ^8.3.0
         version: 8.3.0(socket.io-adapter@2.5.8(supports-color@8.1.1))(supports-color@8.1.1)
+      '@toaru-character-guess/shared':
+        specifier: workspace:*
+        version: link:../shared
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
@@ -150,8 +153,17 @@ importers:
         specifier: ^13.0.3
         version: 13.0.3
 
+  shared:
+    devDependencies:
+      typescript:
+        specifier: ^5.7.3
+        version: 5.9.3
+
   static:
     dependencies:
+      '@toaru-character-guess/shared':
+        specifier: workspace:*
+        version: link:../shared
       i18next:
         specifier: ^26.3.6
         version: 26.3.6(typescript@5.9.3)
