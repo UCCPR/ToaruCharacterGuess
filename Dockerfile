@@ -30,9 +30,18 @@ COPY client client
 COPY server server
 
 # The deployed server tree contains production dependencies only and omits the
-# optional SQLite driver. Only that tree is copied into the runtime image.
-RUN pnpm build \
- && pnpm --filter server deploy --prod --no-optional --legacy /runtime/server
+# optional SQLite driver. Keep the build and deploy steps separate so failures
+# identify the responsible phase. Reuse the install store during deployment;
+# cached packages avoid registry instability while missing packages may still
+# be fetched from the registry.
+RUN pnpm build
+
+RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store \
+    pnpm --prefer-offline --filter server deploy \
+      --prod \
+      --no-optional \
+      --legacy \
+      /runtime/server
 
 FROM gcr.io/distroless/nodejs26-debian13:nonroot AS runtime
 
