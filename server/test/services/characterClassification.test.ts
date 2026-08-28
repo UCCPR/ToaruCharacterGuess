@@ -9,6 +9,8 @@ import {
 describe('shared character classification', () => {
   it('resolves curated organization parents without overriding explicit parents', () => {
     expect(organizationParentName('道具（ITEM）')).toBe('暗部');
+    expect(organizationParentName('大蜘蛛')).toBe('武装无能力集团（Skill-Out）');
+    expect(organizationParentName('黑鸦部队')).toBe('轨道电梯公司');
     expect(organizationParentName('必要之恶教会', '英国清教')).toBe('英国清教');
   });
 

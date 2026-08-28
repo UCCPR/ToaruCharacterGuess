@@ -5,7 +5,9 @@
     "学校（SCHOOL）": "暗部",
     "猎犬部队（Hound Dog）": "暗部",
     "成员（MEMBER）": "暗部",
-    "新生（Freshmen）": "暗部"
+    "新生（Freshmen）": "暗部",
+    "黑鸦部队": "轨道电梯公司",
+    "大蜘蛛": "武装无能力集团（Skill-Out）"
   },
   "identityOnlyOrganizationTypes": [
     "research-project", "research-family", "special-entity", "special-status",

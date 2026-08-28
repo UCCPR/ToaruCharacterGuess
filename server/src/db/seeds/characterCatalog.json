@@ -1262,5 +1262,69 @@
     "organizations": [{"name":"蔷薇十字","type":"magic-cabal","relationship":"associated","primary":true},{"name":"克里斯蒂安·罗森克鲁兹身份","type":"special-status","relationship":"form","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
     "appearance": {"work":"index-gt","reference":"创约第8卷登场／第9卷揭示真名","year":2023}, "source_page":"约翰·瓦伦汀·安德烈"
+  },
+  {
+    "nickname": "莎特奥拉·塞克温茨雅", "name_ja": "シャットアウラ＝セクウェンツィア", "name_en": "Shutaura Sequenzia", "gender": "female",
+    "aliases": [{"name":"Shutaura Sequenzia","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"esper","primary":true}],
+    "organizations": [{"name":"黑鸦部队","type":"dark-side-group","parent":"轨道电梯公司","relationship":"leader","primary":true},{"name":"恩底弥翁计划","type":"space-project","relationship":"central-subject","primary":false}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
+    "appearance": {"work":"endymion-movie","reference":"剧场版","year":2013}, "source_page":"莎特奥拉·塞克温茨雅"
+  },
+  {
+    "nickname": "菲布理", "name_ja": "フェブリ", "name_en": "Febrie", "gender": "female",
+    "aliases": [{"name":"Febrie","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"artificial-being","primary":true}],
+    "organizations": [{"name":"新生（STUDY）","type":"dark-side-group","relationship":"product","primary":true},{"name":"化学造人计划","type":"research-project","relationship":"product","primary":false}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
+    "appearance": {"work":"railgun-anime","reference":"动画第二季第18集","year":2013}, "source_page":"菲布理"
+  },
+  {
+    "nickname": "珍妮", "name_ja": "ジャーニ", "name_en": "Janie", "gender": "female",
+    "aliases": [{"name":"Janie","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"artificial-being","primary":true}],
+    "organizations": [{"name":"新生（STUDY）","type":"dark-side-group","relationship":"product","primary":true},{"name":"化学造人计划","type":"research-project","relationship":"product","primary":false}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
+    "appearance": {"work":"railgun-anime","reference":"动画第二季第23集","year":2013}, "source_page":"珍妮"
+  },
+  {
+    "nickname": "有富春树", "name_ja": "有冨春樹", "name_en": "Aritomi Haruki", "gender": "male",
+    "aliases": [{"name":"Aritomi Haruki","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"researcher","primary":true}],
+    "organizations": [{"name":"新生（STUDY）","type":"dark-side-group","relationship":"leader","primary":true},{"name":"化学造人计划","type":"research-project","relationship":"leader","primary":false}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
+    "appearance": {"work":"railgun-anime","reference":"动画第二季第18集","year":2013}, "source_page":"有富春树"
+  },
+  {
+    "nickname": "黑妻绵流", "name_ja": "黒妻綿流", "name_en": "Kurozuma Wataru", "gender": "male",
+    "aliases": [{"name":"Kurozuma Wataru","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"level-zero","primary":true}],
+    "organizations": [{"name":"大蜘蛛","type":"street-group","parent":"武装无能力集团（Skill-Out）","relationship":"former-leader","primary":true}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
+    "appearance": {"work":"railgun-anime","reference":"动画第15集","year":2010}, "source_page":"黑妻绵流"
+  },
+  {
+    "nickname": "蛇谷次雄", "name_ja": "蛇谷次雄", "name_en": "Hebitani Tsuguo", "gender": "male",
+    "aliases": [{"name":"Hebitani Tsuguo","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"level-zero","primary":true}],
+    "organizations": [{"name":"大蜘蛛","type":"street-group","parent":"武装无能力集团（Skill-Out）","relationship":"leader","primary":true}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
+    "appearance": {"work":"railgun-anime","reference":"动画第15集","year":2010}, "source_page":"蛇谷次雄"
+  },
+  {
+    "nickname": "春暖嬉美", "name_ja": "春暖嬉美", "name_en": "Shundan Kimi", "gender": "female",
+    "aliases": [{"name":"Shundan Kimi","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"esper","primary":true}],
+    "organizations": [{"name":"抛弃物儿童（Child Error）","type":"special-status","relationship":"holder","primary":true}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
+    "appearance": {"work":"railgun-manga","reference":"漫画第105话","year":2018}, "source_page":"春暖嬉美"
+  },
+  {
+    "nickname": "御坂9982号", "name_ja": "ミサカ9982号", "name_en": "Misaka 9982", "gender": "female",
+    "aliases": [{"name":"Misaka 9982","locale":"en","type":"full-name"}],
+    "sides": [{"key":"science","relationship":"esper-clone","primary":true}],
+    "organizations": [{"name":"妹妹们（SISTERS）","type":"clone-network","relationship":"member","primary":false},{"name":"御坂网络","type":"network","relationship":"member","primary":true},{"name":"绝对能力进化计划","type":"research-project","relationship":"subject","primary":false}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
+    "appearance": {"work":"railgun-manga","reference":"漫画第20话","year":2009}, "source_page":"御坂9982号"
   }
 ]

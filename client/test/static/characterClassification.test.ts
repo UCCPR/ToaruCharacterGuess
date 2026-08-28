@@ -17,6 +17,14 @@ describe('static character classification', () => {
       name: '集团（GROUP）',
       parent: '暗部',
     });
+    expect(character('黑妻绵流').organizations).toContainEqual({
+      name: '大蜘蛛',
+      parent: '武装无能力集团（Skill-Out）',
+    });
+    expect(character('莎特奥拉·塞克温茨雅').organizations).toContainEqual({
+      name: '黑鸦部队',
+      parent: '轨道电梯公司',
+    });
   });
 
   it('keeps identity-only entries out of the organization column', () => {
@@ -88,6 +96,30 @@ describe('static character classification', () => {
       kind: 'special-status',
       entity: '超绝者',
       role: 'holder',
+    });
+  });
+
+  it('includes the recognizable-character batch and scoped project identities', () => {
+    expect(character('菲布理').identities).toContainEqual({
+      name: '化学造人计划产物',
+      group: 'research-project:化学造人计划',
+      kind: 'research-project',
+      entity: '化学造人计划',
+      role: 'product',
+    });
+    expect(character('珍妮').identities).toContainEqual({
+      name: '化学造人计划产物',
+      group: 'research-project:化学造人计划',
+      kind: 'research-project',
+      entity: '化学造人计划',
+      role: 'product',
+    });
+    expect(character('御坂9982号').identities).toContainEqual({
+      name: '绝对能力进化计划实验对象',
+      group: 'research-project:绝对能力进化计划',
+      kind: 'research-project',
+      entity: '绝对能力进化计划',
+      role: 'subject',
     });
   });
 });

@@ -99,6 +99,14 @@ describe('playable character catalog', () => {
       .pluck('canonical_name_zh');
     expect(genesisBatch).toHaveLength(8);
 
+    const recognizableBatch = await instance('characters')
+      .whereIn('canonical_name_zh', [
+        '莎特奥拉·塞克温茨雅', '菲布理', '珍妮', '有富春树',
+        '黑妻绵流', '蛇谷次雄', '春暖嬉美', '御坂9982号',
+      ])
+      .pluck('canonical_name_zh');
+    expect(recognizableBatch).toHaveLength(8);
+
     const transcendents = await instance('character_organizations as membership')
       .join('characters as character', 'character.id', 'membership.character_id')
       .join('organizations as organization', 'organization.id', 'membership.organization_id')
@@ -151,6 +159,16 @@ describe('playable character catalog', () => {
       { name: '新生（Freshmen）', parent: '暗部' },
       { name: '道具（ITEM）', parent: '暗部' },
       { name: '集团（GROUP）', parent: '暗部' },
+    ]);
+
+    const recognizableOrganizations = await instance('organizations as organization')
+      .leftJoin('organizations as parent', 'parent.id', 'organization.parent_id')
+      .whereIn('organization.name_zh', ['黑鸦部队', '大蜘蛛'])
+      .orderBy('organization.name_zh')
+      .select('organization.name_zh as name', 'parent.name_zh as parent');
+    expect(recognizableOrganizations).toEqual([
+      { name: '大蜘蛛', parent: '武装无能力集团（Skill-Out）' },
+      { name: '黑鸦部队', parent: '轨道电梯公司' },
     ]);
   });
 });
