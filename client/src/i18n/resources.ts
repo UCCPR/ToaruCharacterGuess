@@ -174,7 +174,7 @@ export const resources = {
         usedGuesses: '共用了 {{count}} 次猜测', missed: '很遗憾，本局未能猜中', settlementNotRecorded: '结算频率超过限制，本局不会计入个人战绩和排行榜。', viewGame: '查看对局',
         starting: '正在开始新对局…', startFailedTitle: '开局失败', startRetry: '重试', backToLobby: '返回难度选择',
       },
-      singleLobby: { title: '选择单人难度', subtitle: '选择一个难度开始游戏。你的选择会保存在本地浏览器中。', available: '可用', start: '开始游戏', recommended: '推荐' },
+      singleLobby: { title: '选择单人难度', subtitle: '选择一个难度开始游戏。你的选择会保存在本地浏览器中。', available: '可用', start: '开始游戏', recommended: '推荐', resumeTitle: '继续上次游戏？', resumeMessage: '检测到尚未结束的{{mode}}（{{difficulty}}），已猜测 {{count}}/{{max}} 次。是否继续？', resumeConfirm: '继续游戏', resumeCancel: '暂不继续' },
       dailyLobby: { title: '选择每日挑战难度', subtitle: '选择一个难度进入今日挑战。每个难度每天只能完成一次。', enter: '进入挑战', statusUnavailable: '状态暂不可用' },
       daily: {
         title: '每日挑战', date: '{{date}}', refreshIn: '{{time}} 后刷新',
@@ -229,6 +229,10 @@ export const resources = {
         personalReplays: '个人回放', replayType: '回放类型', single: '单人', multi: '多人', mode: '模式', result: '结果', guesses: '猜测',
         answer: '答案', time: '时间', replay: '回放', loading: '加载中', matchup: '对阵', score: '比分', unknownOpponent: '未知对手',
         replayAria: '回放对局 {{id}}', noSingle: '还没有单人对局记录', noMulti: '还没有多人对局记录',
+      },
+      staticStats: {
+        title: '个人记录', localOnly: '静态版记录仅保存在当前浏览器', losses: '单人失败', guessPerformance: '猜测表现', recentGames: '最近对局',
+        noRecords: '还没有符合当前难度的已完成对局', clear: '清空记录', clearTitle: '清空个人记录？', clearMessage: '所有静态版个人记录都会从当前浏览器永久删除。未结束的游戏存档不会受到影响。', clearConfirm: '确认清空',
       },
       replay: {
         singleTitle: '单人对局回放', multiTitle: '多人对局回放', close: '关闭回放', correctAnswer: '正确答案：{{name}}',
@@ -391,7 +395,7 @@ export const resources = {
         correctAnswer: 'Correct answer', usedGuesses: 'Solved in {{count}} guesses', missed: 'You did not find the answer this time', settlementNotRecorded: 'The settlement limit was exceeded. This game will not count toward personal stats or leaderboards.', viewGame: 'View game',
         starting: 'Starting a new game…', startFailedTitle: 'Could not start the game', startRetry: 'Retry', backToLobby: 'Back to difficulty selection',
       },
-      singleLobby: { title: 'Choose a solo difficulty', subtitle: 'Choose a difficulty to start. Your choice is saved in this browser.', available: 'Available', start: 'Start game', recommended: 'Recommended' },
+      singleLobby: { title: 'Choose a solo difficulty', subtitle: 'Choose a difficulty to start. Your choice is saved in this browser.', available: 'Available', start: 'Start game', recommended: 'Recommended', resumeTitle: 'Continue your last game?', resumeMessage: 'An unfinished {{mode}} game ({{difficulty}}) was found with {{count}}/{{max}} guesses used. Continue playing?', resumeConfirm: 'Continue game', resumeCancel: 'Not now' },
       dailyLobby: { title: 'Choose a daily difficulty', subtitle: 'Choose a difficulty for today. Each difficulty can only be completed once per day.', enter: 'Enter challenge', statusUnavailable: 'Status unavailable' },
       daily: {
         title: 'Daily Challenge', date: '{{date}}', refreshIn: 'Refresh in {{time}}',
@@ -442,6 +446,10 @@ export const resources = {
         replayType: 'Replay type', single: 'Solo', multi: 'Multiplayer', mode: 'Mode', result: 'Result', guesses: 'Guesses', answer: 'Answer', time: 'Time',
         replay: 'Replay', loading: 'Loading', matchup: 'Matchup', score: 'Score', unknownOpponent: 'Unknown opponent', replayAria: 'Replay game {{id}}',
         noSingle: 'No solo games yet', noMulti: 'No multiplayer games yet',
+      },
+      staticStats: {
+        title: 'Personal records', localOnly: 'Static-edition records are stored only in this browser', losses: 'Solo losses', guessPerformance: 'Guess performance', recentGames: 'Recent games',
+        noRecords: 'No completed games match this difficulty', clear: 'Clear records', clearTitle: 'Clear personal records?', clearMessage: 'All static-edition personal records will be permanently removed from this browser. Unfinished game saves will not be affected.', clearConfirm: 'Clear records',
       },
       replay: {
         singleTitle: 'Solo Replay', multiTitle: 'Multiplayer Replay', close: 'Close replay', correctAnswer: 'Correct answer: {{name}}', guesses: 'Guess history',
@@ -600,7 +608,7 @@ export const resources = {
         correctAnswer: '正解', usedGuesses: '{{count}} 回で正解', missed: '今回は正解できませんでした', settlementNotRecorded: '精算回数の上限を超えたため、この対局は個人戦績とランキングに反映されません。', viewGame: '対局を見る',
         starting: '新しいゲームを開始しています…', startFailedTitle: 'ゲームを開始できませんでした', startRetry: '再試行', backToLobby: '難易度選択に戻る',
       },
-      singleLobby: { title: 'ソロ難易度を選択', subtitle: '難易度を選んで開始します。選択はこのブラウザに保存されます。', available: '利用可', start: 'ゲーム開始', recommended: 'おすすめ' },
+      singleLobby: { title: 'ソロ難易度を選択', subtitle: '難易度を選んで開始します。選択はこのブラウザに保存されます。', available: '利用可', start: 'ゲーム開始', recommended: 'おすすめ', resumeTitle: '前回のゲームを続けますか？', resumeMessage: '未終了の{{mode}}（{{difficulty}}）が見つかりました。使用した推測回数は {{count}}/{{max}} 回です。続けますか？', resumeConfirm: 'ゲームを続ける', resumeCancel: '今は続けない' },
       dailyLobby: { title: 'デイリー難易度を選択', subtitle: '本日の難易度を選択します。各難易度は 1 日 1 回のみ完了できます。', enter: 'チャレンジへ', statusUnavailable: '状態を取得できません' },
       daily: {
         title: 'デイリーチャレンジ', date: '{{date}}', refreshIn: '{{time}} 後に更新',
@@ -650,6 +658,10 @@ export const resources = {
         multiGamesWins: 'マルチ試合 / 勝利', multiGames: 'マルチ試合', multiAvgWinningGuesses: 'マルチ勝利時の平均予想数', personalReplays: '自分のリプレイ', replayType: 'リプレイ種別', single: 'ソロ', multi: 'マルチ',
         mode: 'モード', result: '結果', guesses: '予想', answer: '正解', time: '日時', replay: 'リプレイ', loading: '読み込み中', matchup: '対戦', score: 'スコア',
         unknownOpponent: '不明な相手', replayAria: '対局 {{id}} を再生', noSingle: 'ソロ対局の記録はまだありません', noMulti: 'マルチ対局の記録はまだありません',
+      },
+      staticStats: {
+        title: '個人記録', localOnly: '静的版の記録はこのブラウザにのみ保存されます', losses: 'ソロ敗北数', guessPerformance: '予想成績', recentGames: '最近のゲーム',
+        noRecords: 'この難易度の完了済みゲームはまだありません', clear: '記録を消去', clearTitle: '個人記録を消去しますか？', clearMessage: '静的版の個人記録をこのブラウザから完全に削除します。未終了のゲームデータには影響しません。', clearConfirm: '記録を消去',
       },
       replay: {
         singleTitle: 'ソロ対局リプレイ', multiTitle: 'マルチ対局リプレイ', close: 'リプレイを閉じる', correctAnswer: '正解：{{name}}', guesses: '予想履歴',

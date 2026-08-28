@@ -5,6 +5,22 @@ export type Guess = { character: Character; correct: boolean; cells: Record<'sid
 
 export type StaticGameMode = 'daily' | 'free';
 
+export type StaticSavedGame = {
+  gameId?: string;
+  targetId: number;
+  guessIds: number[];
+  status: 'playing' | 'won' | 'lost';
+  startedAt?: string;
+  updatedAt?: number;
+};
+
+export type UnfinishedStaticGame = {
+  key: string;
+  mode: StaticGameMode;
+  difficulty: string;
+  game: StaticSavedGame;
+};
+
 const STORAGE_PREFIX = 'toaru-static-v2';
 
 function dateKey(): string {
@@ -21,6 +37,49 @@ export function staticGameStorageKey(
 
 export function clearStaticGame(mode: StaticGameMode, difficulty: string): void {
   localStorage.removeItem(staticGameStorageKey(mode, difficulty));
+}
+
+function isSavedGame(value: unknown): value is StaticSavedGame {
+  if (!value || typeof value !== 'object') return false;
+  const game = value as Partial<StaticSavedGame>;
+  return Number.isInteger(game.targetId)
+    && Array.isArray(game.guessIds)
+    && game.guessIds.every(Number.isInteger)
+    && ['playing', 'won', 'lost'].includes(game.status ?? '');
+}
+
+export function latestUnfinishedStaticGame(
+  storage: Storage = localStorage,
+  day = dateKey(),
+): UnfinishedStaticGame | null {
+  const candidates: UnfinishedStaticGame[] = [];
+  for (let index = 0; index < storage.length; index += 1) {
+    const key = storage.key(index);
+    if (!key) continue;
+    const [prefix, rawMode, difficulty, scope, ...extra] = key.split(':');
+    if (
+      prefix !== STORAGE_PREFIX
+      || (rawMode !== 'free' && rawMode !== 'daily')
+      || !difficulty
+      || extra.length
+      || (rawMode === 'free' && scope !== 'free')
+      || (rawMode === 'daily' && scope !== day)
+    ) continue;
+
+    try {
+      const game: unknown = JSON.parse(storage.getItem(key) ?? 'null');
+      if (!isSavedGame(game) || game.status !== 'playing') continue;
+      candidates.push({ key, mode: rawMode, difficulty, game });
+    } catch {
+      continue;
+    }
+  }
+
+  return candidates.sort((left, right) =>
+    (right.game.updatedAt ?? 0) - (left.game.updatedAt ?? 0)
+    || right.game.guessIds.length - left.game.guessIds.length
+    || left.key.localeCompare(right.key)
+  )[0] ?? null;
 }
 
 const continent: Record<string, string> = { '学园都市':'asia','日本':'asia','英国':'europe','法国':'europe','意大利':'europe','俄罗斯':'europe','德国':'europe','罗马尼亚':'europe','美国':'north-america','夏威夷':'north-america','墨西哥':'north-america','巴西':'south-america','埃及':'africa','南非':'africa','澳大利亚':'oceania' };

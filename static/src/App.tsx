@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Check, Gamepad2, Home, Lightbulb, Play, RotateCcw, Target, WifiOff } from 'lucide-react';
+import { BarChart3, Check, Gamepad2, Home, Lightbulb, Play, RotateCcw, Target, Trash2, WifiOff } from 'lucide-react';
 import Page from '../../client/src/components/Page';
+import Badge from '../../client/src/components/Badge';
 import GuessBoard from '../../client/src/components/GuessBoard';
 import GuessInputBar from '../../client/src/components/GuessInputBar';
 import AnswerOverlay, { type AnswerInfo } from '../../client/src/components/AnswerOverlay';
@@ -22,11 +23,19 @@ import {
   clearStaticGame,
   compare,
   dailyTarget,
+  latestUnfinishedStaticGame,
   staticGameStorageKey,
   type Character,
   type Guess,
+  type StaticSavedGame,
   type StaticGameMode,
 } from './game';
+import {
+  addStaticGameRecord,
+  clearStaticGameRecords,
+  loadStaticGameRecords,
+  summarizeStaticGameRecords,
+} from './stats';
 
 const characters = catalog as unknown as Character[];
 const suggestions: PlayerSuggestion[] = characters.map((character) => ({
@@ -40,12 +49,24 @@ setPlayerListSnapshot(suggestions);
 const MAX_GUESSES = 8;
 const genderCode: Record<string, number> = { female: 0, male: 1, unknown: 2, none: 3 };
 
+function GitHubIcon() {
+  return (
+    <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" fill="currentColor">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+    </svg>
+  );
+}
+
 function dateKey(): string {
   return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai' }).format(new Date());
 }
 
 function randomTarget(pool: Character[]): Character {
   return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function createGameId(): string {
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
 }
 
 function toFeedback(guess: Guess): GuessFeedback {
@@ -86,16 +107,10 @@ function answerInfo(character: Character): AnswerInfo {
   };
 }
 
-type SavedGame = {
-  targetId: number;
-  guessIds: number[];
-  status: 'playing' | 'won' | 'lost';
-};
-
 export function App() {
   const { t, i18n } = useTranslation();
   const confirm = useConfirm();
-  const [screen, setScreen] = useState<'lobby' | 'game'>('lobby');
+  const [screen, setScreen] = useState<'lobby' | 'game' | 'stats'>('lobby');
   const [mode, setMode] = useState<StaticGameMode>('free');
   const [difficulty, setDifficulty] = useState('normal');
   const [target, setTarget] = useState<Character>(() => dailyTarget(characters, 'normal', dateKey()));
@@ -103,7 +118,12 @@ export function App() {
   const [status, setStatus] = useState<'playing' | 'won' | 'lost'>('playing');
   const [showAnswer, setShowAnswer] = useState(false);
   const [inputFocused, setInputFocused] = useState(false);
+  const [gameId, setGameId] = useState(createGameId);
+  const [startedAt, setStartedAt] = useState(() => new Date().toISOString());
+  const [statsDifficulty, setStatsDifficulty] = useState('all');
+  const [statsVersion, setStatsVersion] = useState(0);
   const boardEndRef = useRef<HTMLDivElement>(null);
+  const resumePromptedRef = useRef(false);
 
   const pool = useMemo(
     () => characters.filter((character) => character.difficulties.includes(difficulty)),
@@ -116,13 +136,16 @@ export function App() {
 
   useEffect(() => {
     if (screen !== 'game') return;
-    const saved: SavedGame = {
+    const saved: StaticSavedGame = {
+      gameId,
       targetId: target.id,
       guessIds: guesses.map((guess) => guess.character.id),
       status,
+      startedAt,
+      updatedAt: Date.now(),
     };
     localStorage.setItem(staticGameStorageKey(mode, difficulty), JSON.stringify(saved));
-  }, [difficulty, guesses, mode, screen, status, target.id]);
+  }, [difficulty, gameId, guesses, mode, screen, startedAt, status, target.id]);
 
   useEffect(() => {
     if (!inputFocused || !window.matchMedia('(max-width: 640px)').matches) return;
@@ -136,35 +159,93 @@ export function App() {
       : randomTarget(nextPool);
   };
 
+  const restoreSavedGame = (
+    saved: StaticSavedGame,
+    nextMode: StaticGameMode,
+    nextDifficulty: string,
+    key: string,
+  ) => {
+    const savedTarget = characters.find((character) => character.id === saved.targetId);
+    if (!savedTarget) {
+      localStorage.removeItem(key);
+      return false;
+    }
+    const restored = saved.guessIds
+      .map((id) => characters.find((character) => character.id === id))
+      .filter((character): character is Character => Boolean(character))
+      .map((character) => compare(character, savedTarget));
+    setGameId(saved.gameId ?? `legacy-${key}-${saved.targetId}`);
+    setStartedAt(saved.startedAt ?? new Date().toISOString());
+    setMode(nextMode);
+    setDifficulty(nextDifficulty);
+    setTarget(savedTarget);
+    setGuesses(restored);
+    setStatus(saved.status);
+    setShowAnswer(saved.status !== 'playing');
+    setScreen('game');
+    return true;
+  };
+
   const begin = (reset = false) => {
     const key = staticGameStorageKey(mode, difficulty);
     if (!reset) {
       try {
-        const saved = JSON.parse(localStorage.getItem(key) ?? 'null') as SavedGame | null;
-        const savedTarget = characters.find((character) => character.id === saved?.targetId);
-        if (saved && savedTarget) {
-          const restored = saved.guessIds
-            .map((id) => characters.find((character) => character.id === id))
-            .filter((character): character is Character => Boolean(character))
-            .map((character) => compare(character, savedTarget));
-          setTarget(savedTarget);
-          setGuesses(restored);
-          setStatus(saved.status);
-          setShowAnswer(saved.status !== 'playing');
-          setScreen('game');
-          return;
-        }
+        const saved = JSON.parse(localStorage.getItem(key) ?? 'null') as StaticSavedGame | null;
+        if (saved && restoreSavedGame(saved, mode, difficulty, key)) return;
       } catch {
         localStorage.removeItem(key);
       }
     }
     localStorage.removeItem(key);
+    setGameId(createGameId());
+    setStartedAt(new Date().toISOString());
     setTarget(createTarget(mode, difficulty));
     setGuesses([]);
     setStatus('playing');
     setShowAnswer(false);
     setScreen('game');
   };
+
+  useEffect(() => {
+    let active = true;
+    const timer = window.setTimeout(() => {
+      if (resumePromptedRef.current) return;
+      resumePromptedRef.current = true;
+      const unfinished = latestUnfinishedStaticGame();
+      if (!unfinished) return;
+      if (!characters.some((character) => character.id === unfinished.game.targetId)) {
+        localStorage.removeItem(unfinished.key);
+        return;
+      }
+      const savedMode = unfinished.mode === 'daily'
+        ? t('home.dailyChallenge')
+        : t('home.singleMode');
+      void confirm({
+        title: t('singleLobby.resumeTitle'),
+        message: t('singleLobby.resumeMessage', {
+          mode: savedMode,
+          difficulty: difficultyLabel(t, unfinished.difficulty),
+          count: unfinished.game.guessIds.length,
+          max: MAX_GUESSES,
+        }),
+        confirmLabel: t('singleLobby.resumeConfirm'),
+        cancelLabel: t('singleLobby.resumeCancel'),
+        tone: 'warning',
+      }).then((confirmed) => {
+        if (!active || !confirmed) return;
+        restoreSavedGame(
+          unfinished.game,
+          unfinished.mode,
+          unfinished.difficulty,
+          unfinished.key,
+        );
+      });
+    }, 0);
+    return () => {
+      active = false;
+      window.clearTimeout(timer);
+    };
+  }, [confirm, t]);
 
   const restart = async () => {
     if (status === 'playing' && !await confirm({
@@ -197,8 +278,22 @@ export function App() {
       confirmLabel: t('game.reveal'),
       tone: 'danger',
     })) return;
-    setStatus('lost');
+    settleGame('lost', guesses);
     setShowAnswer(true);
+  };
+
+  const settleGame = (nextStatus: 'won' | 'lost', finalGuesses: Guess[]) => {
+    addStaticGameRecord({
+      id: gameId,
+      mode,
+      difficulty,
+      status: nextStatus,
+      answerId: target.id,
+      guessIds: finalGuesses.map((guess) => guess.character.id),
+      finishedAt: new Date().toISOString(),
+    });
+    setStatsVersion((version) => version + 1);
+    setStatus(nextStatus);
   };
 
   const submitGuess = (player: PlayerSuggestion) => {
@@ -209,10 +304,10 @@ export function App() {
     const next = [...guesses, result];
     setGuesses(next);
     if (result.correct) {
-      setStatus('won');
+      settleGame('won', next);
       setShowAnswer(true);
     } else if (next.length >= MAX_GUESSES) {
-      setStatus('lost');
+      settleGame('lost', next);
       setShowAnswer(true);
     }
     return true;
@@ -223,6 +318,117 @@ export function App() {
     : i18n.language.startsWith('ja')
       ? '静的版 · 進行状況はこのブラウザに保存されます'
       : '静态版 · 进度仅保存在当前浏览器';
+
+  const records = useMemo(() => loadStaticGameRecords(), [statsVersion]);
+  const visibleRecords = statsDifficulty === 'all'
+    ? records
+    : records.filter((record) => record.difficulty === statsDifficulty);
+  const personalStats = summarizeStaticGameRecords(visibleRecords);
+
+  const clearRecords = async () => {
+    if (!await confirm({
+      title: t('staticStats.clearTitle'),
+      message: t('staticStats.clearMessage'),
+      confirmLabel: t('staticStats.clearConfirm'),
+      tone: 'danger',
+    })) return;
+    clearStaticGameRecords();
+    setStatsVersion((version) => version + 1);
+  };
+
+  if (screen === 'stats') {
+    const firstGuessCharacter = personalStats.firstGuess
+      ? characters.find((character) => character.id === personalStats.firstGuess?.characterId)
+      : null;
+    return (
+      <Page
+        title={t('staticStats.title')}
+        icon={<BarChart3 size={17} />}
+        showHome={false}
+        actions={(
+          <>
+            <LanguageSelect />
+            <button className="btn btn-ghost btn-sm" onClick={() => setScreen('lobby')}>
+              <Home size={15} /><span className="btn-text">{t('common.home')}</span>
+            </button>
+          </>
+        )}
+        statusBar={<><WifiOff size={14} /><span>{t('staticStats.localOnly')}</span></>}
+      >
+        <div className="stats-content static-stats-content">
+          <div className="static-stats-toolbar" role="group" aria-label={t('stats.difficultyLevels')}>
+            <button
+              type="button"
+              className={`btn btn-sm${statsDifficulty === 'all' ? '' : ' btn-ghost'}`}
+              onClick={() => setStatsDifficulty('all')}
+            >
+              {t('stats.allDifficulties')}
+            </button>
+            {AVAILABLE_DIFFICULTIES.map((item) => (
+              <button
+                type="button"
+                className={`btn btn-sm${statsDifficulty === item.key ? '' : ' btn-ghost'}`}
+                key={item.key}
+                onClick={() => setStatsDifficulty(item.key)}
+              >
+                {difficultyLabel(t, item.key)}
+              </button>
+            ))}
+          </div>
+          <div className="stats-overview-grid static-stats-overview">
+            <section className="card">
+              <h3><BarChart3 size={16} />{t('stats.personal')}</h3>
+              <table className="table stats-summary-table"><tbody>
+                <tr><td>{t('stats.singleGames')}</td><td className="stat-value">{personalStats.totalGames}</td></tr>
+                <tr><td>{t('stats.singleWins')}</td><td className="stat-value">{personalStats.wins}</td></tr>
+                <tr><td>{t('staticStats.losses')}</td><td className="stat-value">{personalStats.losses}</td></tr>
+                <tr><td>{t('stats.singleWinRate')}</td><td className="stat-value">{(personalStats.winRate * 100).toFixed(1)}%</td></tr>
+              </tbody></table>
+            </section>
+            <section className="card">
+              <h3><Target size={16} />{t('staticStats.guessPerformance')}</h3>
+              <table className="table stats-summary-table"><tbody>
+                <tr><td>{t('stats.avgWinningGuesses')}</td><td className="stat-value">{personalStats.avgWinningGuesses?.toFixed(2) ?? '-'}</td></tr>
+                <tr><td>{t('stats.bestGuess')}</td><td className="stat-value">{personalStats.bestGuesses ?? '-'}</td></tr>
+                <tr><td>{t('stats.topFirstGuess')}</td><td className="stat-value">{firstGuessCharacter && personalStats.firstGuess ? `${firstGuessCharacter.name} ${(personalStats.firstGuess.percentage * 100).toFixed(1)}%` : '-'}</td></tr>
+              </tbody></table>
+            </section>
+          </div>
+          <section className="card stats-recent-card">
+            <div className="stats-replay-toolbar">
+              <h3>{t('staticStats.recentGames')}</h3>
+              {records.length > 0 && (
+                <button className="btn btn-ghost btn-sm" type="button" onClick={() => void clearRecords()}>
+                  <Trash2 size={14} />{t('staticStats.clear')}
+                </button>
+              )}
+            </div>
+            {visibleRecords.length ? (
+              <div className="stats-recent-table">
+                <table className="table">
+                  <thead><tr>
+                    <th>{t('stats.mode')}</th><th>{t('stats.result')}</th><th>{t('stats.guesses')}</th><th>{t('stats.answer')}</th><th>{t('stats.time')}</th>
+                  </tr></thead>
+                  <tbody>{visibleRecords.map((record) => {
+                    const answer = characters.find((character) => character.id === record.answerId);
+                    return (
+                      <tr key={record.id}>
+                        <td>{record.mode === 'daily' ? t('home.dailyChallenge') : t('home.singleMode')} · {difficultyLabel(t, record.difficulty)}</td>
+                        <td><Badge text={record.status === 'won' ? t('common.win') : t('common.loss')} color={record.status === 'won' ? 'green' : 'gray'} /></td>
+                        <td>{record.guessIds.length}</td>
+                        <td>{answer?.name ?? '-'}</td>
+                        <td>{new Date(record.finishedAt).toLocaleString(i18n.language)}</td>
+                      </tr>
+                    );
+                  })}</tbody>
+                </table>
+              </div>
+            ) : <p className="muted static-stats-empty">{t('staticStats.noRecords')}</p>}
+          </section>
+        </div>
+      </Page>
+    );
+  }
 
   if (screen === 'lobby') {
     return (
@@ -277,6 +483,22 @@ export function App() {
           </button>
         </div>
         <GameRules />
+        <div className="bottom-bar">
+          <button className="btn" type="button" onClick={() => setScreen('stats')}>
+            <BarChart3 size={16} aria-hidden="true" />
+            {t('staticStats.title')}
+          </button>
+          <a
+            href="https://github.com/UCCPR/ToaruCharacterGuess"
+            className="btn btn-github"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-umami-event="static-home-github"
+          >
+            <GitHubIcon />
+            {t('home.github')}
+          </a>
+        </div>
       </Page>
     );
   }

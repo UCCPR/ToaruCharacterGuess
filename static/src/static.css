@@ -37,6 +37,27 @@ html[data-theme='blast'] .toaru-title-mark img {
   margin-top: 16px;
 }
 
+.static-stats-content {
+  padding-bottom: clamp(28px, 5vh, 52px);
+}
+
+.static-stats-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.static-stats-overview {
+  margin-top: 14px;
+}
+
+.static-stats-empty {
+  margin: 0;
+  padding: 28px 12px;
+  text-align: center;
+}
+
 @media (max-width: 640px) {
   .toaru-title-mark {
     padding-inline: 0;
@@ -44,5 +65,13 @@ html[data-theme='blast'] .toaru-title-mark img {
 
   .single-lobby-mode-actions > .btn {
     flex: 1 1 140px;
+  }
+
+  .static-stats-toolbar {
+    justify-content: stretch;
+  }
+
+  .static-stats-toolbar > .btn {
+    flex: 1 1 calc(50% - 8px);
   }
 }
