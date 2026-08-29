@@ -58,6 +58,7 @@ const REGION_CONTINENTS: Record<string, string> = {
   '西班牙': 'europe',
   '墨西哥': 'north-america',
   '美国': 'north-america',
+  '洛杉矶': 'north-america',
   '夏威夷': 'north-america',
   '巴西': 'south-america',
   '埃及': 'africa',

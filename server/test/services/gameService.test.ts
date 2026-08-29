@@ -74,6 +74,18 @@ describe('compareGuess', () => {
       .toBe('close');
   });
 
+  it('梵蒂冈与其他欧洲地区给 close', () => {
+    const vatican = makePlayer({ id: 2, region: '梵蒂冈' });
+    const unitedKingdom = makePlayer({ id: 10, region: '英国' });
+    expect(compareGuess(vatican, unitedKingdom).attributes.region.level).toBe('close');
+  });
+
+  it('洛杉矶与其他北美地区给 close', () => {
+    const losAngeles = makePlayer({ id: 2, region: '洛杉矶' });
+    const unitedStates = makePlayer({ id: 10, region: '美国' });
+    expect(compareGuess(losAngeles, unitedStates).attributes.region.level).toBe('close');
+  });
+
   it('活动地区不在同一大洲时给 wrong', () => {
     expect(compareGuess(makePlayer({ id: 2, region: '英国' }), target).attributes.region.level)
       .toBe('wrong');

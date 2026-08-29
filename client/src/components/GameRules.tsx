@@ -13,7 +13,7 @@ import {
 import ModalPortal from './ModalPortal';
 import { useTranslation } from 'react-i18next';
 
-const regions = ['europe', 'cis', 'asia', 'oceania', 'northAmerica', 'southAmerica', 'africaIsrael'] as const;
+const regions = ['asia', 'europe', 'northAmerica', 'africaIsrael'] as const;
 const sides = ['science', 'magic', 'independent'] as const;
 
 export default function GameRules() {

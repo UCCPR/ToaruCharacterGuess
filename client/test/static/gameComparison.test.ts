@@ -39,6 +39,18 @@ function character(overrides: Partial<Character>): Character {
 }
 
 describe('static shared comparison adapter', () => {
+  it('treats Vatican City and the United Kingdom as European locations', () => {
+    const vatican = character({ id: 2, location: '梵蒂冈' });
+    const unitedKingdom = character({ id: 10, location: '英国' });
+    expect(compare(vatican, unitedKingdom).cells.location.level).toBe('close');
+  });
+
+  it('treats Los Angeles and the United States as North American locations', () => {
+    const losAngeles = character({ id: 2, location: '洛杉矶' });
+    const unitedStates = character({ id: 10, location: '美国' });
+    expect(compare(losAngeles, unitedStates).cells.location.level).toBe('close');
+  });
+
   it('treats a direct parent and child organization as close', () => {
     const branch = character({
       id: 2,
