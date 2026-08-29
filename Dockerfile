@@ -17,6 +17,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY client/package.json client/package.json
 COPY server/package.json server/package.json
 COPY shared/package.json shared/package.json
+COPY static/package.json static/package.json
 
 # Build-only dependencies stay in this disposable stage. Skip lifecycle scripts
 # during the broad install so the local-only SQLite driver cannot invoke
@@ -30,6 +31,7 @@ COPY pow-wasm pow-wasm
 COPY client client
 COPY server server
 COPY shared shared
+COPY static static
 
 # The deployed server tree contains production dependencies only and omits the
 # optional SQLite driver. Keep the build and deploy steps separate so failures
