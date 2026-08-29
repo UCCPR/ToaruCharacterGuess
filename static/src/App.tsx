@@ -230,7 +230,11 @@ export function App() {
         cancelLabel: t('singleLobby.resumeCancel'),
         tone: 'warning',
       }).then((confirmed) => {
-        if (!active || !confirmed) return;
+        if (!active) return;
+        if (!confirmed) {
+          localStorage.removeItem(unfinished.key);
+          return;
+        }
         restoreSavedGame(
           unfinished.game,
           unfinished.mode,

@@ -16,10 +16,10 @@ describe('static unfinished-game prompt', () => {
 
     renderWithProviders(<App />);
 
-    expect(await screen.findByRole('alertdialog')).toHaveTextContent('继续上次游戏？');
+    expect(await screen.findByRole('alertdialog')).toHaveTextContent('发现未完成的游戏');
     expect(screen.getByRole('alertdialog')).toHaveTextContent('单人模式');
     expect(screen.getByRole('alertdialog')).toHaveTextContent('简单版');
-    await userEvent.click(screen.getByRole('button', { name: '继续游戏' }));
+    await userEvent.click(screen.getByRole('button', { name: '继续上次游戏' }));
 
     await waitFor(() => {
       expect(screen.getByText('单人模式 · 简单版', { selector: '.title' })).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe('static unfinished-game prompt', () => {
     expect(screen.getByLabelText('猜测次数 1 / 8')).toBeInTheDocument();
   });
 
-  it('keeps the save and remains in the lobby when the prompt is dismissed', async () => {
+  it('deletes the unfinished save and remains in the lobby when it is abandoned', async () => {
     const key = staticGameStorageKey('free', 'normal');
     localStorage.setItem(key, JSON.stringify({
       targetId: 1,
@@ -37,13 +37,13 @@ describe('static unfinished-game prompt', () => {
     }));
 
     renderWithProviders(<App />);
-    await userEvent.click(await screen.findByRole('button', { name: '暂不继续' }));
+    await userEvent.click(await screen.findByRole('button', { name: '放弃对局' }));
 
     expect(screen.getByText('选择单人难度', { selector: '.title' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute(
       'href',
       'https://github.com/UCCPR/ToaruCharacterGuess',
     );
-    expect(localStorage.getItem(key)).not.toBeNull();
+    expect(localStorage.getItem(key)).toBeNull();
   });
 });

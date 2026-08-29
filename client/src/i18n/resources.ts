@@ -171,7 +171,8 @@ export const resources = {
         usedGuesses: '共用了 {{count}} 次猜测', missed: '很遗憾，本局未能猜中', settlementNotRecorded: '结算频率超过限制，本局不会计入个人战绩和排行榜。', viewGame: '查看对局',
         starting: '正在开始新对局…', startFailedTitle: '开局失败', startRetry: '重试', backToLobby: '返回难度选择',
       },
-      singleLobby: { title: '选择单人难度', subtitle: '选择一个难度开始游戏。你的选择会保存在本地浏览器中。', available: '可用', start: '开始游戏', recommended: '推荐', resumeTitle: '继续上次游戏？', resumeMessage: '检测到尚未结束的{{mode}}（{{difficulty}}），已猜测 {{count}}/{{max}} 次。是否继续？', resumeConfirm: '继续游戏', resumeCancel: '暂不继续' },
+      singleLobby: { title: '选择单人难度', subtitle: '选择一个难度开始游戏。你的选择会保存在本地浏览器中。', available: '可用', start: '开始游戏', recommended: '推荐', resumeTitle: '发现未完成的游戏', resumeMessage: '检测到尚未结束的{{mode}}（{{difficulty}}），已猜测 {{count}}/{{max}} 次。你可以继续上次游戏；放弃对局将删除这份存档。', resumeConfirm: '继续上次游戏', resumeCancel: '放弃对局' },
+      staticMeta: { label: '版本 {{version}} · 更新于 {{date}}' },
       dailyLobby: { title: '选择每日挑战难度', subtitle: '选择一个难度进入今日挑战。每个难度每天只能完成一次。', enter: '进入挑战', statusUnavailable: '状态暂不可用' },
       daily: {
         title: '每日挑战', date: '{{date}}', refreshIn: '{{time}} 后刷新',
@@ -389,7 +390,8 @@ export const resources = {
         correctAnswer: 'Correct answer', usedGuesses: 'Solved in {{count}} guesses', missed: 'You did not find the answer this time', settlementNotRecorded: 'The settlement limit was exceeded. This game will not count toward personal stats or leaderboards.', viewGame: 'View game',
         starting: 'Starting a new game…', startFailedTitle: 'Could not start the game', startRetry: 'Retry', backToLobby: 'Back to difficulty selection',
       },
-      singleLobby: { title: 'Choose a solo difficulty', subtitle: 'Choose a difficulty to start. Your choice is saved in this browser.', available: 'Available', start: 'Start game', recommended: 'Recommended', resumeTitle: 'Continue your last game?', resumeMessage: 'An unfinished {{mode}} game ({{difficulty}}) was found with {{count}}/{{max}} guesses used. Continue playing?', resumeConfirm: 'Continue game', resumeCancel: 'Not now' },
+      singleLobby: { title: 'Choose a solo difficulty', subtitle: 'Choose a difficulty to start. Your choice is saved in this browser.', available: 'Available', start: 'Start game', recommended: 'Recommended', resumeTitle: 'Unfinished game found', resumeMessage: 'An unfinished {{mode}} game ({{difficulty}}) was found with {{count}}/{{max}} guesses used. You can continue it; abandoning the game will delete this save.', resumeConfirm: 'Continue last game', resumeCancel: 'Abandon game' },
+      staticMeta: { label: 'Version {{version}} · Updated {{date}}' },
       dailyLobby: { title: 'Choose a daily difficulty', subtitle: 'Choose a difficulty for today. Each difficulty can only be completed once per day.', enter: 'Enter challenge', statusUnavailable: 'Status unavailable' },
       daily: {
         title: 'Daily Challenge', date: '{{date}}', refreshIn: 'Refresh in {{time}}',
@@ -599,7 +601,8 @@ export const resources = {
         correctAnswer: '正解', usedGuesses: '{{count}} 回で正解', missed: '今回は正解できませんでした', settlementNotRecorded: '精算回数の上限を超えたため、この対局は個人戦績とランキングに反映されません。', viewGame: '対局を見る',
         starting: '新しいゲームを開始しています…', startFailedTitle: 'ゲームを開始できませんでした', startRetry: '再試行', backToLobby: '難易度選択に戻る',
       },
-      singleLobby: { title: 'ソロ難易度を選択', subtitle: '難易度を選んで開始します。選択はこのブラウザに保存されます。', available: '利用可', start: 'ゲーム開始', recommended: 'おすすめ', resumeTitle: '前回のゲームを続けますか？', resumeMessage: '未終了の{{mode}}（{{difficulty}}）が見つかりました。使用した推測回数は {{count}}/{{max}} 回です。続けますか？', resumeConfirm: 'ゲームを続ける', resumeCancel: '今は続けない' },
+      singleLobby: { title: 'ソロ難易度を選択', subtitle: '難易度を選んで開始します。選択はこのブラウザに保存されます。', available: '利用可', start: 'ゲーム開始', recommended: 'おすすめ', resumeTitle: '未終了のゲームがあります', resumeMessage: '未終了の{{mode}}（{{difficulty}}）が見つかりました。使用した推測回数は {{count}}/{{max}} 回です。前回のゲームを続けられます。対局を放棄するとセーブデータは削除されます。', resumeConfirm: '前回のゲームを続ける', resumeCancel: '対局を放棄' },
+      staticMeta: { label: 'バージョン {{version}} · 更新日 {{date}}' },
       dailyLobby: { title: 'デイリー難易度を選択', subtitle: '本日の難易度を選択します。各難易度は 1 日 1 回のみ完了できます。', enter: 'チャレンジへ', statusUnavailable: '状態を取得できません' },
       daily: {
         title: 'デイリーチャレンジ', date: '{{date}}', refreshIn: '{{time}} 後に更新',
