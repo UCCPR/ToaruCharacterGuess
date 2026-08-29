@@ -22,7 +22,7 @@ describe('GuessBoard organization annotation', () => {
       },
     }]} />);
 
-    expect(screen.getByText('同一直接上级')).toBeInTheDocument();
+    expect(screen.getByText('直属或同级组织')).toBeInTheDocument();
     expect(screen.getByText('相关身份')).toBeInTheDocument();
     expect(screen.queryByRole('columnheader', { name: '能力等级' })).not.toBeInTheDocument();
   });

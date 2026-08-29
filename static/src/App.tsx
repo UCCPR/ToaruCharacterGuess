@@ -451,8 +451,12 @@ export function App() {
         </div>
         <div className="toaru-title-mark">
           <img
-            src={`${import.meta.env.BASE_URL}toaru-character-title.png`}
+            src={`${import.meta.env.BASE_URL}toaru-character-title.webp`}
             alt={t('common.brand')}
+            width={1100}
+            height={622}
+            loading="eager"
+            decoding="async"
           />
         </div>
         <p className="muted single-lobby-subtitle">{t('singleLobby.subtitle')}</p>
