@@ -17,6 +17,10 @@ describe('static character classification', () => {
       name: '集团（GROUP）',
       parent: '暗部',
     });
+    expect(character('饭栖莉泽').organizations).toContainEqual({
+      name: '食尸部队（Scavenger）',
+      parent: '暗部',
+    });
     expect(character('黑妻绵流').organizations).toContainEqual({
       name: '大蜘蛛',
       parent: '武装无能力集团（Skill-Out）',

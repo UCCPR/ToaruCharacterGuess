@@ -1326,5 +1326,234 @@
     "organizations": [{"name":"妹妹们（SISTERS）","type":"clone-network","relationship":"member","primary":false},{"name":"御坂网络","type":"network","relationship":"member","primary":true},{"name":"绝对能力进化计划","type":"research-project","relationship":"subject","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
     "appearance": {"work":"railgun-manga","reference":"漫画第20话","year":2009}, "source_page":"御坂9982号"
+  },
+  {
+    "nickname": "人皮挟美",
+    "name_ja": "人皮挟美（ひとかわはさみ）",
+    "name_en": "Hitokawa Hasami",
+    "gender": "female",
+    "aliases": [
+      {"name":"Hitokawa Hasami","locale":"en","type":"romanized"},
+      {"name":"祸斗","locale":"zh-CN","type":"assumed-identity"}
+    ],
+    "sides": [
+      {"key":"science","relationship":"esper","primary":true}
+    ],
+    "organizations": [
+      {"name":"二之腕高中","type":"school","relationship":"student","primary":true},
+      {"name":"祸斗","type":"special-status","relationship":"form","primary":false}
+    ],
+    "locations": [
+      {"name":"学园都市","type":"city","relationship":"resident","primary":true}
+    ],
+    "appearance": {
+      "work":"accelerator-manga",
+      "reference":"漫画第1话",
+      "year":2013
+    },
+    "source_page":"人皮挟美"
+  },
+  {
+    "nickname": "饭栖莉泽",
+    "name_ja": "飯棲リタ（いいずみリタ）",
+    "name_en": "Iizumi Rita",
+    "gender": "female",
+    "aliases": [
+      {"name":"Iizumi Rita","locale":"en","type":"romanized"},
+      {"name":"队长","locale":"zh-CN","type":"codename"},
+      {"name":"Leader","locale":"en","type":"codename"}
+    ],
+    "sides": [
+      {"key":"science","relationship":"dark-side-operative","primary":true}
+    ],
+    "organizations": [
+      {"name":"食尸部队（Scavenger）","type":"dark-side-group","parent":"暗部","relationship":"leader","primary":true}
+    ],
+    "locations": [
+      {"name":"学园都市","type":"city","relationship":"active","primary":true}
+    ],
+    "appearance": {
+      "work":"accelerator-manga",
+      "reference":"漫画第6话",
+      "year":2014
+    },
+    "source_page":"饭栖莉泽"
+  },
+  {
+    "nickname": "作乐木鸣羽",
+    "name_ja": "作楽木ナルハ（さくらぎナルハ）",
+    "name_en": "Sakuragi Naruha",
+    "gender": "female",
+    "aliases": [
+      {"name":"Sakuragi Naruha","locale":"en","type":"romanized"},
+      {"name":"奈留","locale":"zh-CN","type":"codename"},
+      {"name":"Naru","locale":"en","type":"codename"}
+    ],
+    "sides": [
+      {"key":"science","relationship":"dark-side-operative","primary":true}
+    ],
+    "organizations": [
+      {"name":"食尸部队（Scavenger）","type":"dark-side-group","parent":"暗部","relationship":"member","primary":true}
+    ],
+    "locations": [
+      {"name":"学园都市","type":"city","relationship":"active","primary":true}
+    ],
+    "appearance": {
+      "work":"accelerator-manga",
+      "reference":"漫画第6话",
+      "year":2014
+    },
+    "source_page":"作乐木鸣羽"
+  },
+  {
+    "nickname": "清清太郎丸",
+    "name_ja": "清ヶ太郎丸（せいけたろうまる）",
+    "name_en": "Seike Taroumaru",
+    "gender": "male",
+    "aliases": [
+      {"name":"Seike Taroumaru","locale":"en","type":"romanized"},
+      {"name":"清清","locale":"zh-CN","type":"codename"},
+      {"name":"Seike","locale":"en","type":"codename"}
+    ],
+    "sides": [
+      {"key":"science","relationship":"dark-side-operative","primary":true}
+    ],
+    "organizations": [
+      {"name":"食尸部队（Scavenger）","type":"dark-side-group","parent":"暗部","relationship":"member","primary":true}
+    ],
+    "locations": [
+      {"name":"学园都市","type":"city","relationship":"active","primary":true}
+    ],
+    "appearance": {
+      "work":"accelerator-manga",
+      "reference":"漫画第6话",
+      "year":2014
+    },
+    "source_page":"清清太郎丸"
+  },
+  {
+    "nickname": "药丸医月",
+    "name_ja": "薬丸医月（やくまるいつき）",
+    "name_en": "Yakumaru Itsuki",
+    "gender": "female",
+    "aliases": [
+      {"name":"Yakumaru Itsuki","locale":"en","type":"romanized"},
+      {"name":"药君","locale":"zh-CN","type":"codename"},
+      {"name":"Yakkun","locale":"en","type":"codename"}
+    ],
+    "sides": [
+      {"key":"science","relationship":"dark-side-operative","primary":true}
+    ],
+    "organizations": [
+      {"name":"食尸部队（Scavenger）","type":"dark-side-group","parent":"暗部","relationship":"member","primary":true}
+    ],
+    "locations": [
+      {"name":"学园都市","type":"city","relationship":"active","primary":true}
+    ],
+    "appearance": {
+      "work":"accelerator-manga",
+      "reference":"漫画第6话",
+      "year":2014
+    },
+    "source_page":"药丸医月"
+  },
+  {
+    "nickname": "杠林檎",
+    "name_ja": "杠林檎（ゆずりはりんご）",
+    "name_en": "Yuzuriha Ringo",
+    "gender": "female",
+    "aliases": [
+      {"name":"Yuzuriha Ringo","locale":"en","type":"romanized"}
+    ],
+    "sides": [
+      {"key":"science","relationship":"esper","primary":true}
+    ],
+    "organizations": [
+      {"name":"黑暗的五月计划","type":"research-project","relationship":"subject","primary":true}
+    ],
+    "locations": [
+      {"name":"学园都市","type":"city","relationship":"resident","primary":true}
+    ],
+    "appearance": {
+      "work":"dark-matter-manga",
+      "reference":"漫画第1话",
+      "year":2019
+    },
+    "source_page":"杠林檎"
+  },
+  {
+    "nickname": "雅王院司",
+    "name_ja": "雅王院司（がおういんつかさ）",
+    "name_en": "Gaouin Tsukasa",
+    "gender": "female",
+    "aliases": [
+      {"name":"Gaouin Tsukasa","locale":"en","type":"romanized"}
+    ],
+    "sides": [
+      {"key":"science","relationship":"esper","primary":true}
+    ],
+    "organizations": [
+      {"name":"常盘台中学","type":"school","relationship":"student","primary":true},
+      {"name":"雅王院派阀","type":"informal-group","relationship":"leader","primary":false}
+    ],
+    "locations": [
+      {"name":"学园都市","type":"city","relationship":"resident","primary":true}
+    ],
+    "appearance": {
+      "work":"mental-out-manga",
+      "reference":"漫画第1话",
+      "year":2021
+    },
+    "source_page":"雅王院司"
+  },
+  {
+    "nickname": "华野超美",
+    "name_ja": "華野超美（はなのちょうび）",
+    "name_en": "Hanano Choubi",
+    "gender": "female",
+    "aliases": [
+      {"name":"Hanano Choubi","locale":"en","type":"romanized"},
+      {"name":"电话里的声音","locale":"zh-CN","type":"codename"}
+    ],
+    "sides": [
+      {"key":"science","relationship":"dark-side-operative","primary":true}
+    ],
+    "organizations": [
+      {"name":"道具（ITEM）","type":"dark-side-group","parent":"暗部","relationship":"member","primary":true}
+    ],
+    "locations": [
+      {"name":"学园都市","type":"city","relationship":"active","primary":true}
+    ],
+    "appearance": {
+      "work":"item-manga",
+      "reference":"《某暗部的少女共栖》第1卷",
+      "year":2023
+    },
+    "source_page":"华野超美"
+  },
+  {
+    "nickname": "悠里千夜",
+    "name_ja": "悠里千夜（ゆうりせんや）",
+    "name_en": "Yuuri Senya",
+    "gender": "female",
+    "aliases": [
+      {"name":"Yuuri Senya","locale":"en","type":"romanized"}
+    ],
+    "sides": [
+      {"key":"science","relationship":"esper","primary":true}
+    ],
+    "organizations": [
+      {"name":"才人工房（Clone Dolly）","type":"research-project","relationship":"subject","primary":true},
+      {"name":"内部进化（Ideal）","type":"research-project","relationship":"subject","primary":false}
+    ],
+    "locations": [
+      {"name":"学园都市","type":"city","relationship":"resident","primary":true}
+    ],
+    "appearance": {
+      "work":"astral-buddy-manga",
+      "reference":"漫画第1话",
+      "year":2017
+    },
+    "source_page":"悠里千夜"
   }
 ]

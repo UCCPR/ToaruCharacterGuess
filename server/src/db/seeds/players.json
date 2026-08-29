@@ -320,7 +320,8 @@
   {
     "nickname": "丽多薇雅·罗伦婕蒂",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
@@ -382,13 +383,15 @@
   {
     "nickname": "湾内绢保",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
     "nickname": "泡浮万彬",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
@@ -468,8 +471,7 @@
   {
     "nickname": "服部半藏",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -482,8 +484,7 @@
   {
     "nickname": "席薇娅",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -496,8 +497,7 @@
   {
     "nickname": "玛丽安·斯琳格奈亚",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -530,8 +530,7 @@
   {
     "nickname": "安娜·施普伦格尔",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -544,8 +543,7 @@
   {
     "nickname": "雷蒂丽·坦格洛德",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -593,22 +591,19 @@
   {
     "nickname": "埃斯特·罗森塔尔",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "菱形干比古",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "菱形蛭魅",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -621,13 +616,15 @@
   {
     "nickname": "枝先绊理",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
     "nickname": "铁装缀里",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
@@ -645,7 +642,8 @@
   {
     "nickname": "常盘台舍监",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
@@ -665,22 +663,19 @@
   {
     "nickname": "芙罗兰·克洛伊杜尼",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "圣日耳曼",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "木原脑干",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -716,37 +711,43 @@
   {
     "nickname": "蓝发耳环",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
     "nickname": "土御门舞夏",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
     "nickname": "上条刀夜",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
     "nickname": "上条诗菜",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
     "nickname": "海原光贵",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
     "nickname": "天井亚雄",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
@@ -764,7 +765,8 @@
   {
     "nickname": "马场芳郎",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
@@ -802,7 +804,8 @@
   {
     "nickname": "雪莉·克伦威尔",
     "difficulties": [
-      "normal"
+      "normal",
+      "easy"
     ]
   },
   {
@@ -856,15 +859,13 @@
   {
     "nickname": "安娜·金斯福德",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "爱丽丝·异典",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -883,8 +884,7 @@
   {
     "nickname": "药味久子",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -930,78 +930,67 @@
   {
     "nickname": "木原病理",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "木原圆周",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "罗伯特·卡崔",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "阿拉迪娅",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "博洛尼魅魔",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "H.T.特利斯墨吉斯忒斯",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "逆源质拼图545",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "米娜·马瑟斯",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "莉莉丝",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "芙蕾雅",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "发源检体",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -1026,8 +1015,7 @@
   {
     "nickname": "迪翁·福春",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -1053,22 +1041,19 @@
   {
     "nickname": "梅尔莎白·格萝瑟利",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "古老善良的玛利亚",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "姆特·忒拜",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -1086,15 +1071,13 @@
   {
     "nickname": "约翰·瓦伦汀·安德烈",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "莎特奥拉·塞克温茨雅",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -1107,29 +1090,25 @@
   {
     "nickname": "珍妮",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "有富春树",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "黑妻绵流",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
     "nickname": "蛇谷次雄",
     "difficulties": [
-      "normal",
-      "easy"
+      "normal"
     ]
   },
   {
@@ -1144,6 +1123,62 @@
     "difficulties": [
       "normal",
       "easy"
+    ]
+  },
+  {
+    "nickname": "人皮挟美",
+    "difficulties": [
+      "normal"
+    ]
+  },
+  {
+    "nickname": "饭栖莉泽",
+    "difficulties": [
+      "normal"
+    ]
+  },
+  {
+    "nickname": "作乐木鸣羽",
+    "difficulties": [
+      "normal"
+    ]
+  },
+  {
+    "nickname": "清清太郎丸",
+    "difficulties": [
+      "normal",
+      "easy"
+    ]
+  },
+  {
+    "nickname": "药丸医月",
+    "difficulties": [
+      "normal",
+      "easy"
+    ]
+  },
+  {
+    "nickname": "杠林檎",
+    "difficulties": [
+      "normal"
+    ]
+  },
+  {
+    "nickname": "雅王院司",
+    "difficulties": [
+      "normal"
+    ]
+  },
+  {
+    "nickname": "华野超美",
+    "difficulties": [
+      "normal"
+    ]
+  },
+  {
+    "nickname": "悠里千夜",
+    "difficulties": [
+      "normal"
     ]
   }
 ]

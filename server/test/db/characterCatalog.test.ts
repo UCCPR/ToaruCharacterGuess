@@ -83,14 +83,31 @@ describe('playable character catalog', () => {
     expect(beginner.has('埃斯特·罗森塔尔')).toBe(false);
 
     expect([...easy]).toEqual(expect.arrayContaining([
-      '欧提努斯', '帆风润子', '埃斯特·罗森塔尔', '鸣护艾丽莎',
-      '操齿凉子', '安娜·金斯福德', '爱丽丝·异典',
-      '米娜·马瑟斯', '莉莉丝', '御坂网络整体意识', '迪翁·福春',
+      '欧提努斯', '帆风润子', '鸣护艾丽莎', '操齿凉子',
+      '御坂网络整体意识',
       '山缪·李德·麦奎恩·马瑟斯',
+      '雪莉·克伦威尔', '丽多薇雅·罗伦婕蒂',
+      '湾内绢保', '泡浮万彬', '清清太郎丸', '药丸医月',
+      '蕾莎', '御坂美铃', '驹场利德', '枝先绊理', '铁装缀里',
+      '常盘台舍监', '蓝发耳环', '土御门舞夏', '上条刀夜', '上条诗菜',
+      '海原光贵', '天井亚雄', '马场芳郎', '心理定规', '舞殿星见',
     ]));
-    expect(easy.has('铁装缀里')).toBe(false);
+    for (const name of [
+      '玛丽安·斯琳格奈亚', '安娜·施普伦格尔', '雷蒂丽·坦格洛德',
+      '埃斯特·罗森塔尔', '菱形干比古', '菱形蛭魅', '芙罗兰·克洛伊杜尼',
+      '圣日耳曼', '伊莉莎', '莉梅亚', '奥雷欧斯·伊萨德',
+      '安娜·金斯福德', '爱丽丝·异典', '阿拉迪娅', '博洛尼魅魔',
+      '逆源质拼图545', '米娜·马瑟斯', '莉莉丝', '约翰·瓦伦汀·安德烈',
+      '莎特奥拉·塞克温茨雅', '人皮挟美', '饭栖莉泽', '作乐木鸣羽',
+      '杠林檎', '雅王院司', '华野超美', '悠里千夜',
+    ]) {
+      expect(easy.has(name)).toBe(false);
+    }
     expect(easy.has('木寺实莉')).toBe(false);
     expect(easy.has('木原乱数')).toBe(false);
+    expect(easy.has('服部半藏')).toBe(false);
+    expect(easy.has('蛇谷次雄')).toBe(false);
+    expect(easy.has('迪翁·福春')).toBe(false);
   });
 
   it('seeds the normalized catalog directly and remains idempotent', async () => {

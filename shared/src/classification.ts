@@ -59,7 +59,7 @@ export const DEBUT_WORK_TITLES: Record<string, string> = {
   'accelerator-anime': '某科学的一方通行（动画）',
   'dark-matter-manga': '某科学的未元物质',
   'mental-out-manga': '某科学的心理掌握',
-  'item-manga': '暗部的 ITEM',
+  'item-manga': '某暗部的少女共栖',
   'astral-buddy-manga': '某科学的超电磁炮外传 Astral Buddy',
   'kakine-manga': '某科学的未元物质',
   'endymion-movie': '剧场版：恩底弥翁的奇迹',
