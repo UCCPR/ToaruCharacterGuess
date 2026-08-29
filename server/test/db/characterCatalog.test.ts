@@ -56,6 +56,29 @@ describe('playable character catalog', () => {
     expect(entry('分身')?.appearance).toEqual({ work: 'railgun-manga', reference: '第85话', year: 2016 });
     expect(entry('菱形干比古')?.appearance).toEqual({ work: 'accelerator-manga', reference: '第2话', year: 2014 });
     expect(entry('菱形蛭魅')?.appearance).toEqual({ work: 'accelerator-manga', reference: '第2话', year: 2014 });
+    expect(entry('爱华斯')?.appearance).toEqual({ work: 'index-ot', reference: '第19卷（第7卷仅名字）', year: 2009 });
+    expect(entry('木原脑干')?.appearance).toEqual({ work: 'index-nt', reference: '新约第7卷（第4卷仅名字／第11卷全名）', year: 2013 });
+    expect(entry('爱丽丝·异典')?.appearance).toEqual({ work: 'index-gt', reference: '创约第5卷（第4卷仅名字）', year: 2021 });
+    expect(entry('莉莉丝')?.appearance).toEqual({
+      work: 'index-nt',
+      reference: '新约第18卷回忆中登场（旧约第7卷仅名字／第19卷现世登场）',
+      year: 2017,
+    });
+    expect(entry('山缪·李德·麦奎恩·马瑟斯')?.appearance).toEqual({
+      work: 'index-nt',
+      reference: '新约第18卷再现影像登场（第12卷仅名字／第20卷末复现体登场）',
+      year: 2017,
+    });
+    expect(entry('吠达特里')?.appearance).toEqual({
+      work: 'index-gt',
+      reference: '创约第10卷（第8卷仅名字）',
+      year: 2024,
+    });
+    expect(entry('花束之布洛代韦德')?.appearance).toEqual({
+      work: 'index-gt',
+      reference: '创约第10卷（第8卷仅名字）',
+      year: 2024,
+    });
     expect(entry('介旅初矢')?.appearance).toEqual({ work: 'railgun-manga', reference: '第4话', year: 2007 });
     expect(entry('上里翔流')?.appearance).toEqual({ work: 'index-nt', reference: '新约第13卷终章', year: 2015 });
     expect(entry('多莉')?.organizations.map((organization) => organization.name)).not.toContain('御坂网络');

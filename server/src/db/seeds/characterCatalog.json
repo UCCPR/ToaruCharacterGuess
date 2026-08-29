@@ -317,7 +317,7 @@
     "sides": [{"key":"independent","relationship":"transcendent-entity","primary":true}],
     "organizations": [],
     "locations": [{"name":"学园都市","type":"city","relationship":"manifested","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第19卷（第7卷提及）","year":2009}, "source_page":"爱华斯"
+    "appearance": {"work":"index-ot","reference":"第19卷（第7卷仅名字）","year":2009}, "source_page":"爱华斯"
   },
   {
     "nickname": "建宫斋字", "name_ja": "建宮斎字", "name_en": "Tatemiya Saiji", "gender": "male",
@@ -757,7 +757,7 @@
     "sides": [{"key":"science","relationship":"researcher","primary":true}],
     "organizations": [{"name":"木原一族","type":"research-family","relationship":"member","primary":true},{"name":"亚雷斯塔协力者","type":"informal-group","relationship":"cooperator","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第7卷（新约第4卷仅提名）","year":2013}, "source_page":"木原脑干"
+    "appearance": {"work":"index-nt","reference":"新约第7卷（第4卷仅名字／第11卷全名）","year":2013}, "source_page":"木原脑干"
   },
   {
     "nickname": "莎洛妮亚·A.以黎维卡", "name_ja": "サローニャ＝A＝イリヴィカ", "name_en": "Saronia A. Irivika", "gender": "female",
@@ -997,7 +997,7 @@
     "sides": [{"key":"magic","relationship":"transcendent-entity","primary":true}],
     "organizations": [{"name":"桥架结社","type":"magic-cabal","relationship":"leader","primary":true},{"name":"超绝者","type":"special-status","relationship":"central-subject","primary":false}],
     "locations": [{"name":"欧洲","type":"region","relationship":"active","primary":true}],
-    "appearance": {"work":"index-gt","reference":"创约第4卷提及／第5卷登场","year":2021}, "source_page":"爱丽丝·异典"
+    "appearance": {"work":"index-gt","reference":"创约第5卷（第4卷仅名字）","year":2021}, "source_page":"爱丽丝·异典"
   },
   {
     "nickname": "云川芹亚", "name_ja": "雲川芹亜", "name_en": "Kumokawa Seria", "gender": "female",
@@ -1141,7 +1141,7 @@
     "sides": [{"key":"independent","relationship":"disembodied-soul","primary":true},{"key":"magic","relationship":"miracle-associated","primary":false}],
     "organizations": [{"name":"克劳利家族","type":"family","relationship":"daughter","primary":true},{"name":"无原罪者","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"英国","type":"country","relationship":"active","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第7卷提及／新约第19卷登场","year":2005}, "source_page":"莉莉丝"
+    "appearance": {"work":"index-nt","reference":"新约第18卷回忆中登场（旧约第7卷仅名字／第19卷现世登场）","year":2017}, "source_page":"莉莉丝"
   },
   {
     "nickname": "芙蕾雅", "name_ja": "フレイヤ", "name_en": "Freyja", "gender": "female",
@@ -1197,7 +1197,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"黄金黎明","type":"magic-cabal","relationship":"leader","primary":true},{"name":"科隆尊召唤者","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"英国","type":"country","relationship":"active","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第12卷提及／第18卷全名／第21卷登场","year":2015}, "source_page":"山缪·李德·麦奎恩·马瑟斯"
+    "appearance": {"work":"index-nt","reference":"新约第18卷再现影像登场（第12卷仅名字／第20卷末复现体登场）","year":2017}, "source_page":"山缪·李德·麦奎恩·马瑟斯"
   },
   {
     "nickname": "舞殿星见", "name_ja": "舞殿星見", "name_en": "Maidono Hoshimi", "gender": "female",
@@ -1245,7 +1245,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"桥架结社","type":"magic-cabal","relationship":"member","primary":true},{"name":"超绝者","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
-    "appearance": {"work":"index-gt","reference":"创约第8卷提及／第10卷正式登场","year":2023}, "source_page":"吠达特里"
+    "appearance": {"work":"index-gt","reference":"创约第10卷（第8卷仅名字）","year":2024}, "source_page":"吠达特里"
   },
   {
     "nickname": "花束之布洛代韦德", "name_ja": "花束のブロダイウェズ", "name_en": "Blodeuwedd the Bouquet", "gender": "female",
@@ -1253,7 +1253,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"桥架结社","type":"magic-cabal","relationship":"member","primary":true},{"name":"超绝者","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
-    "appearance": {"work":"index-gt","reference":"创约第8卷提及／第10卷正式登场","year":2023}, "source_page":"花束之布洛代韦德"
+    "appearance": {"work":"index-gt","reference":"创约第10卷（第8卷仅名字）","year":2024}, "source_page":"花束之布洛代韦德"
   },
   {
     "nickname": "约翰·瓦伦汀·安德烈", "name_ja": "ヨハン＝ヴァレンティン＝アンドレーエ", "name_en": "Johann Valentin Andreae", "gender": "male",
