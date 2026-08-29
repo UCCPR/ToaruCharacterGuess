@@ -23,6 +23,46 @@ describe('playable character catalog', () => {
     expect(new Set(rosterNames)).toEqual(new Set(catalogNames));
   });
 
+  it('uses one canonical type for every organization name', () => {
+    const organizationTypes = new Map<string, string>();
+    const conflicts: string[] = [];
+
+    for (const character of catalog) {
+      for (const organization of character.organizations) {
+        const existingType = organizationTypes.get(organization.name);
+        if (existingType && existingType !== organization.type) {
+          conflicts.push(`${organization.name}: ${existingType} / ${organization.type}`);
+        } else {
+          organizationTypes.set(organization.name, organization.type);
+        }
+      }
+    }
+
+    expect(conflicts).toEqual([]);
+  });
+
+  it('keeps audited early-character facts in the normalized seed', () => {
+    const entry = (name: string) => catalog.find((character) => character.nickname === name);
+
+    expect(entry('上条当麻')?.sides).toContainEqual({ key: 'science', relationship: 'level-zero', primary: true });
+    expect(entry('佐天泪子')?.sides).toContainEqual({ key: 'science', relationship: 'level-zero', primary: true });
+    expect(entry('茵蒂克丝')?.sides).toContainEqual({ key: 'magic', relationship: 'nun', primary: true });
+    expect(entry('吹寄制理')?.sides).toContainEqual({ key: 'science', relationship: 'esper', primary: true });
+    expect(entry('吹寄制理')?.appearance).toEqual({ work: 'index-ot', reference: '第9卷', year: 2006 });
+    expect(entry('婚后光子')?.appearance).toEqual({ work: 'index-ot', reference: '第8卷', year: 2006 });
+    expect(entry('瓦希莉莎')?.appearance).toEqual({ work: 'index-ot', reference: '第12卷', year: 2007 });
+    expect(entry('木原幻生')?.appearance).toEqual({ work: 'railgun-manga', reference: '第14话', year: 2008 });
+    expect(entry('操齿凉子')?.appearance).toEqual({ work: 'railgun-manga', reference: '第79话', year: 2015 });
+    expect(entry('分身')?.appearance).toEqual({ work: 'railgun-manga', reference: '第85话', year: 2016 });
+    expect(entry('菱形干比古')?.appearance).toEqual({ work: 'accelerator-manga', reference: '第2话', year: 2014 });
+    expect(entry('菱形蛭魅')?.appearance).toEqual({ work: 'accelerator-manga', reference: '第2话', year: 2014 });
+    expect(entry('介旅初矢')?.appearance).toEqual({ work: 'railgun-manga', reference: '第4话', year: 2007 });
+    expect(entry('上里翔流')?.appearance).toEqual({ work: 'index-nt', reference: '新约第13卷终章', year: 2015 });
+    expect(entry('多莉')?.organizations.map((organization) => organization.name)).not.toContain('御坂网络');
+    expect(entry('最后之作')?.organizations.map((organization) => organization.name))
+      .toEqual(expect.arrayContaining(['御坂网络', '妹妹们（SISTERS）']));
+  });
+
   it('keeps recognition pools cumulative and aligned with the series-based policy', () => {
     const namesFor = (difficulty: string) => new Set(
       roster.filter((entry) => entry.difficulties.includes(difficulty)).map((entry) => entry.nickname),
@@ -170,5 +210,12 @@ describe('playable character catalog', () => {
       { name: '大蜘蛛', parent: '武装无能力集团（Skill-Out）' },
       { name: '黑鸦部队', parent: '轨道电梯公司' },
     ]);
+
+    const churchOrganizations = await instance('organizations as organization')
+      .leftJoin('organizations as parent', 'parent.id', 'organization.parent_id')
+      .where({ 'organization.name_zh': '必要之恶教会' })
+      .select('organization.name_zh as name', 'parent.name_zh as parent')
+      .first();
+    expect(churchOrganizations).toEqual({ name: '必要之恶教会', parent: '英国清教' });
   });
 });

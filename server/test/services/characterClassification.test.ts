@@ -11,6 +11,7 @@ describe('shared character classification', () => {
     expect(organizationParentName('道具（ITEM）')).toBe('暗部');
     expect(organizationParentName('大蜘蛛')).toBe('武装无能力集团（Skill-Out）');
     expect(organizationParentName('黑鸦部队')).toBe('轨道电梯公司');
+    expect(organizationParentName('必要之恶教会')).toBe('英国清教');
     expect(organizationParentName('必要之恶教会', '英国清教')).toBe('英国清教');
   });
 
@@ -53,6 +54,16 @@ describe('shared character classification', () => {
       type: 'research-project',
       relationship: 'subject',
     }).group).toBe('research-project:克隆多莉计划');
+    expect(organizationIdentity({
+      name: '才人工房（Clone Dolly）',
+      type: 'research-project',
+      relationship: 'former-subject',
+    }).name).toBe('才人工房（Clone Dolly）前实验对象');
+    expect(organizationIdentity({
+      name: '常盘台中学',
+      type: 'school',
+      relationship: 'dorm-supervisor',
+    }).name).toBe('常盘台中学舍监');
   });
 
   it('classifies identity-only organization types and complete side identities', () => {

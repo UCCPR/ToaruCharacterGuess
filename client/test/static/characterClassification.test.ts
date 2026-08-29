@@ -25,6 +25,10 @@ describe('static character classification', () => {
       name: '黑鸦部队',
       parent: '轨道电梯公司',
     });
+    expect(character('茵蒂克丝').organizations).toContainEqual({
+      name: '必要之恶教会',
+      parent: '英国清教',
+    });
   });
 
   it('keeps identity-only entries out of the organization column', () => {
@@ -73,6 +77,19 @@ describe('static character classification', () => {
       kind: 'research-project',
       entity: '克隆多莉计划',
       role: 'product',
+    });
+    expect(character('多莉').organizations.map((organization) => organization.name))
+      .not.toContain('御坂网络');
+    expect(character('最后之作').organizations.map((organization) => organization.name))
+      .toEqual(expect.arrayContaining(['御坂网络', '妹妹们（SISTERS）']));
+    expect(character('枝先绊理').organizations.map((organization) => organization.name))
+      .not.toContain('抛弃物儿童（Child Error）');
+    expect(character('枝先绊理').identities).toContainEqual({
+      name: '抛弃物儿童（Child Error）',
+      group: 'status:抛弃物儿童（Child Error）',
+      kind: 'special-status',
+      entity: '抛弃物儿童（Child Error）',
+      role: 'holder',
     });
   });
 

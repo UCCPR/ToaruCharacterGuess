@@ -7,7 +7,8 @@
     "成员（MEMBER）": "暗部",
     "新生（Freshmen）": "暗部",
     "黑鸦部队": "轨道电梯公司",
-    "大蜘蛛": "武装无能力集团（Skill-Out）"
+    "大蜘蛛": "武装无能力集团（Skill-Out）",
+    "必要之恶教会": "英国清教"
   },
   "identityOnlyOrganizationTypes": [
     "research-project", "research-family", "special-entity", "special-status",
@@ -19,13 +20,15 @@
     "leader": "领导者", "former-leader": "前领导者", "commander": "指挥官",
     "board-director": "理事", "chairperson": "负责人", "archbishop": "大主教",
     "bishop": "主教", "second-princess": "第二公主", "third-princess": "第三公主",
+    "first-princess": "第一公主", "queen": "女王", "supreme-governor": "最高统括者",
     "maid": "侍女", "father": "父亲", "mother": "母亲", "daughter": "女儿",
     "controller": "控制者", "holder": "", "practitioner": "成员",
-    "manifestation": "化身", "form": "", "subject": "实验对象", "product": "产物",
+    "manifestation": "化身", "form": "", "subject": "实验对象", "former-subject": "前实验对象", "product": "产物",
     "central-subject": "核心人物", "collective": "整体意识", "member": "成员",
-    "former-member": "前成员", "coerced-member": "成员", "officer": "成员",
+    "former-member": "前成员", "coerced-member": "成员", "officer": "成员", "former-chairman": "前理事长",
     "agent": "成员", "combat-agent": "成员", "associate": "相关人员",
-    "associated": "相关人员", "cooperator": "协力者", "administrator": "管理者",
+    "associated": "相关人员", "cooperator": "协力者", "administrator": "管理者", "dorm-supervisor": "舍监",
+    "former-captive": "前被拘禁者", "infiltrator": "潜入人员",
     "adept": "成员", "missionary": "传教士", "pope-substitute": "代理教皇"
   },
   "sideIdentities": {
