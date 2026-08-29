@@ -19,6 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          filter: blob:none
+      - name: Calculate build number
+        id: version
+        shell: bash
+        run: echo "count=$(git rev-list --first-parent --count HEAD)" >> "$GITHUB_OUTPUT"
       - uses: pnpm/action-setup@v5
       - uses: actions/setup-node@v5
         with:
@@ -28,6 +35,7 @@ jobs:
       - run: pnpm --filter static-site build
         env:
           GITHUB_PAGES: 'true'
+          BUILD_NUMBER: ${{ steps.version.outputs.count }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

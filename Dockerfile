@@ -49,6 +49,7 @@ RUN --mount=type=cache,id=pnpm-store,target=/pnpm/store \
 
 FROM gcr.io/distroless/nodejs26-debian13:nonroot AS runtime
 
+ARG BUILD_NUMBER=""
 ARG OCI_SOURCE=""
 ARG OCI_REVISION=""
 ARG OCI_VERSION=""
@@ -57,7 +58,8 @@ LABEL org.opencontainers.image.title="ToaruCharacterGuess" \
       org.opencontainers.image.description="某角色的身份推理：PostgreSQL 生产游戏服务与 Web 客户端" \
       org.opencontainers.image.source=$OCI_SOURCE \
       org.opencontainers.image.revision=$OCI_REVISION \
-      org.opencontainers.image.version=$OCI_VERSION
+      org.opencontainers.image.version=$OCI_VERSION \
+      org.opencontainers.image.build-number=$BUILD_NUMBER
 
 ENV NODE_ENV=production \
     DB_CLIENT=pg \

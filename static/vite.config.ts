@@ -14,10 +14,16 @@ const buildDateParts = Object.fromEntries(
   }).formatToParts(new Date()).map((part) => [part.type, part.value]),
 );
 const buildDate = `${buildDateParts.year}-${buildDateParts.month}-${buildDateParts.day}`;
+const buildNumber = process.env.BUILD_NUMBER?.trim();
+if (buildNumber && !/^\d+$/.test(buildNumber)) {
+  throw new Error('BUILD_NUMBER must contain digits only');
+}
 const revision = process.env.GITHUB_SHA?.slice(0, 7);
-const buildVersion = revision
-  ? `${packageMetadata.version}+${revision}`
-  : packageMetadata.version;
+const buildVersion = buildNumber
+  ? `${packageMetadata.version}+${buildNumber}`
+  : revision
+    ? `${packageMetadata.version}+${revision}`
+    : packageMetadata.version;
 
 export default defineConfig({
   base: process.env.GITHUB_PAGES === 'true' ? '/ToaruCharacterGuess/' : '/',
