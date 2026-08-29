@@ -157,8 +157,12 @@ export default function Home() {
           <span className="hero-kicker">ACADEMY CITY // CHARACTER PROTOCOL</span>
           <div className="home-title-mark" role="heading" aria-level={1}>
             <img
-              src={`${import.meta.env.BASE_URL}toaru-character-title.png`}
+              src={`${import.meta.env.BASE_URL}toaru-character-title.webp`}
               alt={t('common.brand')}
+              width={1100}
+              height={622}
+              loading="eager"
+              decoding="async"
             />
           </div>
           <p className="hero-subtitle">{t('home.subtitle')}</p>
