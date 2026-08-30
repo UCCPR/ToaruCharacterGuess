@@ -92,6 +92,9 @@ describe('playable character catalog', () => {
     expect(entry('芙罗兰·克洛伊杜尼')?.appearance).toEqual({ work: 'index-nt', reference: '新约第5卷', year: 2012 });
     expect(entry('博洛尼魅魔')?.appearance).toEqual({ work: 'index-gt', reference: '创约第5卷（第4卷仅名字）', year: 2021 });
     expect(entry('有富春树')?.appearance).toEqual({ work: 'railgun-anime', reference: '动画第二季第19集', year: 2013 });
+    for (const nickname of ['饭栖莉泽', '作乐木鸣羽', '清清太郎丸', '药丸医月']) {
+      expect(entry(nickname)?.appearance).toEqual({ work: 'accelerator-manga', reference: '漫画第7话', year: 2014 });
+    }
     expect(entry('米娜·马瑟斯')?.appearance).toEqual({ work: 'index-nt', reference: '新约第18卷', year: 2017 });
     expect(entry('马克·史佩斯')?.appearance).toEqual({ work: 'index-stiyl-ss', reference: '史提尔篇番外篇', year: 2008 });
     expect(entry('云川芹亚')?.organizations).toContainEqual({
