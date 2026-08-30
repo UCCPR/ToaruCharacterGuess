@@ -49,6 +49,16 @@ describe('playable character catalog', () => {
     expect(entry('茵蒂克丝')?.sides).toContainEqual({ key: 'magic', relationship: 'nun', primary: true });
     expect(entry('吹寄制理')?.sides).toContainEqual({ key: 'science', relationship: 'esper', primary: true });
     expect(entry('吹寄制理')?.appearance).toEqual({ work: 'index-ot', reference: '第9卷', year: 2006 });
+    expect(entry('土御门元春')?.appearance).toEqual({ work: 'index-ot', reference: '第4卷（第1卷仅名字）', year: 2004 });
+    expect(entry('土御门舞夏')?.appearance).toEqual({ work: 'index-ot', reference: '第3卷', year: 2004 });
+    expect(entry('芳川桔梗')?.appearance).toEqual({ work: 'index-ot', reference: '第5卷', year: 2005 });
+    expect(entry('萝拉·斯图亚特')?.appearance).toEqual({ work: 'index-ot', reference: '第7卷', year: 2005 });
+    expect(entry('安洁莉娜')?.appearance).toEqual({ work: 'index-ot', reference: '第7卷', year: 2005 });
+    expect(entry('露琪亚')?.appearance).toEqual({ work: 'index-ot', reference: '第7卷', year: 2005 });
+    expect(entry('黄泉川爱穗')?.appearance).toEqual({ work: 'index-ot', reference: '第6卷', year: 2005 });
+    expect(entry('御坂美铃')?.appearance).toEqual({ work: 'index-ot', reference: '第9卷（第10卷揭示名字）', year: 2006 });
+    expect(entry('后方之水')?.appearance).toEqual({ work: 'index-ot', reference: '第13卷', year: 2007 });
+    expect(entry('骑士团长')?.appearance).toEqual({ work: 'index-ss', reference: 'SS', year: 2007 });
     expect(entry('五和')?.appearance).toEqual({ work: 'index-ot', reference: '第11卷', year: 2006 });
     expect(entry('滨面仕上')?.appearance).toEqual({ work: 'index-ss', reference: 'SS', year: 2007 });
     expect(entry('婚后光子')?.appearance).toEqual({ work: 'index-ot', reference: '第8卷', year: 2006 });
@@ -68,8 +78,72 @@ describe('playable character catalog', () => {
     expect(entry('埃斯特·罗森塔尔')?.appearance).toEqual({ work: 'accelerator-manga', reference: '第1话', year: 2013 });
     expect(entry('芙蕾梅亚·塞维伦')?.appearance).toEqual({ work: 'index-nt', reference: '新约第1卷', year: 2011 });
     expect(entry('木原唯一')?.appearance).toEqual({ work: 'index-nt', reference: '新约第4卷', year: 2012 });
+    expect(entry('僧正')?.appearance).toEqual({ work: 'index-nt', reference: '新约第10卷', year: 2014 });
+    expect(entry('奈芙蒂斯')?.appearance).toEqual({ work: 'index-nt', reference: '新约第10卷', year: 2014 });
+    expect(entry('娘娘')?.appearance).toEqual({ work: 'index-nt', reference: '新约第10卷', year: 2014 });
+    expect(entry('枝先绊理')?.appearance).toEqual({ work: 'railgun-manga', reference: '第14话', year: 2008 });
+    expect(entry('兰西丝')?.appearance).toEqual({ work: 'index-ot', reference: '第17卷', year: 2009 });
+    expect(entry('云川芹亚')?.appearance).toEqual({ work: 'index-ss2', reference: 'SS2', year: 2008 });
+    expect(entry('蕾莎')?.appearance).toEqual({ work: 'index-ot', reference: '第17卷', year: 2009 });
+    expect(entry('贝萝普')?.appearance).toEqual({ work: 'index-ot', reference: '第17卷', year: 2009 });
+    expect(entry('芙罗莉丝')?.appearance).toEqual({ work: 'index-ot', reference: '第17卷', year: 2009 });
+    expect(entry('蕾薇妮雅·柏德蔚')?.appearance).toEqual({ work: 'index-stiyl-ss', reference: '史提尔篇第1话', year: 2007 });
+    expect(entry('布伦希尔德·艾克特贝尔')?.appearance).toEqual({ work: 'index-kanzaki-ss', reference: '神裂火织篇第7话', year: 2010 });
+    expect(entry('芙罗兰·克洛伊杜尼')?.appearance).toEqual({ work: 'index-nt', reference: '新约第5卷', year: 2012 });
+    expect(entry('博洛尼魅魔')?.appearance).toEqual({ work: 'index-gt', reference: '创约第5卷（第4卷仅名字）', year: 2021 });
+    expect(entry('有富春树')?.appearance).toEqual({ work: 'railgun-anime', reference: '动画第二季第19集', year: 2013 });
     expect(entry('米娜·马瑟斯')?.appearance).toEqual({ work: 'index-nt', reference: '新约第18卷', year: 2017 });
     expect(entry('马克·史佩斯')?.appearance).toEqual({ work: 'index-stiyl-ss', reference: '史提尔篇番外篇', year: 2008 });
+    expect(entry('云川芹亚')?.organizations).toContainEqual({
+      name: '某高中',
+      type: 'school',
+      relationship: 'student',
+      primary: true,
+    });
+    expect(entry('云川鞠亚')?.organizations).toContainEqual({
+      name: '女仆学校',
+      type: 'school',
+      relationship: 'student',
+      primary: true,
+    });
+    expect(entry('木山春生')?.organizations).toEqual(expect.arrayContaining([
+      {
+        name: '先进教育局小儿用能力教材开发所AIM解析研究所',
+        type: 'research-institute',
+        relationship: 'former-researcher',
+        primary: true,
+      },
+      {
+        name: 'AIM扩散力场控制实验',
+        type: 'research-project',
+        relationship: 'former-researcher',
+        primary: false,
+      },
+    ]));
+    expect(entry('木原幻生')?.organizations).toContainEqual({
+      name: 'AIM扩散力场控制实验',
+      type: 'research-project',
+      relationship: 'leader',
+      primary: false,
+    });
+    expect(entry('枝先绊理')?.organizations).toContainEqual({
+      name: 'AIM扩散力场控制实验',
+      type: 'research-project',
+      relationship: 'subject',
+      primary: false,
+    });
+    expect(entry('一方通行')?.organizations).toContainEqual({
+      name: '绝对能力进化计划',
+      type: 'research-project',
+      relationship: 'central-subject',
+      primary: false,
+    });
+    expect(entry('御坂10032号')?.organizations).toContainEqual({
+      name: '绝对能力进化计划',
+      type: 'research-project',
+      relationship: 'subject',
+      primary: false,
+    });
     expect(entry('华野超美')?.appearance).toEqual({
       work: 'item-novel',
       reference: '《某暗部的少女共栖》第1卷',

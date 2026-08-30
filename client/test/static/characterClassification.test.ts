@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { catalog } from '../../../static/src/generated/catalog';
+import { compare } from '../../../static/src/game';
 
 function character(name: string) {
   const result = catalog.find((entry) => entry.name === name);
@@ -9,6 +10,16 @@ function character(name: string) {
 
 describe('static character classification', () => {
   it('uses actual publication years and appearances for the audited characters', () => {
+    expect(character('土御门元春')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2004 });
+    expect(character('土御门舞夏')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2004 });
+    expect(character('芳川桔梗')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2005 });
+    expect(character('萝拉·斯图亚特')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2005 });
+    expect(character('安洁莉娜')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2005 });
+    expect(character('露琪亚')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2005 });
+    expect(character('黄泉川爱穗')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2005 });
+    expect(character('御坂美铃')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2006 });
+    expect(character('后方之水')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2007 });
+    expect(character('骑士团长')).toMatchObject({ debutWork: '魔法禁书目录 SS', debutYear: 2007 });
     expect(character('五和')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2006 });
     expect(character('滨面仕上')).toMatchObject({ debutWork: '魔法禁书目录 SS', debutYear: 2007 });
     expect(character('玛丽安·斯琳格奈亚')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2011 });
@@ -19,6 +30,19 @@ describe('static character classification', () => {
     expect(character('芙蕾梅亚·塞维伦')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2011 });
     expect(character('木原唯一')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2012 });
     expect(character('米娜·马瑟斯')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2017 });
+    expect(character('僧正')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2014 });
+    expect(character('奈芙蒂斯')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2014 });
+    expect(character('娘娘')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2014 });
+    expect(character('枝先绊理')).toMatchObject({ debutWork: '某科学的超电磁炮（漫画）', debutYear: 2008 });
+    expect(character('兰西丝')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2009 });
+    expect(character('云川芹亚')).toMatchObject({ debutWork: '魔法禁书目录 SS2', debutYear: 2008 });
+    expect(character('蕾莎')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2009 });
+    expect(character('贝萝普')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2009 });
+    expect(character('芙罗莉丝')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2009 });
+    expect(character('蕾薇妮雅·柏德蔚')).toMatchObject({ debutWork: '魔法禁书目录 SS：史提尔篇', debutYear: 2007 });
+    expect(character('布伦希尔德·艾克特贝尔')).toMatchObject({ debutWork: '魔法禁书目录 SS：神裂火织篇', debutYear: 2010 });
+    expect(character('芙罗兰·克洛伊杜尼')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2012 });
+    expect(character('博洛尼魅魔')).toMatchObject({ debutWork: '创约 魔法禁书目录', debutYear: 2021 });
   });
 
   it('uses the original Stiyl SS publication for Mark Space', () => {
@@ -115,6 +139,52 @@ describe('static character classification', () => {
       entity: '抛弃物儿童（Child Error）',
       role: 'holder',
     });
+    expect(character('一方通行').identities).toContainEqual({
+      name: '绝对能力进化计划核心人物',
+      group: 'research-project:绝对能力进化计划',
+      kind: 'research-project',
+      entity: '绝对能力进化计划',
+      role: 'central-subject',
+    });
+    expect(character('御坂10032号').identities).toContainEqual({
+      name: '绝对能力进化计划实验对象',
+      group: 'research-project:绝对能力进化计划',
+      kind: 'research-project',
+      entity: '绝对能力进化计划',
+      role: 'subject',
+    });
+    expect(character('木山春生').identities).toContainEqual({
+      name: 'AIM扩散力场控制实验前研究人员',
+      group: 'research-project:AIM扩散力场控制实验',
+      kind: 'research-project',
+      entity: 'AIM扩散力场控制实验',
+      role: 'former-researcher',
+    });
+    expect(character('木原幻生').identities).toContainEqual({
+      name: 'AIM扩散力场控制实验领导者',
+      group: 'research-project:AIM扩散力场控制实验',
+      kind: 'research-project',
+      entity: 'AIM扩散力场控制实验',
+      role: 'leader',
+    });
+    expect(character('枝先绊理').identities).toContainEqual({
+      name: 'AIM扩散力场控制实验实验对象',
+      group: 'research-project:AIM扩散力场控制实验',
+      kind: 'research-project',
+      entity: 'AIM扩散力场控制实验',
+      role: 'subject',
+    });
+  });
+
+  it('keeps the audited Kumokawa school memberships', () => {
+    expect(character('云川芹亚').organizations).toContainEqual({ name: '某高中', parent: null });
+    expect(character('云川鞠亚').organizations).toContainEqual({ name: '女仆学校', parent: null });
+  });
+
+  it('relates participants only through the same audited research project', () => {
+    expect(compare(character('木山春生'), character('枝先绊理')).cells.identity.level).toBe('close');
+    expect(compare(character('木原幻生'), character('枝先绊理')).cells.identity.level).toBe('close');
+    expect(compare(character('一方通行'), character('御坂10032号')).cells.identity.level).toBe('close');
   });
 
   it('includes the Genesis Testament batch with identity-only relations separated', () => {

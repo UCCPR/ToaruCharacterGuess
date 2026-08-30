@@ -53,6 +53,7 @@ export const DEBUT_WORK_TITLES: Record<string, string> = {
   'index-gt': '创约 魔法禁书目录',
   'index-sp': '魔法禁书目录 SP',
   'index-stiyl-ss': '魔法禁书目录 SS：史提尔篇',
+  'index-kanzaki-ss': '魔法禁书目录 SS：神裂火织篇',
   'index-biohacker': '魔法禁书目录 SS：生物黑客篇',
   'railgun-manga': '某科学的超电磁炮（漫画）',
   'railgun-anime': '某科学的超电磁炮（动画）',

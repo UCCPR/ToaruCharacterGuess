@@ -27,7 +27,11 @@
     "nickname": "一方通行", "name_ja": "一方通行（アクセラレータ）", "name_en": "Accelerator", "gender": "unknown",
     "aliases": [{"name":"Accelerator","locale":"en","type":"ability-name"}],
     "sides": [{"key":"science","relationship":"esper","primary":true}],
-    "organizations": [{"name":"集团（GROUP）","type":"dark-side-group","relationship":"member","primary":true},{"name":"御坂网络","type":"network","relationship":"associated","primary":false}],
+    "organizations": [
+      {"name":"集团（GROUP）","type":"dark-side-group","relationship":"member","primary":true},
+      {"name":"御坂网络","type":"network","relationship":"associated","primary":false},
+      {"name":"绝对能力进化计划","type":"research-project","relationship":"central-subject","primary":false}
+    ],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
     "appearance": {"work":"index-ot","reference":"第3卷","year":2004}, "source_page":"一方通行"
   },
@@ -101,7 +105,7 @@
     "sides": [{"key":"science","relationship":"esper","primary":true},{"key":"magic","relationship":"magician-agent","primary":false}],
     "organizations": [{"name":"某高中","type":"school","relationship":"student","primary":false},{"name":"必要之恶教会","type":"church-branch","parent":"英国清教","relationship":"agent","primary":true},{"name":"集团（GROUP）","type":"dark-side-group","relationship":"member","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第1卷","year":2004}, "source_page":"土御门元春"
+    "appearance": {"work":"index-ot","reference":"第4卷（第1卷仅名字）","year":2004}, "source_page":"土御门元春"
   },
   {
     "nickname": "最后之作", "name_ja": "打ち止め（ラストオーダー）", "name_en": "Last Order", "gender": "female",
@@ -155,7 +159,11 @@
     "nickname": "御坂10032号", "name_ja": "御坂妹（10032号）", "name_en": "Misaka 10032", "gender": "female",
     "aliases": [{"name":"御坂妹","locale":"zh-CN","type":"collective-name"},{"name":"Misaka Imouto","locale":"en","type":"common-name"}],
     "sides": [{"key":"science","relationship":"esper-clone","primary":true}],
-    "organizations": [{"name":"妹妹们（SISTERS）","type":"clone-network","relationship":"member","primary":false},{"name":"御坂网络","type":"network","relationship":"member","primary":true}],
+    "organizations": [
+      {"name":"妹妹们（SISTERS）","type":"clone-network","relationship":"member","primary":false},
+      {"name":"御坂网络","type":"network","relationship":"member","primary":true},
+      {"name":"绝对能力进化计划","type":"research-project","relationship":"subject","primary":false}
+    ],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
     "appearance": {"work":"index-ot","reference":"第3卷","year":2004}, "source_page":"御坂10032号"
   },
@@ -213,7 +221,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"神之右席","type":"religious-order","relationship":"former-member","primary":true},{"name":"英国骑士派","type":"religious-order","relationship":"former-member","primary":false}],
     "locations": [{"name":"英国","type":"country","relationship":"origin","primary":true},{"name":"梵蒂冈","type":"city-state","relationship":"former-affiliation","primary":false}],
-    "appearance": {"work":"index-ot","reference":"第14卷","year":2007}, "source_page":"后方之水"
+    "appearance": {"work":"index-ot","reference":"第13卷","year":2007}, "source_page":"后方之水"
   },
   {
     "nickname": "右方之火", "name_ja": "右方のフィアンマ", "name_en": "Fiamma of the Right", "gender": "male",
@@ -229,7 +237,7 @@
     "sides": [{"key":"magic","relationship":"archbishop","primary":true},{"key":"magic","relationship":"artificial-being","primary":false}],
     "organizations": [{"name":"英国清教","type":"church","relationship":"archbishop","primary":true},{"name":"必要之恶教会","type":"church-branch","parent":"英国清教","relationship":"leader","primary":false},{"name":"大恶魔","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"英国","type":"country","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第4卷","year":2004}, "source_page":"科隆尊"
+    "appearance": {"work":"index-ot","reference":"第7卷","year":2005}, "source_page":"萝拉·斯图亚特"
   },
   {
     "nickname": "欧提努斯", "name_ja": "オティヌス", "name_en": "Othinus", "gender": "female",
@@ -269,7 +277,7 @@
     "sides": [{"key":"science","relationship":"law-enforcement","primary":true}],
     "organizations": [{"name":"警备员（Anti-Skill）","type":"law-enforcement","relationship":"officer","primary":true}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第5卷","year":2005}, "source_page":"黄泉川爱穗"
+    "appearance": {"work":"index-ot","reference":"第6卷","year":2005}, "source_page":"黄泉川爱穗"
   },
   {
     "nickname": "芳川桔梗", "name_ja": "芳川桔梗", "name_en": "Yoshikawa Kikyou", "gender": "female",
@@ -277,7 +285,7 @@
     "sides": [{"key":"science","relationship":"researcher","primary":true}],
     "organizations": [{"name":"绝对能力进化计划","type":"research-project","relationship":"former-researcher","primary":true}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第3卷","year":2004}, "source_page":"芳川桔梗"
+    "appearance": {"work":"index-ot","reference":"第5卷","year":2005}, "source_page":"芳川桔梗"
   },
   {
     "nickname": "结标淡希", "name_ja": "結標淡希", "name_en": "Musujime Awaki", "gender": "female",
@@ -365,7 +373,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"新生之光","type":"magic-cabal","relationship":"member","primary":true}],
     "locations": [{"name":"英国","type":"country","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-ss2","reference":"SS2","year":2008}, "source_page":"蕾莎"
+    "appearance": {"work":"index-ot","reference":"第17卷","year":2009}, "source_page":"蕾莎"
   },
   {
     "nickname": "凯莉莎", "name_ja": "キャーリサ", "name_en": "Carissa", "gender": "female",
@@ -389,7 +397,7 @@
     "sides": [{"key":"magic","relationship":"knight-magician","primary":true}],
     "organizations": [{"name":"英国骑士派","type":"religious-order","relationship":"leader","primary":true}],
     "locations": [{"name":"英国","type":"country","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第17卷","year":2009}, "source_page":"骑士团长"
+    "appearance": {"work":"index-ss","reference":"SS","year":2007}, "source_page":"骑士团长"
   },
   {
     "nickname": "托尔", "name_ja": "トール", "name_en": "Thor", "gender": "male",
@@ -443,7 +451,10 @@
     "nickname": "木山春生", "name_ja": "木山春生", "name_en": "Kiyama Harumi", "gender": "female",
     "aliases": [{"name":"Kiyama Harumi","locale":"en","type":"romanized"}],
     "sides": [{"key":"science","relationship":"researcher","primary":true}],
-    "organizations": [{"name":"木原研究所","type":"research-institute","relationship":"former-researcher","primary":true}],
+    "organizations": [
+      {"name":"先进教育局小儿用能力教材开发所AIM解析研究所","type":"research-institute","relationship":"former-researcher","primary":true},
+      {"name":"AIM扩散力场控制实验","type":"research-project","relationship":"former-researcher","primary":false}
+    ],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
     "appearance": {"work":"railgun-manga","reference":"第7话","year":2007}, "source_page":"木山春生"
   },
@@ -459,7 +470,11 @@
     "nickname": "木原幻生", "name_ja": "木原幻生", "name_en": "Kihara Gensei", "gender": "male",
     "aliases": [{"name":"Kihara Gensei","locale":"en","type":"romanized"}],
     "sides": [{"key":"science","relationship":"researcher","primary":true}],
-    "organizations": [{"name":"木原一族","type":"research-family","relationship":"member","primary":true},{"name":"绝对能力进化计划","type":"research-project","relationship":"researcher","primary":false}],
+    "organizations": [
+      {"name":"木原一族","type":"research-family","relationship":"member","primary":true},
+      {"name":"绝对能力进化计划","type":"research-project","relationship":"researcher","primary":false},
+      {"name":"AIM扩散力场控制实验","type":"research-project","relationship":"leader","primary":false}
+    ],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
     "appearance": {"work":"railgun-manga","reference":"第14话","year":2008}, "source_page":"木原幻生"
   },
@@ -485,7 +500,7 @@
     "sides": [{"key":"science","relationship":"civilian-associated","primary":true}],
     "organizations": [{"name":"御坂家","type":"family","relationship":"member","primary":true}],
     "locations": [{"name":"日本","type":"country","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第12卷","year":2007}, "source_page":"御坂美铃"
+    "appearance": {"work":"index-ot","reference":"第9卷（第10卷揭示名字）","year":2006}, "source_page":"御坂美铃"
   },
   {
     "nickname": "布束砥信", "name_ja": "布束砥信", "name_en": "Nunotaba Shinobu", "gender": "female",
@@ -533,7 +548,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"黎明晨光","type":"magic-cabal","relationship":"leader","primary":true}],
     "locations": [{"name":"英国","type":"country","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-ss2","reference":"SS2","year":2008}, "source_page":"蕾薇妮雅·柏德蔚"
+    "appearance": {"work":"index-stiyl-ss","reference":"史提尔篇第1话","year":2007}, "source_page":"蕾薇妮雅·柏德蔚"
   },
   {
     "nickname": "玛丽安·斯琳格奈亚", "name_ja": "マリアン＝スリンゲナイヤー", "name_en": "Marian Slingeneyer", "gender": "female",
@@ -549,7 +564,7 @@
     "sides": [{"key":"magic","relationship":"saint-magician","primary":true}],
     "organizations": [{"name":"圣人","type":"special-status","relationship":"holder","primary":true},{"name":"女武神","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"北欧","type":"region","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-ss2","reference":"SS2","year":2008}, "source_page":"布伦希尔德·艾克特贝尔"
+    "appearance": {"work":"index-kanzaki-ss","reference":"神裂火织篇第7话","year":2010}, "source_page":"布伦希尔德·艾克特贝尔"
   },
   {
     "nickname": "僧正", "name_ja": "僧正", "name_en": "High Priest", "gender": "male",
@@ -557,7 +572,7 @@
     "sides": [{"key":"magic","relationship":"magic-god","primary":true}],
     "organizations": [{"name":"真正的格雷姆林","type":"magic-cabal","relationship":"member","primary":true},{"name":"魔神","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"亚洲","type":"region","relationship":"origin","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第12卷","year":2015}, "source_page":"僧正"
+    "appearance": {"work":"index-nt","reference":"新约第10卷","year":2014}, "source_page":"僧正"
   },
   {
     "nickname": "奈芙蒂斯", "name_ja": "ネフテュス", "name_en": "Nephthys", "gender": "female",
@@ -565,7 +580,7 @@
     "sides": [{"key":"magic","relationship":"magic-god","primary":true}],
     "organizations": [{"name":"真正的格雷姆林","type":"magic-cabal","relationship":"member","primary":true},{"name":"魔神","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"埃及","type":"country","relationship":"origin","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第12卷","year":2015}, "source_page":"奈芙蒂斯"
+    "appearance": {"work":"index-nt","reference":"新约第10卷","year":2014}, "source_page":"奈芙蒂斯"
   },
   {
     "nickname": "娘娘", "name_ja": "娘々", "name_en": "Niang-Niang", "gender": "female",
@@ -573,7 +588,7 @@
     "sides": [{"key":"magic","relationship":"magic-god","primary":true}],
     "organizations": [{"name":"真正的格雷姆林","type":"magic-cabal","relationship":"member","primary":true},{"name":"魔神","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"中国","type":"country","relationship":"origin","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第12卷","year":2015}, "source_page":"娘娘"
+    "appearance": {"work":"index-nt","reference":"新约第10卷","year":2014}, "source_page":"娘娘"
   },
   {
     "nickname": "安娜·施普伦格尔", "name_ja": "アンナ＝シュプレンゲル", "name_en": "Anna Sprengel", "gender": "female",
@@ -683,9 +698,12 @@
     "nickname": "枝先绊理", "name_ja": "枝先絆理", "name_en": "Edasaki Banri", "gender": "female",
     "aliases": [{"name":"Edasaki Banri","locale":"en","type":"romanized"}],
     "sides": [{"key":"science","relationship":"esper","primary":true}],
-    "organizations": [{"name":"抛弃物儿童（Child Error）","type":"special-status","relationship":"holder","primary":true},{"name":"木山实验组","type":"research-project","relationship":"subject","primary":false}],
+    "organizations": [
+      {"name":"抛弃物儿童（Child Error）","type":"special-status","relationship":"holder","primary":true},
+      {"name":"AIM扩散力场控制实验","type":"research-project","relationship":"subject","primary":false}
+    ],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"railgun-anime","reference":"第1季第12集","year":2009}, "source_page":"枝先绊理"
+    "appearance": {"work":"railgun-manga","reference":"第14话","year":2008}, "source_page":"枝先绊理"
   },
   {
     "nickname": "铁装缀里", "name_ja": "鉄装綴里", "name_en": "Tessou Tsuzuri", "gender": "female",
@@ -741,7 +759,7 @@
     "sides": [{"key":"independent","relationship":"transcendent-entity","primary":true}],
     "organizations": [{"name":"不死者","type":"special-status","relationship":"holder","primary":true}],
     "locations": [{"name":"欧洲","type":"region","relationship":"origin","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第6卷","year":2013}, "source_page":"芙罗兰·克洛伊杜尼"
+    "appearance": {"work":"index-nt","reference":"新约第5卷","year":2012}, "source_page":"芙罗兰·克洛伊杜尼"
   },
   {
     "nickname": "圣日耳曼", "name_ja": "サンジェルマン", "name_en": "St. Germain", "gender": "unknown",
@@ -789,7 +807,7 @@
     "sides": [{"key":"magic","relationship":"nun-magician","primary":true}],
     "organizations": [{"name":"英国清教","type":"church","relationship":"member","primary":true},{"name":"罗马正教","type":"church","relationship":"former-member","primary":false},{"name":"雅妮丝部队","type":"religious-order","relationship":"member","primary":false}],
     "locations": [{"name":"意大利","type":"country","relationship":"origin","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第11卷","year":2006}, "source_page":"露琪亚"
+    "appearance": {"work":"index-ot","reference":"第7卷","year":2005}, "source_page":"露琪亚"
   },
   {
     "nickname": "安洁莉娜", "name_ja": "アンジェレネ", "name_en": "Angelene", "gender": "female",
@@ -797,7 +815,7 @@
     "sides": [{"key":"magic","relationship":"nun-magician","primary":true}],
     "organizations": [{"name":"英国清教","type":"church","relationship":"member","primary":true},{"name":"罗马正教","type":"church","relationship":"former-member","primary":false},{"name":"雅妮丝部队","type":"religious-order","relationship":"member","primary":false}],
     "locations": [{"name":"意大利","type":"country","relationship":"origin","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第11卷","year":2006}, "source_page":"安洁莉娜"
+    "appearance": {"work":"index-ot","reference":"第7卷","year":2005}, "source_page":"安洁莉娜"
   },
   {
     "nickname": "蓝发耳环", "name_ja": "青髪ピアス", "name_en": "Aogami Pierce", "gender": "male",
@@ -813,7 +831,7 @@
     "sides": [{"key":"science","relationship":"student","primary":true}],
     "organizations": [{"name":"土御门家","type":"family","relationship":"member","primary":true},{"name":"女仆学校","type":"school","relationship":"student","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第4卷","year":2004}, "source_page":"土御门舞夏"
+    "appearance": {"work":"index-ot","reference":"第3卷","year":2004}, "source_page":"土御门舞夏"
   },
   {
     "nickname": "上条刀夜", "name_ja": "上条刀夜", "name_en": "Kamijou Touya", "gender": "male",
@@ -957,7 +975,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"新生之光","type":"magic-cabal","relationship":"member","primary":true}],
     "locations": [{"name":"英国","type":"country","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-ss2","reference":"SS2","year":2008}, "source_page":"贝萝普"
+    "appearance": {"work":"index-ot","reference":"第17卷","year":2009}, "source_page":"贝萝普"
   },
   {
     "nickname": "兰西丝", "name_ja": "ランシス", "name_en": "Lancis", "gender": "female",
@@ -965,7 +983,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"新生之光","type":"magic-cabal","relationship":"member","primary":true}],
     "locations": [{"name":"英国","type":"country","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-ss2","reference":"SS2","year":2008}, "source_page":"兰西丝"
+    "appearance": {"work":"index-ot","reference":"第17卷","year":2009}, "source_page":"兰西丝"
   },
   {
     "nickname": "芙罗莉丝", "name_ja": "フロリス", "name_en": "Floris", "gender": "female",
@@ -973,7 +991,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"新生之光","type":"magic-cabal","relationship":"member","primary":true}],
     "locations": [{"name":"英国","type":"country","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-ss2","reference":"SS2","year":2008}, "source_page":"芙罗莉丝"
+    "appearance": {"work":"index-ot","reference":"第17卷","year":2009}, "source_page":"芙罗莉丝"
   },
   {
     "nickname": "马克·史佩斯", "name_ja": "マーク＝スペース", "name_en": "Mark Space", "gender": "male",
@@ -1003,15 +1021,15 @@
     "nickname": "云川芹亚", "name_ja": "雲川芹亜", "name_en": "Kumokawa Seria", "gender": "female",
     "aliases": [{"name":"Kumokawa Seria","locale":"en","type":"romanized"}],
     "sides": [{"key":"science","relationship":"student","primary":true}],
-    "organizations": [],
+    "organizations": [{"name":"某高中","type":"school","relationship":"student","primary":true}],
     "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第16卷","year":2008}, "source_page":"云川芹亚"
+    "appearance": {"work":"index-ss2","reference":"SS2","year":2008}, "source_page":"云川芹亚"
   },
   {
     "nickname": "云川鞠亚", "name_ja": "雲川鞠亜", "name_en": "Kumokawa Maria", "gender": "female",
     "aliases": [{"name":"Kumokawa Maria","locale":"en","type":"romanized"}],
     "sides": [{"key":"science","relationship":"student","primary":true}],
-    "organizations": [],
+    "organizations": [{"name":"女仆学校","type":"school","relationship":"student","primary":true}],
     "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
     "appearance": {"work":"index-nt","reference":"新约第2卷","year":2011}, "source_page":"云川鞠亚"
   },
@@ -1109,7 +1127,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"桥架结社","type":"magic-cabal","relationship":"member","primary":true},{"name":"超绝者","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"欧洲","type":"region","relationship":"active","primary":true}],
-    "appearance": {"work":"index-gt","reference":"创约第6卷","year":2022}, "source_page":"博洛尼魅魔"
+    "appearance": {"work":"index-gt","reference":"创约第5卷（第4卷仅名字）","year":2021}, "source_page":"博洛尼魅魔"
   },
   {
     "nickname": "H.T.特利斯墨吉斯忒斯", "name_ja": "H・T・トリスメギストス", "name_en": "H. T. Trismegistus", "gender": "male",
@@ -1293,7 +1311,7 @@
     "sides": [{"key":"science","relationship":"researcher","primary":true}],
     "organizations": [{"name":"新生（STUDY）","type":"research-group","relationship":"leader","primary":true},{"name":"化学造人计划","type":"research-project","relationship":"leader","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
-    "appearance": {"work":"railgun-anime","reference":"动画第二季第18集","year":2013}, "source_page":"有富春树"
+    "appearance": {"work":"railgun-anime","reference":"动画第二季第19集","year":2013}, "source_page":"有富春树"
   },
   {
     "nickname": "黑妻绵流", "name_ja": "黒妻綿流", "name_en": "Kurozuma Wataru", "gender": "male",
