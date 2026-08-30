@@ -93,7 +93,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"天草式十字凄教","type":"church","relationship":"member","primary":true},{"name":"英国清教","type":"church","relationship":"member","primary":false}],
     "locations": [{"name":"日本","type":"country","relationship":"origin","primary":true},{"name":"英国","type":"country","relationship":"active","primary":false}],
-    "appearance": {"work":"index-ot","reference":"第7卷","year":2005}, "source_page":"五和"
+    "appearance": {"work":"index-ot","reference":"第11卷","year":2006}, "source_page":"五和"
   },
   {
     "nickname": "土御门元春", "name_ja": "土御門元春", "name_en": "Tsuchimikado Motoharu", "gender": "male",
@@ -125,7 +125,7 @@
     "sides": [{"key":"science","relationship":"level-zero","primary":true}],
     "organizations": [{"name":"武装无能力集团（Skill-Out）","type":"street-group","relationship":"former-member","primary":false},{"name":"道具（ITEM）","type":"dark-side-group","relationship":"member","primary":true}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第12卷","year":2007}, "source_page":"滨面仕上"
+    "appearance": {"work":"index-ss","reference":"SS","year":2007}, "source_page":"滨面仕上"
   },
   {
     "nickname": "泷壶理后", "name_ja": "滝壺理后", "name_en": "Takitsubo Rikou", "gender": "female",
@@ -541,7 +541,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"格雷姆林","type":"magic-cabal","relationship":"member","primary":true}],
     "locations": [{"name":"北欧","type":"region","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第3卷","year":2012}, "source_page":"玛丽安·斯琳格奈亚"
+    "appearance": {"work":"index-nt","reference":"新约第3卷","year":2011}, "source_page":"玛丽安·斯琳格奈亚"
   },
   {
     "nickname": "布伦希尔德·艾克特贝尔", "name_ja": "ブリュンヒルド＝エイクトベル", "name_en": "Brunhild Eiktobel", "gender": "female",
@@ -621,7 +621,7 @@
     "sides": [{"key":"science","relationship":"esper","primary":true}],
     "organizations": [{"name":"才人工房（Clone Dolly）","type":"research-project","relationship":"former-subject","primary":true},{"name":"L.S.S.","type":"criminal-group","relationship":"former-captive","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第11卷","year":2015}, "source_page":"蜜蚁爱愉"
+    "appearance": {"work":"index-nt","reference":"新约第11卷","year":2014}, "source_page":"蜜蚁爱愉"
   },
   {
     "nickname": "弓箭猎虎", "name_ja": "弓箭猟虎", "name_en": "Yumiya Rakko", "gender": "female",
@@ -653,7 +653,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true},{"key":"science","relationship":"research-cooperator","primary":false}],
     "organizations": [{"name":"罗森塔尔家族","type":"family","relationship":"leader","primary":true},{"name":"菱形研究组","type":"research-group","relationship":"cooperator","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"visitor","primary":true}],
-    "appearance": {"work":"accelerator-manga","reference":"第1话","year":2014}, "source_page":"埃斯特·罗森塔尔"
+    "appearance": {"work":"accelerator-manga","reference":"第1话","year":2013}, "source_page":"埃斯特·罗森塔尔"
   },
   {
     "nickname": "菱形干比古", "name_ja": "菱形幹比古", "name_en": "Hishigata Mikihiko", "gender": "male",
@@ -733,7 +733,7 @@
     "sides": [{"key":"science","relationship":"researcher","primary":true},{"key":"magic","relationship":"magic-user","primary":false}],
     "organizations": [{"name":"木原一族","type":"research-family","relationship":"member","primary":true},{"name":"上里势力","type":"informal-group","relationship":"infiltrator","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第14卷","year":2015}, "source_page":"木原唯一"
+    "appearance": {"work":"index-nt","reference":"新约第4卷","year":2012}, "source_page":"木原唯一"
   },
   {
     "nickname": "芙罗兰·克洛伊杜尼", "name_ja": "フロイライン＝クロイトゥーネ", "name_en": "Fräulein Kreutune", "gender": "female",
@@ -765,7 +765,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"格雷姆林","type":"magic-cabal","relationship":"member","primary":true},{"name":"俄罗斯成教","type":"church","relationship":"former-member","primary":false}],
     "locations": [{"name":"俄罗斯","type":"country","relationship":"origin","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第3卷","year":2012}, "source_page":"莎洛妮亚·A.以黎维卡"
+    "appearance": {"work":"index-nt","reference":"新约第3卷","year":2011}, "source_page":"莎洛妮亚·A.以黎维卡"
   },
   {
     "nickname": "伊莉莎", "name_ja": "エリザード", "name_en": "Elizard", "gender": "female",
@@ -981,7 +981,7 @@
     "sides": [{"key":"magic","relationship":"magician-agent","primary":true}],
     "organizations": [{"name":"黎明晨光","type":"magic-cabal","relationship":"member","primary":true}],
     "locations": [{"name":"英国","type":"country","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-sp","reference":"神裂火织篇（具体话待复核）","year":2008}, "source_page":"马克·史佩斯"
+    "appearance": {"work":"index-stiyl-ss","reference":"史提尔篇番外篇","year":2008}, "source_page":"马克·史佩斯"
   },
   {
     "nickname": "安娜·金斯福德", "name_ja": "アンナ＝キングスフォード", "name_en": "Anna Kingsford", "gender": "female",
@@ -1029,7 +1029,7 @@
     "sides": [{"key":"science","relationship":"academy-city-resident","primary":true}],
     "organizations": [{"name":"塞维伦家族","type":"family","relationship":"member","primary":true},{"name":"人力资源计划","type":"research-project","relationship":"central-subject","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第2卷","year":2011}, "source_page":"芙蕾梅亚·塞维伦"
+    "appearance": {"work":"index-nt","reference":"新约第1卷","year":2011}, "source_page":"芙蕾梅亚·塞维伦"
   },
   {
     "nickname": "亲船最中", "name_ja": "親船最中", "name_en": "Oyafune Monaka", "gender": "female",
@@ -1037,7 +1037,7 @@
     "sides": [{"key":"science","relationship":"board-director","primary":true}],
     "organizations": [{"name":"统括理事会","type":"government","relationship":"board-director","primary":true}],
     "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第14卷","year":2008}, "source_page":"亲船最中"
+    "appearance": {"work":"index-ot","reference":"第14卷","year":2007}, "source_page":"亲船最中"
   },
   {
     "nickname": "贝积继敏", "name_ja": "貝積継敏", "name_en": "Kaizumi Tsugutoshi", "gender": "male",
@@ -1133,7 +1133,7 @@
     "sides": [{"key":"independent","relationship":"artificial-being","primary":true},{"key":"science","relationship":"research-system","primary":false}],
     "organizations": [{"name":"问答型思考辅助式人工智能","type":"special-status","relationship":"manifestation","primary":true},{"name":"亚雷斯塔协力者","type":"informal-group","relationship":"cooperator","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第5卷","year":2012}, "source_page":"问答型思考辅助式人工智能"
+    "appearance": {"work":"index-nt","reference":"新约第18卷","year":2017}, "source_page":"问答型思考辅助式人工智能"
   },
   {
     "nickname": "莉莉丝", "name_ja": "リリス", "name_en": "Lilith", "gender": "female",
@@ -1519,13 +1519,13 @@
       {"key":"science","relationship":"dark-side-operative","primary":true}
     ],
     "organizations": [
-      {"name":"道具（ITEM）","type":"dark-side-group","parent":"暗部","relationship":"member","primary":true}
+      {"name":"道具（ITEM）","type":"dark-side-group","relationship":"member","primary":true}
     ],
     "locations": [
       {"name":"学园都市","type":"city","relationship":"active","primary":true}
     ],
     "appearance": {
-      "work":"item-manga",
+      "work":"item-novel",
       "reference":"《某暗部的少女共栖》第1卷",
       "year":2023
     },

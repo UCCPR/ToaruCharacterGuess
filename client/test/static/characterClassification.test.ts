@@ -8,6 +8,26 @@ function character(name: string) {
 }
 
 describe('static character classification', () => {
+  it('uses actual publication years and appearances for the audited characters', () => {
+    expect(character('五和')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2006 });
+    expect(character('滨面仕上')).toMatchObject({ debutWork: '魔法禁书目录 SS', debutYear: 2007 });
+    expect(character('玛丽安·斯琳格奈亚')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2011 });
+    expect(character('莎洛妮亚·A.以黎维卡')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2011 });
+    expect(character('蜜蚁爱愉')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2014 });
+    expect(character('亲船最中')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2007 });
+    expect(character('埃斯特·罗森塔尔')).toMatchObject({ debutWork: '某科学的一方通行（漫画）', debutYear: 2013 });
+    expect(character('芙蕾梅亚·塞维伦')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2011 });
+    expect(character('木原唯一')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2012 });
+    expect(character('米娜·马瑟斯')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2017 });
+  });
+
+  it('uses the original Stiyl SS publication for Mark Space', () => {
+    expect(character('马克·史佩斯')).toMatchObject({
+      debutWork: '魔法禁书目录 SS：史提尔篇',
+      debutYear: 2008,
+    });
+  });
+
   it('uses the shared direct-parent hierarchy for organization feedback', () => {
     expect(character('麦野沉利').organizations).toContainEqual({
       name: '道具（ITEM）',

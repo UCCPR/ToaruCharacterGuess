@@ -49,6 +49,8 @@ describe('playable character catalog', () => {
     expect(entry('茵蒂克丝')?.sides).toContainEqual({ key: 'magic', relationship: 'nun', primary: true });
     expect(entry('吹寄制理')?.sides).toContainEqual({ key: 'science', relationship: 'esper', primary: true });
     expect(entry('吹寄制理')?.appearance).toEqual({ work: 'index-ot', reference: '第9卷', year: 2006 });
+    expect(entry('五和')?.appearance).toEqual({ work: 'index-ot', reference: '第11卷', year: 2006 });
+    expect(entry('滨面仕上')?.appearance).toEqual({ work: 'index-ss', reference: 'SS', year: 2007 });
     expect(entry('婚后光子')?.appearance).toEqual({ work: 'index-ot', reference: '第8卷', year: 2006 });
     expect(entry('瓦希莉莎')?.appearance).toEqual({ work: 'index-ot', reference: '第12卷', year: 2007 });
     expect(entry('木原幻生')?.appearance).toEqual({ work: 'railgun-manga', reference: '第14话', year: 2008 });
@@ -59,6 +61,26 @@ describe('playable character catalog', () => {
     expect(entry('爱华斯')?.appearance).toEqual({ work: 'index-ot', reference: '第19卷（第7卷仅名字）', year: 2009 });
     expect(entry('木原脑干')?.appearance).toEqual({ work: 'index-nt', reference: '新约第7卷（第4卷仅名字／第11卷全名）', year: 2013 });
     expect(entry('爱丽丝·异典')?.appearance).toEqual({ work: 'index-gt', reference: '创约第5卷（第4卷仅名字）', year: 2021 });
+    expect(entry('玛丽安·斯琳格奈亚')?.appearance).toEqual({ work: 'index-nt', reference: '新约第3卷', year: 2011 });
+    expect(entry('莎洛妮亚·A.以黎维卡')?.appearance).toEqual({ work: 'index-nt', reference: '新约第3卷', year: 2011 });
+    expect(entry('蜜蚁爱愉')?.appearance).toEqual({ work: 'index-nt', reference: '新约第11卷', year: 2014 });
+    expect(entry('亲船最中')?.appearance).toEqual({ work: 'index-ot', reference: '第14卷', year: 2007 });
+    expect(entry('埃斯特·罗森塔尔')?.appearance).toEqual({ work: 'accelerator-manga', reference: '第1话', year: 2013 });
+    expect(entry('芙蕾梅亚·塞维伦')?.appearance).toEqual({ work: 'index-nt', reference: '新约第1卷', year: 2011 });
+    expect(entry('木原唯一')?.appearance).toEqual({ work: 'index-nt', reference: '新约第4卷', year: 2012 });
+    expect(entry('米娜·马瑟斯')?.appearance).toEqual({ work: 'index-nt', reference: '新约第18卷', year: 2017 });
+    expect(entry('马克·史佩斯')?.appearance).toEqual({ work: 'index-stiyl-ss', reference: '史提尔篇番外篇', year: 2008 });
+    expect(entry('华野超美')?.appearance).toEqual({
+      work: 'item-novel',
+      reference: '《某暗部的少女共栖》第1卷',
+      year: 2023,
+    });
+    expect(entry('华野超美')?.organizations).toContainEqual({
+      name: '道具（ITEM）',
+      type: 'dark-side-group',
+      relationship: 'member',
+      primary: true,
+    });
     expect(entry('莉莉丝')?.appearance).toEqual({
       work: 'index-nt',
       reference: '新约第18卷回忆中登场（旧约第7卷仅名字／第19卷现世登场）',
@@ -209,6 +231,11 @@ describe('playable character catalog', () => {
       .orderBy('key')
       .pluck('key');
     expect(preGenesisWorks).toEqual(['accelerator-anime', 'index-biohacker']);
+
+    const itemWorks = await instance('works')
+      .whereLike('key', 'item-%')
+      .select('key', 'medium');
+    expect(itemWorks).toEqual([{ key: 'item-novel', medium: 'novel' }]);
 
     const coronzonAliases = await instance('character_aliases as alias')
       .join('characters as character', 'character.id', 'alias.character_id')

@@ -42,6 +42,7 @@ const CURATED_WORKS: Record<string, { title: string; medium: string; continuity:
   'index-nt': { title: '新约 某魔法的禁书目录', medium: 'novel', continuity: 'main' },
   'index-gt': { title: '创约 某魔法的禁书目录', medium: 'novel', continuity: 'main' },
   'index-sp': { title: '某魔法的禁书目录 SP', medium: 'novel', continuity: 'supplemental' },
+  'index-stiyl-ss': { title: '某魔法的禁书目录 SS 史提尔篇', medium: 'novel', continuity: 'supplemental' },
   'index-biohacker': { title: '某魔法的禁书目录 SS 生物黑客篇', medium: 'novel', continuity: 'supplemental' },
   'railgun-manga': { title: '某科学的超电磁炮', medium: 'manga', continuity: 'spinoff' },
   'railgun-anime': { title: '某科学的超电磁炮（动画）', medium: 'anime', continuity: 'spinoff' },
@@ -49,7 +50,7 @@ const CURATED_WORKS: Record<string, { title: string; medium: string; continuity:
   'accelerator-anime': { title: '某科学的一方通行（动画）', medium: 'anime', continuity: 'spinoff' },
   'dark-matter-manga': { title: '某科学的未元物质', medium: 'manga', continuity: 'spinoff' },
   'mental-out-manga': { title: '某科学的心理掌握', medium: 'manga', continuity: 'spinoff' },
-  'item-manga': { title: '某暗部的少女共栖', medium: 'novel', continuity: 'spinoff' },
+  'item-novel': { title: '某暗部的少女共栖', medium: 'novel', continuity: 'spinoff' },
   'astral-buddy-manga': { title: '某科学的超电磁炮外传 Astral Buddy', medium: 'manga', continuity: 'spinoff' },
   'endymion-movie': { title: '剧场版 魔法禁书目录：恩底弥翁的奇迹', medium: 'movie', continuity: 'spinoff' },
 };
@@ -61,6 +62,7 @@ const CURATED_CONTENT_SCOPES: Record<string, string> = {
   'index-nt': 'index-new-testament',
   'index-gt': 'index-genesis-testament',
   'index-sp': 'index-side-stories',
+  'index-stiyl-ss': 'index-side-stories',
   'index-biohacker': 'index-side-stories',
   'railgun-manga': 'railgun',
   'railgun-anime': 'railgun',
@@ -68,7 +70,7 @@ const CURATED_CONTENT_SCOPES: Record<string, string> = {
   'accelerator-anime': 'accelerator',
   'dark-matter-manga': 'dark-matter',
   'mental-out-manga': 'mental-out',
-  'item-manga': 'item',
+  'item-novel': 'item',
   'astral-buddy-manga': 'astral-buddy',
   'endymion-movie': 'index-movie',
 };
