@@ -205,7 +205,7 @@
     "sides": [{"key":"magic","relationship":"freelance-magician","primary":true}],
     "organizations": [],
     "locations": [{"name":"欧洲","type":"region","relationship":"active","primary":true},{"name":"学园都市","type":"city","relationship":"active","primary":false}],
-    "appearance": {"work":"index-ot","reference":"第8卷末／第9卷","year":2006}, "source_page":"欧莉安娜·汤森"
+    "appearance": {"work":"index-ot","reference":"第9卷","year":2006}, "source_page":"欧莉安娜·汤森"
   },
   {
     "nickname": "前方之风", "name_ja": "前方のヴェント", "name_en": "Vento of the Front", "gender": "female",
@@ -229,7 +229,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"神之右席","type":"religious-order","relationship":"leader","primary":true},{"name":"罗马正教","type":"church","relationship":"member","primary":false}],
     "locations": [{"name":"梵蒂冈","type":"city-state","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第16卷","year":2008}, "source_page":"右方之火"
+    "appearance": {"work":"index-ot","reference":"第16卷（第13卷仅名字）","year":2008}, "source_page":"右方之火"
   },
   {
     "nickname": "萝拉·斯图亚特", "name_ja": "ローラ＝スチュアート", "name_en": "Lola Stuart", "gender": "female",
@@ -245,7 +245,7 @@
     "sides": [{"key":"magic","relationship":"magic-god","primary":true}],
     "organizations": [{"name":"格雷姆林","type":"magic-cabal","relationship":"leader","primary":true}],
     "locations": [{"name":"北欧","type":"region","relationship":"mythological-origin","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第4卷","year":2012}, "source_page":"欧提努斯"
+    "appearance": {"work":"index-nt","reference":"新约第4卷（旧约第22卷仅名字／新约第3卷仅台词）","year":2012}, "source_page":"欧提努斯"
   },
   {
     "nickname": "姬神秋沙", "name_ja": "姫神秋沙", "name_en": "Himegami Aisa", "gender": "female",
@@ -341,7 +341,7 @@
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
     "organizations": [{"name":"神之右席","type":"religious-order","relationship":"member","primary":true},{"name":"罗马正教","type":"church","relationship":"member","primary":false}],
     "locations": [{"name":"梵蒂冈","type":"city-state","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第13卷末／第14卷","year":2007}, "source_page":"左方之地"
+    "appearance": {"work":"index-ot","reference":"第13卷（仅台词；第14卷形象登场）","year":2007}, "source_page":"左方之地"
   },
   {
     "nickname": "丽多薇雅·罗伦婕蒂", "name_ja": "リドヴィア＝ロレンツェッティ", "name_en": "Lidvia Lorenzetti", "gender": "female",
@@ -644,7 +644,7 @@
     "sides": [{"key":"science","relationship":"dark-side-operative","primary":true}],
     "organizations": [{"name":"学校（SCHOOL）","type":"dark-side-group","relationship":"member","primary":true}],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
-    "appearance": {"work":"index-ot","reference":"第15卷","year":2008}, "source_page":"弓箭猎虎"
+    "appearance": {"work":"railgun-manga","reference":"第81话（旧约第15卷仅提及）","year":2015}, "source_page":"弓箭猎虎"
   },
   {
     "nickname": "操齿凉子", "name_ja": "操歯涼子", "name_en": "Kuriba Ryouko", "gender": "female",
@@ -1175,7 +1175,7 @@
     "sides": [{"key":"science","relationship":"esper","primary":true}],
     "organizations": [{"name":"早期能力开发计划","type":"research-project","relationship":"subject","primary":true},{"name":"首位现代能力者","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-biohacker","reference":"生物黑客篇","year":2020}, "source_page":"发源检体"
+    "appearance": {"work":"index-biohacker","reference":"生物黑客篇第5话（第4话仅提及）","year":2020}, "source_page":"发源检体"
   },
   {
     "nickname": "木原乱数", "name_ja": "木原乱数", "name_en": "Kihara Ransuu", "gender": "male",
@@ -1311,7 +1311,7 @@
     "sides": [{"key":"science","relationship":"researcher","primary":true}],
     "organizations": [{"name":"新生（STUDY）","type":"research-group","relationship":"leader","primary":true},{"name":"化学造人计划","type":"research-project","relationship":"leader","primary":false}],
     "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
-    "appearance": {"work":"railgun-anime","reference":"动画第二季第19集","year":2013}, "source_page":"有富春树"
+    "appearance": {"work":"railgun-anime","reference":"动画第二季第18集","year":2013}, "source_page":"有富春树"
   },
   {
     "nickname": "黑妻绵流", "name_ja": "黒妻綿流", "name_en": "Kurozuma Wataru", "gender": "male",
@@ -1392,7 +1392,7 @@
     ],
     "appearance": {
       "work":"accelerator-manga",
-      "reference":"漫画第7话",
+      "reference":"漫画第6话",
       "year":2014
     },
     "source_page":"饭栖莉泽"
@@ -1418,7 +1418,7 @@
     ],
     "appearance": {
       "work":"accelerator-manga",
-      "reference":"漫画第7话",
+      "reference":"漫画第6话",
       "year":2014
     },
     "source_page":"作乐木鸣羽"
@@ -1444,7 +1444,7 @@
     ],
     "appearance": {
       "work":"accelerator-manga",
-      "reference":"漫画第7话",
+      "reference":"漫画第6话",
       "year":2014
     },
     "source_page":"清清太郎丸"
@@ -1470,7 +1470,7 @@
     ],
     "appearance": {
       "work":"accelerator-manga",
-      "reference":"漫画第7话",
+      "reference":"漫画第6话",
       "year":2014
     },
     "source_page":"药丸医月"

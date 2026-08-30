@@ -43,6 +43,7 @@ describe('static character classification', () => {
     expect(character('布伦希尔德·艾克特贝尔')).toMatchObject({ debutWork: '魔法禁书目录 SS：神裂火织篇', debutYear: 2010 });
     expect(character('芙罗兰·克洛伊杜尼')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2012 });
     expect(character('博洛尼魅魔')).toMatchObject({ debutWork: '创约 魔法禁书目录', debutYear: 2021 });
+    expect(character('弓箭猎虎')).toMatchObject({ debutWork: '某科学的超电磁炮（漫画）', debutYear: 2015 });
   });
 
   it('uses the original Stiyl SS publication for Mark Space', () => {

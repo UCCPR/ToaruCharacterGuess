@@ -91,9 +91,15 @@ describe('playable character catalog', () => {
     expect(entry('布伦希尔德·艾克特贝尔')?.appearance).toEqual({ work: 'index-kanzaki-ss', reference: '神裂火织篇第7话', year: 2010 });
     expect(entry('芙罗兰·克洛伊杜尼')?.appearance).toEqual({ work: 'index-nt', reference: '新约第5卷', year: 2012 });
     expect(entry('博洛尼魅魔')?.appearance).toEqual({ work: 'index-gt', reference: '创约第5卷（第4卷仅名字）', year: 2021 });
-    expect(entry('有富春树')?.appearance).toEqual({ work: 'railgun-anime', reference: '动画第二季第19集', year: 2013 });
+    expect(entry('有富春树')?.appearance).toEqual({ work: 'railgun-anime', reference: '动画第二季第18集', year: 2013 });
+    expect(entry('欧莉安娜·汤森')?.appearance).toEqual({ work: 'index-ot', reference: '第9卷', year: 2006 });
+    expect(entry('弓箭猎虎')?.appearance).toEqual({ work: 'railgun-manga', reference: '第81话（旧约第15卷仅提及）', year: 2015 });
+    expect(entry('右方之火')?.appearance).toEqual({ work: 'index-ot', reference: '第16卷（第13卷仅名字）', year: 2008 });
+    expect(entry('欧提努斯')?.appearance).toEqual({ work: 'index-nt', reference: '新约第4卷（旧约第22卷仅名字／新约第3卷仅台词）', year: 2012 });
+    expect(entry('左方之地')?.appearance).toEqual({ work: 'index-ot', reference: '第13卷（仅台词；第14卷形象登场）', year: 2007 });
+    expect(entry('发源检体')?.appearance).toEqual({ work: 'index-biohacker', reference: '生物黑客篇第5话（第4话仅提及）', year: 2020 });
     for (const nickname of ['饭栖莉泽', '作乐木鸣羽', '清清太郎丸', '药丸医月']) {
-      expect(entry(nickname)?.appearance).toEqual({ work: 'accelerator-manga', reference: '漫画第7话', year: 2014 });
+      expect(entry(nickname)?.appearance).toEqual({ work: 'accelerator-manga', reference: '漫画第6话', year: 2014 });
     }
     expect(entry('米娜·马瑟斯')?.appearance).toEqual({ work: 'index-nt', reference: '新约第18卷', year: 2017 });
     expect(entry('马克·史佩斯')?.appearance).toEqual({ work: 'index-stiyl-ss', reference: '史提尔篇番外篇', year: 2008 });
