@@ -20,6 +20,7 @@ type PublicPlayer = {
   id: number;
   nickname: string;
   localizedNames: { zh: string; en: string; ja: string };
+  difficulties: string[];
 };
 type SearchablePlayer = { player: Player; search: string };
 type OrganizationRow = {
@@ -218,6 +219,7 @@ export async function refreshPlayerCache(): Promise<void> {
           id: player.id,
           nickname: player.nickname,
           localizedNames: player.localized_names!,
+          difficulties: [...(player.difficulties ?? [])],
         })),
       };
       pendingVersion = null;

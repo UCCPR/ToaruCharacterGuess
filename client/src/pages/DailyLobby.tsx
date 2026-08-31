@@ -12,6 +12,7 @@ import {
   difficultyLabel,
 } from '../utils/difficulty';
 import { getStoredDailyDifficulty, setStoredDailyDifficulty } from '../store/dailyDifficulty';
+import { useDifficultyCharacterCounts } from '../hooks/useDifficultyCharacterCounts';
 
 type DailyStatus = 'not_started' | 'playing' | 'won' | 'lost';
 
@@ -31,6 +32,7 @@ export default function DailyLobby() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const difficulties = AVAILABLE_DIFFICULTIES;
+  const characterCounts = useDifficultyCharacterCounts();
   const defaultDifficulty = difficulties.find((item) => item.recommended) ?? difficulties[0];
   const [selected, setSelected] = useState<string | null>(getStoredDailyDifficulty);
   const [statuses, setStatuses] = useState<Record<string, DailyStatus>>({});
@@ -105,6 +107,11 @@ export default function DailyLobby() {
                     <strong>{difficultyLabel(t, difficulty.key)}</strong>
                     <small>
                       {difficultyDescription(t, difficulty.key) || t('singleLobby.available')}
+                    </small>
+                    <small className="single-difficulty-count">
+                      {characterCounts
+                        ? t('singleLobby.characterCount', { count: characterCounts[difficulty.key] ?? 0 })
+                        : t('singleLobby.characterCountLoading')}
                     </small>
                   </span>
                   <span className="single-difficulty-check" aria-hidden="true">{active && <Check size={17} />}</span>

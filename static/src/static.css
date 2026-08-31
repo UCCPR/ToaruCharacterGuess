@@ -220,6 +220,131 @@ html[data-theme='blast'] .toaru-title-mark img {
   margin-top: 14px;
 }
 
+.static-achievements-card {
+  margin-top: 14px;
+}
+
+.static-achievements-page {
+  padding-bottom: clamp(28px, 5vh, 52px);
+}
+
+.static-achievements-page .static-achievements-card {
+  margin-top: 0;
+}
+
+.static-achievements-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.static-achievements-heading h3 {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+}
+
+.static-achievements-heading > span {
+  color: var(--text-light);
+  font-size: .8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.static-achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
+}
+
+.static-achievement {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 86px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface) 88%, var(--bg));
+  opacity: .68;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+
+.static-achievement:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
+}
+
+.static-achievement.unlocked {
+  border-color: color-mix(in srgb, var(--primary) 44%, var(--border));
+  background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--primary-soft) 42%, var(--surface)));
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--primary) 8%, transparent);
+  opacity: 1;
+}
+
+.static-achievement-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  color: var(--text-light);
+  background: var(--bg);
+}
+
+.static-achievement.unlocked .static-achievement-icon {
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.static-achievement-copy {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.static-achievement-copy strong {
+  font-size: .9rem;
+}
+
+.static-achievement-copy small {
+  color: var(--text-light);
+  font-size: .75rem;
+  line-height: 1.35;
+}
+
+.static-achievement-progress {
+  overflow: hidden;
+  height: 4px;
+  margin-top: 3px;
+  border-radius: 99px;
+  background: var(--border);
+}
+
+.static-achievement-progress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primary);
+}
+
+.static-achievement-status {
+  align-self: start;
+  color: var(--text-light);
+  font-size: .68rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.static-achievement.unlocked .static-achievement-status {
+  color: var(--primary);
+}
+
 .static-stats-empty {
   margin: 0;
   padding: 28px 12px;
@@ -279,6 +404,14 @@ html[data-theme='blast'] .toaru-title-mark img {
     right: max(5px, env(safe-area-inset-right));
     bottom: max(4px, env(safe-area-inset-bottom));
     font-size: 9px;
+  }
+
+  .static-achievements-heading {
+    align-items: flex-start;
+  }
+
+  .static-achievements-grid {
+    grid-template-columns: 1fr;
   }
 }
 

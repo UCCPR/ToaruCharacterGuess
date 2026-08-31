@@ -5,6 +5,7 @@ export interface PlayerSuggestion {
   nickname: string;
   localizedNames?: { zh: string; en: string; ja: string };
   searchTerms?: string[];
+  difficulties?: string[];
 }
 
 interface CachedPlayerList {
@@ -12,7 +13,7 @@ interface CachedPlayerList {
   players: PlayerSuggestion[];
 }
 
-const STORAGE_KEY = 'player-list-v2';
+const STORAGE_KEY = 'player-list-v3';
 const REVALIDATE_INTERVAL_MS = 30_000;
 const LEET_EQUIVALENTS: Record<string, string> = {
   '0': 'o',

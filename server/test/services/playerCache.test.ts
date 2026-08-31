@@ -49,6 +49,7 @@ describe('character cache invalidation', () => {
       id,
       nickname,
       localizedNames: { zh: nickname, en: nickname, ja: nickname },
+      difficulties: [],
     });
 
     await db('character_game_profiles').where({ character_id: id }).update({ is_enabled: false });

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GENDER_CODES, MAX_GUESSES } from '@toaru-character-guess/shared';
-import { BarChart3, CalendarDays, Check, Gamepad2, Home, Lightbulb, Play, RotateCcw, Target, Trash2, WifiOff } from 'lucide-react';
+import { Award, BarChart3, CalendarCheck2, CalendarDays, Check, Crosshair, Gamepad2, Home, Layers3, Lightbulb, Medal, Play, RotateCcw, Sparkles, Target, Trash2, Trophy, WifiOff, Zap } from 'lucide-react';
 import Page from '../../client/src/components/Page';
 import Badge from '../../client/src/components/Badge';
 import GuessBoard from '../../client/src/components/GuessBoard';
@@ -18,6 +18,7 @@ import {
   difficultyLabel,
 } from '../../client/src/utils/difficulty';
 import { setPlayerListSnapshot, type PlayerSuggestion } from '../../client/src/api/playerList';
+import { useDifficultyCharacterCounts } from '../../client/src/hooks/useDifficultyCharacterCounts';
 import type { GuessFeedback } from '../../client/src/types';
 import { catalog } from './generated/catalog';
 import {
@@ -37,6 +38,13 @@ import {
   loadStaticGameRecords,
   summarizeStaticGameRecords,
 } from './stats';
+import {
+  getStaticAchievementProgress,
+  loadStaticAchievementUnlocks,
+  saveStaticAchievementUnlocks,
+  unlockEarnedStaticAchievements,
+  type StaticAchievementId,
+} from './achievements';
 
 const characters = catalog as unknown as Character[];
 const suggestions: PlayerSuggestion[] = characters.map((character) => ({
@@ -44,8 +52,22 @@ const suggestions: PlayerSuggestion[] = characters.map((character) => ({
   nickname: character.name,
   localizedNames: character.names,
   searchTerms: [...character.aliases],
+  difficulties: [...character.difficulties],
 }));
 setPlayerListSnapshot(suggestions);
+
+function AchievementIcon({ id }: { id: StaticAchievementId }) {
+  switch (id) {
+    case 'firstGame': return <Sparkles size={20} />;
+    case 'firstWin': return <Trophy size={20} />;
+    case 'oneGuess': return <Crosshair size={20} />;
+    case 'dailyWin': return <CalendarCheck2 size={20} />;
+    case 'allDifficulties': return <Layers3 size={20} />;
+    case 'threeWinStreak': return <Zap size={20} />;
+    case 'tenGames': return <Award size={20} />;
+    case 'twentyFiveWins': return <Medal size={20} />;
+  }
+}
 
 function GitHubIcon() {
   return (
@@ -108,7 +130,8 @@ function answerInfo(character: Character): AnswerInfo {
 export function App() {
   const { t, i18n } = useTranslation();
   const confirm = useConfirm();
-  const [screen, setScreen] = useState<'lobby' | 'game' | 'stats'>('lobby');
+  const characterCounts = useDifficultyCharacterCounts();
+  const [screen, setScreen] = useState<'lobby' | 'game' | 'stats' | 'achievements'>('lobby');
   const [mode, setMode] = useState<StaticGameMode>('free');
   const [difficulty, setDifficulty] = useState('normal');
   const [target, setTarget] = useState<Character>(() => dailyTarget(characters, 'normal', dateKey()));
@@ -120,6 +143,7 @@ export function App() {
   const [startedAt, setStartedAt] = useState(() => new Date().toISOString());
   const [statsDifficulty, setStatsDifficulty] = useState('all');
   const [statsVersion, setStatsVersion] = useState(0);
+  const [achievementUnlocks, setAchievementUnlocks] = useState(loadStaticAchievementUnlocks);
   const boardEndRef = useRef<HTMLDivElement>(null);
   const resumePromptedRef = useRef(false);
 
@@ -326,6 +350,18 @@ export function App() {
     ? records
     : records.filter((record) => record.difficulty === statsDifficulty);
   const personalStats = summarizeStaticGameRecords(visibleRecords);
+  const achievements = useMemo(
+    () => getStaticAchievementProgress(records, achievementUnlocks),
+    [achievementUnlocks, records],
+  );
+  const unlockedAchievementCount = achievements.filter((achievement) => achievement.unlocked).length;
+
+  useEffect(() => {
+    const next = unlockEarnedStaticAchievements(records, achievementUnlocks);
+    if (next === achievementUnlocks) return;
+    saveStaticAchievementUnlocks(next);
+    setAchievementUnlocks(next);
+  }, [achievementUnlocks, records]);
 
   const clearRecords = async () => {
     if (!await confirm({
@@ -337,6 +373,64 @@ export function App() {
     clearStaticGameRecords();
     setStatsVersion((version) => version + 1);
   };
+
+  if (screen === 'achievements') {
+    return (
+      <Page
+        title={t('staticAchievements.title')}
+        icon={<Trophy size={17} />}
+        showHome={false}
+        actions={(
+          <>
+            <LanguageSelect />
+            <button className="btn btn-ghost btn-sm" onClick={() => setScreen('lobby')}>
+              <Home size={15} /><span className="btn-text">{t('common.home')}</span>
+            </button>
+          </>
+        )}
+        statusBar={<><WifiOff size={14} /><span>{t('staticStats.localOnly')}</span></>}
+      >
+        <div className="static-achievements-page">
+          <section className="card static-achievements-card">
+            <div className="static-achievements-heading">
+              <h3><Trophy size={16} />{t('staticAchievements.title')}</h3>
+              <span>{t('staticAchievements.summary', {
+                unlocked: unlockedAchievementCount,
+                total: achievements.length,
+              })}</span>
+            </div>
+            <div className="static-achievements-grid">
+              {achievements.map((achievement) => (
+                <article
+                  className={`static-achievement${achievement.unlocked ? ' unlocked' : ''}`}
+                  key={achievement.id}
+                >
+                  <span className="static-achievement-icon" aria-hidden="true">
+                    <AchievementIcon id={achievement.id} />
+                  </span>
+                  <span className="static-achievement-copy">
+                    <strong>{t(`staticAchievements.items.${achievement.id}.title`)}</strong>
+                    <small>{t(`staticAchievements.items.${achievement.id}.description`)}</small>
+                    <span className="static-achievement-progress" aria-hidden="true">
+                      <i style={{ width: `${achievement.current / achievement.target * 100}%` }} />
+                    </span>
+                  </span>
+                  <span className="static-achievement-status">
+                    {achievement.unlocked
+                      ? t('staticAchievements.unlocked')
+                      : t('staticAchievements.progress', {
+                        current: achievement.current,
+                        target: achievement.target,
+                      })}
+                  </span>
+                </article>
+              ))}
+            </div>
+          </section>
+        </div>
+      </Page>
+    );
+  }
 
   if (screen === 'stats') {
     const firstGuessCharacter = personalStats.firstGuess
@@ -489,6 +583,11 @@ export function App() {
                   <span className="single-difficulty-copy">
                     <strong>{difficultyLabel(t, item.key)}</strong>
                     <small>{difficultyDescription(t, item.key)}</small>
+                    <small className="single-difficulty-count">
+                      {characterCounts
+                        ? t('singleLobby.characterCount', { count: characterCounts[item.key] ?? 0 })
+                        : t('singleLobby.characterCountLoading')}
+                    </small>
                   </span>
                   <span className="single-difficulty-check" aria-hidden="true">{active && <Check size={17} />}</span>
                   {item.recommended && <span className="single-difficulty-badge">{t('singleLobby.recommended')}</span>}
@@ -504,6 +603,10 @@ export function App() {
         </section>
         <GameRules />
         <div className="bottom-bar">
+          <button className="btn" type="button" onClick={() => setScreen('achievements')}>
+            <Trophy size={16} aria-hidden="true" />
+            {t('staticAchievements.title')}
+          </button>
           <button className="btn" type="button" onClick={() => setScreen('stats')}>
             <BarChart3 size={16} aria-hidden="true" />
             {t('staticStats.title')}

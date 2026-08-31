@@ -371,6 +371,12 @@ html[data-theme='blast'] .home-title-mark img {
 .single-difficulty-copy { display: grid; gap: 4px; min-width: 0; }
 .single-difficulty-copy strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .single-difficulty-copy small { color: var(--text-light); }
+.single-difficulty-copy .single-difficulty-count {
+  color: color-mix(in srgb, var(--diff-color, var(--primary)) 74%, var(--text));
+  font-size: .75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
 .single-difficulty-check { display: grid; place-items: center; width: 22px; height: 22px; border: 1px solid var(--border); border-radius: 50%; color: #201118; }
 .single-difficulty-option.active .single-difficulty-check { border-color: var(--primary); background: var(--primary); }
 .single-difficulty-badge { position: absolute; top: 9px; right: 12px; color: var(--success); font-size: var(--fs-2xs); font-weight: 800; }

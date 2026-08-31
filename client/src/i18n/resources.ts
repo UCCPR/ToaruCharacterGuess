@@ -171,7 +171,7 @@ export const resources = {
         usedGuesses: '共用了 {{count}} 次猜测', missed: '很遗憾，本局未能猜中', settlementNotRecorded: '结算频率超过限制，本局不会计入个人战绩和排行榜。', viewGame: '查看对局',
         starting: '正在开始新对局…', startFailedTitle: '开局失败', startRetry: '重试', backToLobby: '返回难度选择',
       },
-      singleLobby: { title: '选择单人难度', subtitle: '选择一个难度开始游戏。你的选择会保存在本地浏览器中。', available: '可用', start: '开始游戏', recommended: '推荐', resumeTitle: '发现未完成的游戏', resumeMessage: '检测到尚未结束的{{mode}}（{{difficulty}}），已猜测 {{count}}/{{max}} 次。你可以继续上次游戏；放弃对局将删除这份存档。', resumeConfirm: '继续上次游戏', resumeCancel: '放弃对局' },
+      singleLobby: { title: '选择单人难度', subtitle: '选择一个难度开始游戏。你的选择会保存在本地浏览器中。', available: '可用', characterCount: '{{count}} 名角色', characterCountLoading: '正在统计角色…', start: '开始游戏', recommended: '推荐', resumeTitle: '发现未完成的游戏', resumeMessage: '检测到尚未结束的{{mode}}（{{difficulty}}），已猜测 {{count}}/{{max}} 次。你可以继续上次游戏；放弃对局将删除这份存档。', resumeConfirm: '继续上次游戏', resumeCancel: '放弃对局' },
       staticMeta: { label: '版本 {{version}} · 更新于 {{date}}' },
       dailyLobby: { title: '选择每日挑战难度', subtitle: '选择一个难度进入今日挑战。每个难度每天只能完成一次。', enter: '进入挑战', statusUnavailable: '状态暂不可用' },
       daily: {
@@ -230,7 +230,20 @@ export const resources = {
       },
       staticStats: {
         title: '个人记录', localOnly: '静态版记录仅保存在当前浏览器', losses: '单人失败', guessPerformance: '猜测表现', recentGames: '最近对局',
-        noRecords: '还没有符合当前难度的已完成对局', clear: '清空记录', clearTitle: '清空个人记录？', clearMessage: '所有静态版个人记录都会从当前浏览器永久删除。未结束的游戏存档不会受到影响。', clearConfirm: '确认清空',
+        noRecords: '还没有符合当前难度的已完成对局', clear: '清空记录', clearTitle: '清空个人记录？', clearMessage: '所有静态版个人记录都会从当前浏览器永久删除。未结束的游戏存档和已解锁成就不会受到影响。', clearConfirm: '确认清空',
+      },
+      staticAchievements: {
+        title: '成就', summary: '已解锁 {{unlocked}} / {{total}}', unlocked: '已解锁', progress: '{{current}} / {{target}}',
+        items: {
+          firstGame: { title: '踏出第一步', description: '完成第一局游戏' },
+          firstWin: { title: '身份确认', description: '首次猜中目标角色' },
+          oneGuess: { title: '幻想杀手般的直觉', description: '第一次猜测就命中答案' },
+          dailyWin: { title: '今日课题完成', description: '赢得一次每日挑战' },
+          allDifficulties: { title: '全领域调查员', description: '在三个难度中分别获胜' },
+          threeWinStreak: { title: '推理连锁', description: '连续赢得三局游戏' },
+          tenGames: { title: '熟练调查员', description: '累计完成十局游戏' },
+          twentyFiveWins: { title: '身份解析专家', description: '累计赢得二十五局游戏' },
+        },
       },
       replay: {
         singleTitle: '单人对局回放', multiTitle: '多人对局回放', close: '关闭回放', correctAnswer: '正确答案：{{name}}',
@@ -390,7 +403,7 @@ export const resources = {
         correctAnswer: 'Correct answer', usedGuesses: 'Solved in {{count}} guesses', missed: 'You did not find the answer this time', settlementNotRecorded: 'The settlement limit was exceeded. This game will not count toward personal stats or leaderboards.', viewGame: 'View game',
         starting: 'Starting a new game…', startFailedTitle: 'Could not start the game', startRetry: 'Retry', backToLobby: 'Back to difficulty selection',
       },
-      singleLobby: { title: 'Choose a solo difficulty', subtitle: 'Choose a difficulty to start. Your choice is saved in this browser.', available: 'Available', start: 'Start game', recommended: 'Recommended', resumeTitle: 'Unfinished game found', resumeMessage: 'An unfinished {{mode}} game ({{difficulty}}) was found with {{count}}/{{max}} guesses used. You can continue it; abandoning the game will delete this save.', resumeConfirm: 'Continue last game', resumeCancel: 'Abandon game' },
+      singleLobby: { title: 'Choose a solo difficulty', subtitle: 'Choose a difficulty to start. Your choice is saved in this browser.', available: 'Available', characterCount: '{{count}} characters', characterCountLoading: 'Counting characters…', start: 'Start game', recommended: 'Recommended', resumeTitle: 'Unfinished game found', resumeMessage: 'An unfinished {{mode}} game ({{difficulty}}) was found with {{count}}/{{max}} guesses used. You can continue it; abandoning the game will delete this save.', resumeConfirm: 'Continue last game', resumeCancel: 'Abandon game' },
       staticMeta: { label: 'Version {{version}} · Updated {{date}}' },
       dailyLobby: { title: 'Choose a daily difficulty', subtitle: 'Choose a difficulty for today. Each difficulty can only be completed once per day.', enter: 'Enter challenge', statusUnavailable: 'Status unavailable' },
       daily: {
@@ -445,7 +458,20 @@ export const resources = {
       },
       staticStats: {
         title: 'Personal records', localOnly: 'Static-edition records are stored only in this browser', losses: 'Solo losses', guessPerformance: 'Guess performance', recentGames: 'Recent games',
-        noRecords: 'No completed games match this difficulty', clear: 'Clear records', clearTitle: 'Clear personal records?', clearMessage: 'All static-edition personal records will be permanently removed from this browser. Unfinished game saves will not be affected.', clearConfirm: 'Clear records',
+        noRecords: 'No completed games match this difficulty', clear: 'Clear records', clearTitle: 'Clear personal records?', clearMessage: 'All static-edition personal records will be permanently removed from this browser. Unfinished saves and unlocked achievements will not be affected.', clearConfirm: 'Clear records',
+      },
+      staticAchievements: {
+        title: 'Achievements', summary: '{{unlocked}} / {{total}} unlocked', unlocked: 'Unlocked', progress: '{{current}} / {{target}}',
+        items: {
+          firstGame: { title: 'First Step', description: 'Complete your first game' },
+          firstWin: { title: 'Identity Confirmed', description: 'Guess the target character for the first time' },
+          oneGuess: { title: 'Imagine Breaker Instinct', description: 'Find the answer on the first guess' },
+          dailyWin: { title: "Today's Assignment", description: 'Win a daily challenge' },
+          allDifficulties: { title: 'All-Field Investigator', description: 'Win at each of the three difficulties' },
+          threeWinStreak: { title: 'Deduction Chain', description: 'Win three games in a row' },
+          tenGames: { title: 'Seasoned Investigator', description: 'Complete ten games' },
+          twentyFiveWins: { title: 'Identity Analysis Expert', description: 'Win twenty-five games' },
+        },
       },
       replay: {
         singleTitle: 'Solo Replay', multiTitle: 'Multiplayer Replay', close: 'Close replay', correctAnswer: 'Correct answer: {{name}}', guesses: 'Guess history',
@@ -601,7 +627,7 @@ export const resources = {
         correctAnswer: '正解', usedGuesses: '{{count}} 回で正解', missed: '今回は正解できませんでした', settlementNotRecorded: '精算回数の上限を超えたため、この対局は個人戦績とランキングに反映されません。', viewGame: '対局を見る',
         starting: '新しいゲームを開始しています…', startFailedTitle: 'ゲームを開始できませんでした', startRetry: '再試行', backToLobby: '難易度選択に戻る',
       },
-      singleLobby: { title: 'ソロ難易度を選択', subtitle: '難易度を選んで開始します。選択はこのブラウザに保存されます。', available: '利用可', start: 'ゲーム開始', recommended: 'おすすめ', resumeTitle: '未終了のゲームがあります', resumeMessage: '未終了の{{mode}}（{{difficulty}}）が見つかりました。使用した推測回数は {{count}}/{{max}} 回です。前回のゲームを続けられます。対局を放棄するとセーブデータは削除されます。', resumeConfirm: '前回のゲームを続ける', resumeCancel: '対局を放棄' },
+      singleLobby: { title: 'ソロ難易度を選択', subtitle: '難易度を選んで開始します。選択はこのブラウザに保存されます。', available: '利用可', characterCount: '{{count}} キャラクター', characterCountLoading: 'キャラクター数を集計中…', start: 'ゲーム開始', recommended: 'おすすめ', resumeTitle: '未終了のゲームがあります', resumeMessage: '未終了の{{mode}}（{{difficulty}}）が見つかりました。使用した推測回数は {{count}}/{{max}} 回です。前回のゲームを続けられます。対局を放棄するとセーブデータは削除されます。', resumeConfirm: '前回のゲームを続ける', resumeCancel: '対局を放棄' },
       staticMeta: { label: 'バージョン {{version}} · 更新日 {{date}}' },
       dailyLobby: { title: 'デイリー難易度を選択', subtitle: '本日の難易度を選択します。各難易度は 1 日 1 回のみ完了できます。', enter: 'チャレンジへ', statusUnavailable: '状態を取得できません' },
       daily: {
@@ -655,7 +681,20 @@ export const resources = {
       },
       staticStats: {
         title: '個人記録', localOnly: '静的版の記録はこのブラウザにのみ保存されます', losses: 'ソロ敗北数', guessPerformance: '予想成績', recentGames: '最近のゲーム',
-        noRecords: 'この難易度の完了済みゲームはまだありません', clear: '記録を消去', clearTitle: '個人記録を消去しますか？', clearMessage: '静的版の個人記録をこのブラウザから完全に削除します。未終了のゲームデータには影響しません。', clearConfirm: '記録を消去',
+        noRecords: 'この難易度の完了済みゲームはまだありません', clear: '記録を消去', clearTitle: '個人記録を消去しますか？', clearMessage: '静的版の個人記録をこのブラウザから完全に削除します。未終了のゲームデータと解除済みの実績には影響しません。', clearConfirm: '記録を消去',
+      },
+      staticAchievements: {
+        title: '実績', summary: '{{unlocked}} / {{total}} 解除済み', unlocked: '解除済み', progress: '{{current}} / {{target}}',
+        items: {
+          firstGame: { title: '最初の一歩', description: '初めてゲームを完了する' },
+          firstWin: { title: '正体確認', description: '初めて対象キャラクターを当てる' },
+          oneGuess: { title: '幻想殺しの直感', description: '最初の予想で正解する' },
+          dailyWin: { title: '本日の課題完了', description: 'デイリーチャレンジで勝利する' },
+          allDifficulties: { title: '全領域調査員', description: '3つの難易度すべてで勝利する' },
+          threeWinStreak: { title: '推理連鎖', description: '3ゲーム連続で勝利する' },
+          tenGames: { title: '熟練調査員', description: 'ゲームを10回完了する' },
+          twentyFiveWins: { title: '正体解析の専門家', description: 'ゲームに25回勝利する' },
+        },
       },
       replay: {
         singleTitle: 'ソロ対局リプレイ', multiTitle: 'マルチ対局リプレイ', close: 'リプレイを閉じる', correctAnswer: '正解：{{name}}', guesses: '予想履歴',

@@ -12,11 +12,13 @@ import {
 import { getStoredSingleDifficulty, setStoredSingleDifficulty } from '../store/singleDifficulty';
 import { useTranslation } from 'react-i18next';
 import { toast } from '../components/Toast';
+import { useDifficultyCharacterCounts } from '../hooks/useDifficultyCharacterCounts';
 
 export default function SingleLobby() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const difficulties = AVAILABLE_DIFFICULTIES;
+  const characterCounts = useDifficultyCharacterCounts();
   const [selected, setSelected] = useState<string | null>(getStoredSingleDifficulty);
 
   const selectedDifficulty = useMemo(
@@ -69,6 +71,11 @@ export default function SingleLobby() {
                     <strong>{difficultyLabel(t, difficulty.key)}</strong>
                     <small>
                       {difficultyDescription(t, difficulty.key) || t('singleLobby.available')}
+                    </small>
+                    <small className="single-difficulty-count">
+                      {characterCounts
+                        ? t('singleLobby.characterCount', { count: characterCounts[difficulty.key] ?? 0 })
+                        : t('singleLobby.characterCountLoading')}
                     </small>
                   </span>
                   <span className="single-difficulty-check" aria-hidden="true">{active && <Check size={17} />}</span>
