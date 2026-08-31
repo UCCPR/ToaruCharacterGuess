@@ -63,6 +63,9 @@ function AchievementIcon({ id }: { id: StaticAchievementId }) {
     case 'oneGuess': return <Crosshair size={20} />;
     case 'dailyWin': return <CalendarCheck2 size={20} />;
     case 'allDifficulties': return <Layers3 size={20} />;
+    case 'tenCharacters': return <Target size={20} />;
+    case 'twentyCharacters': return <Target size={20} />;
+    case 'fiftyCharacters': return <Target size={20} />;
     case 'threeWinStreak': return <Zap size={20} />;
     case 'tenGames': return <Award size={20} />;
     case 'twentyFiveWins': return <Medal size={20} />;
@@ -603,7 +606,7 @@ export function App() {
         </section>
         <GameRules />
         <div className="bottom-bar">
-          <button className="btn" type="button" onClick={() => setScreen('achievements')}>
+          <button className="btn btn-achievements" type="button" onClick={() => setScreen('achievements')}>
             <Trophy size={16} aria-hidden="true" />
             {t('staticAchievements.title')}
           </button>

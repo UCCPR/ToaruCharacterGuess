@@ -6,6 +6,9 @@ export const STATIC_ACHIEVEMENTS = [
   { id: 'oneGuess', target: 1 },
   { id: 'dailyWin', target: 1 },
   { id: 'allDifficulties', target: 3 },
+  { id: 'tenCharacters', target: 10 },
+  { id: 'twentyCharacters', target: 20 },
+  { id: 'fiftyCharacters', target: 50 },
   { id: 'threeWinStreak', target: 3 },
   { id: 'tenGames', target: 10 },
   { id: 'twentyFiveWins', target: 25 },
@@ -49,12 +52,16 @@ function achievementCurrent(
   records: readonly StaticGameRecord[],
 ): number {
   const wins = records.filter((record) => record.status === 'won');
+  const uniqueAnswers = new Set(wins.map((record) => record.answerId)).size;
   switch (id) {
     case 'firstGame': return records.length;
     case 'firstWin': return wins.length;
     case 'oneGuess': return wins.filter((record) => record.guessIds.length === 1).length;
     case 'dailyWin': return wins.filter((record) => record.mode === 'daily').length;
     case 'allDifficulties': return new Set(wins.map((record) => record.difficulty)).size;
+    case 'tenCharacters': return uniqueAnswers;
+    case 'twentyCharacters': return uniqueAnswers;
+    case 'fiftyCharacters': return uniqueAnswers;
     case 'threeWinStreak': return longestWinStreak(records);
     case 'tenGames': return records.length;
     case 'twentyFiveWins': return wins.length;

@@ -44,9 +44,11 @@ describe('static personal records page', () => {
     });
 
     renderWithProviders(<App />);
-    await userEvent.click(screen.getByRole('button', { name: '成就' }));
+    const achievementsButton = screen.getByRole('button', { name: '成就' });
+    expect(achievementsButton).toHaveClass('btn-achievements');
+    await userEvent.click(achievementsButton);
 
-    expect(await screen.findByText('已解锁 2 / 8')).toBeInTheDocument();
+    expect(await screen.findByText('已解锁 2 / 11')).toBeInTheDocument();
     expect(screen.getByText('踏出第一步')).toBeInTheDocument();
     expect(screen.getByText('身份确认')).toBeInTheDocument();
     expect(screen.queryByText('最近对局')).not.toBeInTheDocument();
