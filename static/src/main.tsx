@@ -12,6 +12,7 @@ import '../../client/src/styles/index.css';
 import blastFoundationUrl from '../../client/src/styles/themes/blast-foundation.css?url';
 import blastPagesUrl from '../../client/src/styles/themes/blast-pages.css?url';
 import blastResponsiveUrl from '../../client/src/styles/themes/blast-responsive.css?url';
+import academyInterfaceUrl from '../../client/src/styles/themes/academy-interface.css?url';
 import './static.css';
 
 for (const href of [blastFoundationUrl, blastPagesUrl, blastResponsiveUrl]) {
@@ -22,6 +23,11 @@ for (const href of [blastFoundationUrl, blastPagesUrl, blastResponsiveUrl]) {
   stylesheet.dataset.blastTheme = '';
   document.head.append(stylesheet);
 }
+
+const academyStylesheet = document.createElement('link');
+academyStylesheet.rel = 'stylesheet';
+academyStylesheet.href = academyInterfaceUrl;
+document.head.append(academyStylesheet);
 
 initializeTheme();
 initializeMotionPreference();

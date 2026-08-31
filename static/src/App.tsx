@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GENDER_CODES, MAX_GUESSES } from '@toaru-character-guess/shared';
-import { BarChart3, Check, Gamepad2, Home, Lightbulb, Play, RotateCcw, Target, Trash2, WifiOff } from 'lucide-react';
+import { BarChart3, CalendarDays, Check, Gamepad2, Home, Lightbulb, Play, RotateCcw, Target, Trash2, WifiOff } from 'lucide-react';
 import Page from '../../client/src/components/Page';
 import Badge from '../../client/src/components/Badge';
 import GuessBoard from '../../client/src/components/GuessBoard';
@@ -435,59 +435,73 @@ export function App() {
   if (screen === 'lobby') {
     return (
       <Page
+        className="static-lobby-page"
         title={t('singleLobby.title')}
         icon={<Gamepad2 size={17} />}
         showHome={false}
         actions={<LanguageSelect />}
         statusBar={<><WifiOff size={14} /><span>{staticCopy}</span></>}
       >
-        <div className="single-lobby-mode-actions">
-          <button className={`btn${mode === 'free' ? '' : ' btn-ghost'}`} onClick={() => setMode('free')}>
-            {t('home.singleMode')}
-          </button>
-          <button className={`btn${mode === 'daily' ? '' : ' btn-ghost'}`} onClick={() => setMode('daily')}>
-            {t('home.dailyChallenge')}
-          </button>
-        </div>
-        <div className="toaru-title-mark">
-          <img
-            src={`${import.meta.env.BASE_URL}toaru-character-title.webp`}
-            alt={t('common.brand')}
-            width={1100}
-            height={622}
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-        <p className="muted single-lobby-subtitle">{t('singleLobby.subtitle')}</p>
-        <div className="single-difficulty-grid">
-          {AVAILABLE_DIFFICULTIES.map((item) => {
-            const active = difficulty === item.key;
-            const Icon = difficultyIcon(item.key);
-            return (
-              <button
-                type="button"
-                key={item.key}
-                className={`single-difficulty-option${active ? ' active' : ''}`}
-                style={{ ['--diff-color' as string]: difficultyColor(item.key) }}
-                onClick={() => setDifficulty(item.key)}
-              >
-                <span className="single-difficulty-icon"><Icon size={20} /></span>
-                <span className="single-difficulty-copy">
-                  <strong>{difficultyLabel(t, item.key)}</strong>
-                  <small>{difficultyDescription(t, item.key)}</small>
-                </span>
-                <span className="single-difficulty-check" aria-hidden="true">{active && <Check size={17} />}</span>
-                {item.recommended && <span className="single-difficulty-badge">{t('singleLobby.recommended')}</span>}
-              </button>
-            );
-          })}
-        </div>
-        <div className="single-lobby-action">
-          <button className="btn btn-lg btn-green" onClick={() => begin(false)}>
-            <Play size={17} /> {t('singleLobby.start')}
-          </button>
-        </div>
+        <section className="static-launch-panel">
+          <span className="static-launch-code" aria-hidden="true">IDENTITY // {characters.length}</span>
+          <div className="single-lobby-mode-actions">
+            <button
+              className={`btn${mode === 'free' ? '' : ' btn-ghost'}`}
+              aria-pressed={mode === 'free'}
+              onClick={() => setMode('free')}
+            >
+              <Gamepad2 size={16} />{t('home.singleMode')}
+            </button>
+            <button
+              className={`btn${mode === 'daily' ? '' : ' btn-ghost'}`}
+              aria-pressed={mode === 'daily'}
+              onClick={() => setMode('daily')}
+            >
+              <CalendarDays size={16} />{t('home.dailyChallenge')}
+            </button>
+          </div>
+          <div className="toaru-title-mark">
+            <img
+              src={`${import.meta.env.BASE_URL}toaru-character-title.webp`}
+              alt={t('common.brand')}
+              width={1100}
+              height={622}
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+          <p className="muted single-lobby-subtitle">{t('singleLobby.subtitle')}</p>
+          <div className="single-difficulty-grid">
+            {AVAILABLE_DIFFICULTIES.map((item, index) => {
+              const active = difficulty === item.key;
+              const Icon = difficultyIcon(item.key);
+              return (
+                <button
+                  type="button"
+                  key={item.key}
+                  className={`single-difficulty-option${active ? ' active' : ''}`}
+                  style={{ ['--diff-color' as string]: difficultyColor(item.key) }}
+                  aria-pressed={active}
+                  onClick={() => setDifficulty(item.key)}
+                >
+                  <span className="single-difficulty-index" aria-hidden="true">0{index + 1}</span>
+                  <span className="single-difficulty-icon"><Icon size={20} /></span>
+                  <span className="single-difficulty-copy">
+                    <strong>{difficultyLabel(t, item.key)}</strong>
+                    <small>{difficultyDescription(t, item.key)}</small>
+                  </span>
+                  <span className="single-difficulty-check" aria-hidden="true">{active && <Check size={17} />}</span>
+                  {item.recommended && <span className="single-difficulty-badge">{t('singleLobby.recommended')}</span>}
+                </button>
+              );
+            })}
+          </div>
+          <div className="single-lobby-action">
+            <button className="btn btn-lg static-start-button" onClick={() => begin(false)}>
+              <Play size={17} /> {t('singleLobby.start')}
+            </button>
+          </div>
+        </section>
         <GameRules />
         <div className="bottom-bar">
           <button className="btn" type="button" onClick={() => setScreen('stats')}>

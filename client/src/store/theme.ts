@@ -25,14 +25,14 @@ function blastStylesheets(): HTMLLinkElement[] {
 function renderTheme(theme: Theme): void {
   document.documentElement.dataset.theme = theme;
   document.documentElement.style.colorScheme = theme === 'blast' ? 'dark' : 'light';
-  document.documentElement.style.background = theme === 'blast' ? '#071827' : '#f3f0ea';
+  document.documentElement.style.background = theme === 'blast' ? '#071521' : '#edf7ff';
   // 链接在 index.html 中按级联顺序位于主样式表之后,切换只翻转 media,不移动节点
   for (const stylesheet of blastStylesheets()) {
     stylesheet.media = theme === 'blast' ? 'all' : 'not all';
   }
   document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')?.setAttribute(
     'content',
-    theme === 'blast' ? '#071827' : '#f3f0ea'
+    theme === 'blast' ? '#071521' : '#edf7ff'
   );
 }
 

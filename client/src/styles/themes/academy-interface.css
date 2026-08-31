@@ -1,0 +1,302 @@
+/*
+ * Academy City interface layer.
+ * Loaded after both legacy theme sheets so the two color modes share one
+ * product language without changing their compatibility identifiers.
+ */
+
+html:not([data-theme='blast']) {
+  --bg: #edf7ff;
+  --card: rgba(255, 255, 255, 0.86);
+  --card-soft: rgba(238, 248, 255, 0.9);
+  --border: rgba(35, 102, 151, 0.16);
+  --border-strong: rgba(31, 137, 213, 0.4);
+  --text: #102539;
+  --text-sec: #49647b;
+  --text-light: #7890a3;
+  --input-bg: rgba(255, 255, 255, 0.94);
+  --primary: #2b9cf0;
+  --primary-hover: #1684d4;
+  --primary-soft: rgba(43, 156, 240, 0.13);
+  --primary-strong: #086bb4;
+  --accent: #7167e8;
+  --shadow-sm: 0 6px 18px rgba(35, 89, 128, 0.08);
+  --shadow: 0 18px 46px rgba(35, 89, 128, 0.12);
+  --shadow-lg: 0 32px 90px rgba(17, 61, 94, 0.24);
+  --radius: 18px;
+  --radius-sm: 12px;
+}
+
+html[data-theme='blast'] {
+  --bg: #071521;
+  --card: rgba(13, 35, 53, 0.88);
+  --card-soft: rgba(9, 29, 45, 0.9);
+  --border: rgba(124, 202, 255, 0.14);
+  --border-strong: rgba(109, 199, 255, 0.42);
+  --text: #edf8ff;
+  --text-sec: #b5cfe1;
+  --text-light: #7698af;
+  --input-bg: rgba(7, 25, 39, 0.94);
+  --primary: #62c3ff;
+  --primary-hover: #8bd3ff;
+  --primary-soft: rgba(98, 195, 255, 0.13);
+  --primary-strong: #8bd3ff;
+  --accent: #a99cff;
+  --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.2);
+  --shadow: 0 22px 55px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 36px 100px rgba(0, 0, 0, 0.5);
+  --radius: 18px;
+  --radius-sm: 12px;
+}
+
+html:not([data-theme='blast']) body {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(84, 190, 255, 0.22), transparent 30rem),
+    radial-gradient(circle at 88% 78%, rgba(128, 112, 240, 0.12), transparent 34rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.46), transparent 48%),
+    var(--bg);
+}
+
+html[data-theme='blast'] body {
+  background:
+    radial-gradient(circle at 17% 4%, rgba(45, 145, 210, 0.28), transparent 32rem),
+    radial-gradient(circle at 88% 82%, rgba(105, 87, 208, 0.14), transparent 34rem),
+    linear-gradient(145deg, #071521, #091b2a 55%, #07131e);
+}
+
+body::before {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--primary) 7%, transparent) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(color-mix(in srgb, var(--primary) 5%, transparent) 1px, transparent 1px) 0 0 / 64px 64px !important;
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 82%);
+}
+
+.page,
+.page-scroll { background: transparent !important; }
+
+.header-bar {
+  min-height: 66px;
+  border-bottom: 1px solid var(--border) !important;
+  background: color-mix(in srgb, var(--card) 88%, transparent) !important;
+  box-shadow: 0 8px 28px color-mix(in srgb, var(--text) 7%, transparent) !important;
+  backdrop-filter: blur(22px) saturate(1.3);
+}
+
+.header-bar::after {
+  right: auto !important;
+  left: var(--page-inline);
+  bottom: -1px !important;
+  width: clamp(52px, 8vw, 104px) !important;
+  height: 2px !important;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--accent)) !important;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--primary) 50%, transparent) !important;
+}
+
+.header-bar .title {
+  color: var(--text) !important;
+  font-family: Inter, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 720 !important;
+  letter-spacing: 0.015em !important;
+  text-transform: none !important;
+}
+
+.header-bar .title::before {
+  width: 3px;
+  height: 22px;
+  margin-right: 2px !important;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+  content: '' !important;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--primary) 52%, transparent);
+}
+
+.home-page .header-bar .title::before { content: '' !important; }
+
+.status-bar {
+  min-height: 42px;
+  border-bottom: 1px solid var(--border) !important;
+  background: color-mix(in srgb, var(--card-soft) 78%, transparent) !important;
+  color: var(--text-sec) !important;
+  backdrop-filter: blur(16px);
+}
+
+.status-bar > svg { color: var(--primary) !important; }
+
+.btn {
+  border: 1px solid color-mix(in srgb, var(--primary) 38%, transparent) !important;
+  border-radius: 12px !important;
+  clip-path: none !important;
+  background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--primary) 74%, var(--accent))) !important;
+  color: #fff !important;
+  font-family: inherit !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--primary) 24%, transparent) !important;
+  transition: transform 180ms cubic-bezier(.2,.75,.25,1), box-shadow 180ms ease, filter 180ms ease, border-color 180ms ease !important;
+}
+
+.btn::after {
+  inset: 0 !important;
+  width: auto !important;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 25%, rgba(255,255,255,.24) 48%, transparent 70%) !important;
+  opacity: 0;
+  transform: translateX(-60%) !important;
+  transition: opacity 180ms ease, transform 420ms cubic-bezier(.2,.75,.25,1) !important;
+}
+
+.btn:hover:not(:disabled) {
+  filter: saturate(1.08) brightness(1.04);
+  transform: translateY(-2px) scale(1.01) !important;
+  box-shadow: 0 14px 30px color-mix(in srgb, var(--primary) 30%, transparent) !important;
+}
+
+.btn:hover:not(:disabled)::after,
+.btn:focus-visible::after { left: auto !important; opacity: 1; transform: translateX(65%) !important; }
+.btn:active:not(:disabled) { transform: translateY(0) scale(.975) !important; box-shadow: 0 4px 10px color-mix(in srgb, var(--primary) 22%, transparent) !important; }
+
+.btn-ghost {
+  border-color: var(--border) !important;
+  background: color-mix(in srgb, var(--card) 84%, transparent) !important;
+  color: var(--text-sec) !important;
+  box-shadow: none !important;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  border-color: var(--border-strong) !important;
+  background: var(--primary-soft) !important;
+  color: var(--primary-strong) !important;
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--primary) 10%, transparent) !important;
+}
+
+.btn-warning { background: linear-gradient(135deg, #d98a25, #b96918) !important; border-color: rgba(255, 180, 80, .42) !important; }
+.btn-danger, .btn-red { background: linear-gradient(135deg, #e75569, #c93d52) !important; border-color: rgba(255, 112, 132, .42) !important; }
+.btn-success, .btn-green { background: linear-gradient(135deg, #22a974, #16875c) !important; border-color: rgba(72, 221, 163, .36) !important; }
+.btn-github { background: linear-gradient(135deg, #283747, #172431) !important; border-color: rgba(142, 174, 199, .24) !important; }
+
+.card,
+.overlay-card,
+.confirm-dialog,
+.replay-dialog,
+.admin-player-dialog {
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--card) 95%, transparent), color-mix(in srgb, var(--card-soft) 90%, transparent)) !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: blur(20px) saturate(1.15);
+}
+
+.card::before { border-radius: 999px; background: linear-gradient(90deg, var(--primary), var(--accent)) !important; }
+
+.input,
+select.input,
+textarea.input {
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  background: var(--input-bg) !important;
+}
+
+.input:hover:not(:disabled) { border-color: var(--border-strong) !important; }
+.input:focus { border-color: var(--primary) !important; box-shadow: 0 0 0 4px var(--primary-soft) !important; }
+
+.input-dock {
+  border-top: 1px solid var(--border) !important;
+  background: color-mix(in srgb, var(--card) 88%, transparent) !important;
+  box-shadow: 0 -12px 34px color-mix(in srgb, var(--text) 7%, transparent) !important;
+  backdrop-filter: blur(22px) saturate(1.2);
+}
+
+.autocomplete-list {
+  border: 1px solid var(--border) !important;
+  border-radius: 16px !important;
+  background: color-mix(in srgb, var(--card) 96%, transparent) !important;
+  box-shadow: var(--shadow-lg) !important;
+  backdrop-filter: blur(22px);
+}
+
+.autocomplete-list li { border-radius: 10px !important; transition: background 140ms ease, color 140ms ease, transform 140ms ease; }
+.autocomplete-list li:hover,
+.autocomplete-list li.active { background: var(--primary-soft) !important; color: var(--primary-strong) !important; transform: translateX(3px); }
+
+.game-table-wrap {
+  border: 1px solid var(--border) !important;
+  border-radius: 18px !important;
+  background: color-mix(in srgb, var(--card-soft) 88%, transparent) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.game-table th { color: var(--primary-strong) !important; background: color-mix(in srgb, var(--card-soft) 96%, transparent) !important; }
+.game-table td { border-radius: 11px !important; }
+
+.game-empty {
+  min-height: min(46vh, 420px);
+  align-content: center;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 50% 38%, var(--primary-soft), transparent 15rem),
+    color-mix(in srgb, var(--card) 68%, transparent);
+  box-shadow: var(--shadow-sm);
+}
+
+.game-empty > svg { color: var(--primary); filter: drop-shadow(0 0 16px color-mix(in srgb, var(--primary) 38%, transparent)); }
+.guess-progress i { width: 10px; height: 4px; border-radius: 999px; transition: width 160ms ease, background 160ms ease; }
+.guess-progress i.used { width: 18px; box-shadow: 0 0 10px color-mix(in srgb, var(--primary) 45%, transparent); }
+
+.home-hero {
+  border: 1px solid var(--border) !important;
+  border-radius: 28px !important;
+  clip-path: none !important;
+  background:
+    radial-gradient(circle at 72% 30%, var(--primary-soft), transparent 28rem),
+    linear-gradient(145deg, color-mix(in srgb, var(--card) 94%, transparent), color-mix(in srgb, var(--card-soft) 78%, transparent)) !important;
+  box-shadow: var(--shadow) !important;
+  backdrop-filter: blur(20px);
+}
+
+.home-hero::before { border-radius: 50% !important; border-color: color-mix(in srgb, var(--primary) 20%, transparent) !important; }
+.home-hero::after { border-radius: 999px !important; background: linear-gradient(90deg, var(--primary), var(--accent)) !important; }
+.hero-kicker { border-left: 0 !important; border-radius: 999px; background: var(--primary-soft); color: var(--primary-strong) !important; }
+
+.menu-card {
+  border: 1px solid var(--border) !important;
+  border-radius: 20px !important;
+  clip-path: none !important;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--card) 94%, transparent), color-mix(in srgb, var(--card-soft) 84%, transparent)) !important;
+  box-shadow: var(--shadow-sm) !important;
+  transition: transform 200ms cubic-bezier(.2,.75,.25,1), box-shadow 200ms ease, border-color 200ms ease !important;
+}
+
+.menu-card::before { width: 4px !important; height: auto !important; inset: 18px auto 18px 0 !important; border-radius: 0 999px 999px 0; }
+.menu-card:hover { border-color: color-mix(in srgb, var(--menu-color, var(--primary)) 48%, var(--border)) !important; transform: translateY(-5px) !important; box-shadow: var(--shadow) !important; }
+.menu-card:active { transform: translateY(-1px) scale(.985) !important; }
+.menu-card .menu-icon { border-radius: 15px !important; transform: none !important; }
+.menu-card:hover .menu-icon { transform: rotate(-3deg) scale(1.06) !important; }
+.menu-card .menu-label { font-style: normal !important; letter-spacing: .01em !important; }
+.menu-arrow { transition: transform 180ms ease !important; }
+.menu-card:hover .menu-arrow { transform: translate(3px, -3px) !important; }
+
+.overlay,
+.confirm-backdrop,
+.replay-backdrop,
+.admin-player-backdrop { background: rgba(3, 14, 24, .56) !important; backdrop-filter: blur(12px) saturate(.8) !important; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-scroll > * { animation-duration: 420ms !important; }
+  .overlay-card,
+  .confirm-dialog { animation: academy-dialog-enter 260ms cubic-bezier(.2,.8,.25,1) both !important; }
+}
+
+@keyframes academy-dialog-enter {
+  from { opacity: 0; transform: translateY(14px) scale(.975); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 640px) {
+  .header-bar { min-height: 58px; }
+  .home-hero { border-radius: 20px !important; }
+  .menu-card { border-radius: 16px !important; }
+  .game-empty { min-height: 38vh; border-radius: 18px; }
+}

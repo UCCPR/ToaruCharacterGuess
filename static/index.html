@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
-    <meta name="theme-color" content="#07172d" />
+    <meta name="theme-color" content="#071521" />
     <meta name="description" content="某角色的身份推理——《魔法禁书目录》非官方角色猜测游戏静态版。" />
     <link
       rel="preload"
@@ -19,10 +19,13 @@
         var initTheme = storedUiTheme === 'light' ? 'light' : storedUiTheme === 'blast' ? 'blast' : window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'blast';
         document.documentElement.dataset.theme = initTheme;
         document.documentElement.style.colorScheme = initTheme === 'blast' ? 'dark' : 'light';
-        document.documentElement.style.background = initTheme === 'blast' ? '#071827' : '#f3f0ea';
+        document.documentElement.style.background = initTheme === 'blast' ? '#071521' : '#edf7ff';
         var themeColorMeta = document.querySelector('meta[name="theme-color"]');
-        if (themeColorMeta) themeColorMeta.content = initTheme === 'blast' ? '#071827' : '#f3f0ea';
-      } catch (_) { document.documentElement.dataset.theme = 'blast'; }
+        if (themeColorMeta) themeColorMeta.content = initTheme === 'blast' ? '#071521' : '#edf7ff';
+      } catch (_) {
+        document.documentElement.dataset.theme = 'blast';
+        document.documentElement.style.background = '#071521';
+      }
     </script>
     <title>某角色的身份推理 · 静态版</title>
   </head>
