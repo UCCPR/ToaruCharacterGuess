@@ -2,6 +2,7 @@ import type { Knex } from 'knex';
 import { db } from './knex';
 import curatedCatalogData from './seeds/characterCatalog.json';
 import playableData from './seeds/players.json';
+import { DEBUT_WORK_TITLES } from '@toaru-character-guess/shared';
 import { organizationParentName } from '../services/characterClassification';
 
 interface PlayableCharacter {
@@ -35,24 +36,25 @@ const playableByNickname = new Map(
 );
 const CURATED_REVIEW_STATUS = 'community_sourced';
 
-const CURATED_WORKS: Record<string, { title: string; medium: string; continuity: string }> = {
-  'index-ot': { title: '某魔法的禁书目录（旧约）', medium: 'novel', continuity: 'main' },
-  'index-ss': { title: '某魔法的禁书目录 SS', medium: 'novel', continuity: 'supplemental' },
-  'index-ss2': { title: '某魔法的禁书目录 SS2', medium: 'novel', continuity: 'supplemental' },
-  'index-nt': { title: '新约 某魔法的禁书目录', medium: 'novel', continuity: 'main' },
-  'index-gt': { title: '创约 某魔法的禁书目录', medium: 'novel', continuity: 'main' },
-  'index-sp': { title: '某魔法的禁书目录 SP', medium: 'novel', continuity: 'supplemental' },
-  'index-stiyl-ss': { title: '某魔法的禁书目录 SS 史提尔篇', medium: 'novel', continuity: 'supplemental' },
-  'index-biohacker': { title: '某魔法的禁书目录 SS 生物黑客篇', medium: 'novel', continuity: 'supplemental' },
-  'railgun-manga': { title: '某科学的超电磁炮', medium: 'manga', continuity: 'spinoff' },
-  'railgun-anime': { title: '某科学的超电磁炮（动画）', medium: 'anime', continuity: 'spinoff' },
-  'accelerator-manga': { title: '某科学的一方通行', medium: 'manga', continuity: 'spinoff' },
-  'accelerator-anime': { title: '某科学的一方通行（动画）', medium: 'anime', continuity: 'spinoff' },
-  'dark-matter-manga': { title: '某科学的未元物质', medium: 'manga', continuity: 'spinoff' },
-  'mental-out-manga': { title: '某科学的心理掌握', medium: 'manga', continuity: 'spinoff' },
-  'item-novel': { title: '某暗部的少女共栖', medium: 'novel', continuity: 'spinoff' },
-  'astral-buddy-manga': { title: '某科学的超电磁炮外传 Astral Buddy', medium: 'manga', continuity: 'spinoff' },
-  'endymion-movie': { title: '剧场版 魔法禁书目录：恩底弥翁的奇迹', medium: 'movie', continuity: 'spinoff' },
+const CURATED_WORKS: Record<string, { medium: string; continuity: string }> = {
+  'index-ot': { medium: 'novel', continuity: 'main' },
+  'index-ss': { medium: 'novel', continuity: 'supplemental' },
+  'index-ss2': { medium: 'novel', continuity: 'supplemental' },
+  'index-nt': { medium: 'novel', continuity: 'main' },
+  'index-gt': { medium: 'novel', continuity: 'main' },
+  'index-sp': { medium: 'novel', continuity: 'supplemental' },
+  'index-stiyl-ss': { medium: 'novel', continuity: 'supplemental' },
+  'index-kanzaki-ss': { medium: 'novel', continuity: 'supplemental' },
+  'index-biohacker': { medium: 'novel', continuity: 'supplemental' },
+  'railgun-manga': { medium: 'manga', continuity: 'spinoff' },
+  'railgun-anime': { medium: 'anime', continuity: 'spinoff' },
+  'accelerator-manga': { medium: 'manga', continuity: 'spinoff' },
+  'accelerator-anime': { medium: 'anime', continuity: 'spinoff' },
+  'dark-matter-manga': { medium: 'manga', continuity: 'spinoff' },
+  'mental-out-manga': { medium: 'manga', continuity: 'spinoff' },
+  'item-novel': { medium: 'novel', continuity: 'spinoff' },
+  'astral-buddy-manga': { medium: 'manga', continuity: 'spinoff' },
+  'endymion-movie': { medium: 'movie', continuity: 'spinoff' },
 };
 
 const CURATED_CONTENT_SCOPES: Record<string, string> = {
@@ -63,6 +65,7 @@ const CURATED_CONTENT_SCOPES: Record<string, string> = {
   'index-gt': 'index-genesis-testament',
   'index-sp': 'index-side-stories',
   'index-stiyl-ss': 'index-side-stories',
+  'index-kanzaki-ss': 'index-side-stories',
   'index-biohacker': 'index-side-stories',
   'railgun-manga': 'railgun',
   'railgun-anime': 'railgun',
@@ -231,9 +234,11 @@ export async function syncCuratedCharacterCatalog(instance: Knex = db): Promise<
 
       const work = CURATED_WORKS[entry.appearance.work];
       if (!work) throw new Error(`UNKNOWN_CATALOG_WORK:${entry.appearance.work}`);
+      const workTitle = DEBUT_WORK_TITLES[entry.appearance.work];
+      if (!workTitle) throw new Error(`UNKNOWN_CATALOG_WORK_TITLE:${entry.appearance.work}`);
       await trx('works').insert({
         key: entry.appearance.work,
-        title_zh: work.title,
+        title_zh: workTitle,
         medium: work.medium,
         continuity: work.continuity,
         source_id: source.id,

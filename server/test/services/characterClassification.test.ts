@@ -65,6 +65,16 @@ describe('shared character classification', () => {
       type: 'school',
       relationship: 'dorm-supervisor',
     }).name).toBe('常盘台中学舍监');
+    expect(organizationIdentity({
+      name: '统括理事会',
+      type: 'government',
+      relationship: 'chairman',
+    }).name).toBe('统括理事会理事长');
+    expect(organizationIdentity({
+      name: 'R&C超自然公司',
+      type: 'corporation',
+      relationship: 'founder-ceo',
+    }).name).toBe('R&C超自然公司创始人兼CEO');
   });
 
   it('classifies identity-only organization types and complete side identities', () => {

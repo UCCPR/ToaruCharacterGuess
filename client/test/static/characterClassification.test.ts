@@ -110,6 +110,20 @@ describe('static character classification', () => {
       entity: null,
       role: 'gemstone-esper',
     });
+    expect(character('一方通行').identities).toContainEqual({
+      name: '统括理事会理事长',
+      group: 'government:chairman',
+      kind: 'government',
+      entity: '统括理事会',
+      role: 'chairman',
+    });
+    expect(character('安娜·施普伦格尔').identities).toContainEqual({
+      name: 'R&C超自然公司创始人兼CEO',
+      group: 'corporation:founder-ceo',
+      kind: 'corporation',
+      entity: 'R&C超自然公司',
+      role: 'founder-ceo',
+    });
   });
 
   it('scopes research identities to their exact project', () => {

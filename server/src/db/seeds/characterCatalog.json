@@ -30,7 +30,8 @@
     "organizations": [
       {"name":"集团（GROUP）","type":"dark-side-group","relationship":"member","primary":true},
       {"name":"御坂网络","type":"network","relationship":"associated","primary":false},
-      {"name":"绝对能力进化计划","type":"research-project","relationship":"central-subject","primary":false}
+      {"name":"绝对能力进化计划","type":"research-project","relationship":"central-subject","primary":false},
+      {"name":"统括理事会","type":"government","relationship":"chairman","primary":false}
     ],
     "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
     "appearance": {"work":"index-ot","reference":"第3卷","year":2004}, "source_page":"一方通行"
@@ -560,11 +561,11 @@
   },
   {
     "nickname": "布伦希尔德·艾克特贝尔", "name_ja": "ブリュンヒルド＝エイクトベル", "name_en": "Brunhild Eiktobel", "gender": "female",
-    "aliases": [{"name":"Brunhild Eiktobel","locale":"en","type":"romanized"}],
+    "aliases": [{"name":"Brunhild Eiktobel","locale":"en","type":"romanized"},{"name":"布伦希尔德·爱克特贝尔","locale":"zh-CN","type":"alternative"}],
     "sides": [{"key":"magic","relationship":"saint-magician","primary":true}],
     "organizations": [{"name":"圣人","type":"special-status","relationship":"holder","primary":true},{"name":"女武神","type":"special-status","relationship":"holder","primary":false}],
     "locations": [{"name":"北欧","type":"region","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-kanzaki-ss","reference":"神裂火织篇第7话","year":2010}, "source_page":"布伦希尔德·艾克特贝尔"
+    "appearance": {"work":"index-kanzaki-ss","reference":"神裂火织篇第7话","year":2010}, "source_page":"布伦希尔德·爱克特贝尔"
   },
   {
     "nickname": "僧正", "name_ja": "僧正", "name_en": "High Priest", "gender": "male",
@@ -594,9 +595,9 @@
     "nickname": "安娜·施普伦格尔", "name_ja": "アンナ＝シュプレンゲル", "name_en": "Anna Sprengel", "gender": "female",
     "aliases": [{"name":"Anna Sprengel","locale":"en","type":"romanized"}],
     "sides": [{"key":"magic","relationship":"magician","primary":true}],
-    "organizations": [{"name":"蔷薇十字","type":"magic-cabal","relationship":"adept","primary":true},{"name":"黄金黎明","type":"magic-cabal","relationship":"associated","primary":false},{"name":"桥架结社","type":"magic-cabal","relationship":"leader","primary":false}],
+    "organizations": [{"name":"蔷薇十字","type":"magic-cabal","relationship":"adept","primary":true},{"name":"黄金黎明","type":"magic-cabal","relationship":"associated","primary":false},{"name":"桥架结社","type":"magic-cabal","relationship":"member","primary":false},{"name":"R&C超自然公司","type":"corporation","relationship":"founder-ceo","primary":false}],
     "locations": [{"name":"欧洲","type":"region","relationship":"affiliated","primary":true}],
-    "appearance": {"work":"index-nt","reference":"新约第22卷Reverse","year":2019}, "source_page":"安娜·施普伦格尔"
+    "appearance": {"work":"index-nt","reference":"新约第22卷","year":2019}, "source_page":"安娜·施普伦格尔"
   },
   {
     "nickname": "鸣护艾丽莎", "name_ja": "鳴護アリサ", "name_en": "Meigo Arisa", "gender": "female",

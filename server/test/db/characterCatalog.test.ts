@@ -89,6 +89,10 @@ describe('playable character catalog', () => {
     expect(entry('芙罗莉丝')?.appearance).toEqual({ work: 'index-ot', reference: '第17卷', year: 2009 });
     expect(entry('蕾薇妮雅·柏德蔚')?.appearance).toEqual({ work: 'index-stiyl-ss', reference: '史提尔篇第1话', year: 2007 });
     expect(entry('布伦希尔德·艾克特贝尔')?.appearance).toEqual({ work: 'index-kanzaki-ss', reference: '神裂火织篇第7话', year: 2010 });
+    expect(entry('布伦希尔德·艾克特贝尔')?.aliases).toContainEqual({
+      name: '布伦希尔德·爱克特贝尔', locale: 'zh-CN', type: 'alternative',
+    });
+    expect(entry('布伦希尔德·艾克特贝尔')?.source_page).toBe('布伦希尔德·爱克特贝尔');
     expect(entry('芙罗兰·克洛伊杜尼')?.appearance).toEqual({ work: 'index-nt', reference: '新约第5卷', year: 2012 });
     expect(entry('博洛尼魅魔')?.appearance).toEqual({ work: 'index-gt', reference: '创约第5卷（第4卷仅名字）', year: 2021 });
     expect(entry('有富春树')?.appearance).toEqual({ work: 'railgun-anime', reference: '动画第二季第18集', year: 2013 });
@@ -102,6 +106,13 @@ describe('playable character catalog', () => {
       expect(entry(nickname)?.appearance).toEqual({ work: 'accelerator-manga', reference: '漫画第6话', year: 2014 });
     }
     expect(entry('米娜·马瑟斯')?.appearance).toEqual({ work: 'index-nt', reference: '新约第18卷', year: 2017 });
+    expect(entry('安娜·施普伦格尔')?.appearance).toEqual({ work: 'index-nt', reference: '新约第22卷', year: 2019 });
+    expect(entry('安娜·施普伦格尔')?.organizations).toContainEqual({
+      name: '桥架结社', type: 'magic-cabal', relationship: 'member', primary: false,
+    });
+    expect(entry('安娜·施普伦格尔')?.organizations).toContainEqual({
+      name: 'R&C超自然公司', type: 'corporation', relationship: 'founder-ceo', primary: false,
+    });
     expect(entry('马克·史佩斯')?.appearance).toEqual({ work: 'index-stiyl-ss', reference: '史提尔篇番外篇', year: 2008 });
     expect(entry('云川芹亚')?.organizations).toContainEqual({
       name: '某高中',
@@ -147,6 +158,12 @@ describe('playable character catalog', () => {
       relationship: 'central-subject',
       primary: false,
     });
+    expect(entry('一方通行')?.organizations).toContainEqual({
+      name: '统括理事会',
+      type: 'government',
+      relationship: 'chairman',
+      primary: false,
+    });
     expect(entry('御坂10032号')?.organizations).toContainEqual({
       name: '绝对能力进化计划',
       type: 'research-project',
@@ -189,6 +206,20 @@ describe('playable character catalog', () => {
     expect(entry('多莉')?.organizations.map((organization) => organization.name)).not.toContain('御坂网络');
     expect(entry('最后之作')?.organizations.map((organization) => organization.name))
       .toEqual(expect.arrayContaining(['御坂网络', '妹妹们（SISTERS）']));
+  });
+
+  it('anchors debut data to actual character appearances instead of earlier mentions or system existence', () => {
+    const entry = (name: string) => catalog.find((character) => character.nickname === name);
+
+    expect(entry('米娜·马瑟斯')?.appearance).toEqual({
+      work: 'index-nt', reference: '新约第18卷', year: 2017,
+    });
+    expect(entry('安娜·施普伦格尔')?.appearance).toEqual({
+      work: 'index-nt', reference: '新约第22卷', year: 2019,
+    });
+    expect(entry('爱丽丝·异典')?.appearance).toEqual({
+      work: 'index-gt', reference: '创约第5卷（第4卷仅名字）', year: 2021,
+    });
   });
 
   it('keeps recognition pools cumulative and aligned with the series-based policy', () => {
@@ -319,6 +350,20 @@ describe('playable character catalog', () => {
       .whereLike('key', 'item-%')
       .select('key', 'medium');
     expect(itemWorks).toEqual([{ key: 'item-novel', medium: 'novel' }]);
+
+    const kanzakiSideStory = await instance('works')
+      .where({ key: 'index-kanzaki-ss' })
+      .first('title_zh', 'medium', 'continuity');
+    expect(kanzakiSideStory).toEqual({
+      title_zh: '魔法禁书目录 SS：神裂火织篇',
+      medium: 'novel',
+      continuity: 'supplemental',
+    });
+
+    const unclassifiedProfiles = await instance('character_game_profiles')
+      .where({ content_scope: 'unclassified' })
+      .pluck('character_id');
+    expect(unclassifiedProfiles).toEqual([]);
 
     const coronzonAliases = await instance('character_aliases as alias')
       .join('characters as character', 'character.id', 'alias.character_id')
