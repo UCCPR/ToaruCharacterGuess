@@ -232,18 +232,18 @@ html[data-theme='blast'] .toaru-title-mark img {
   margin-top: 0;
 }
 
-.bottom-bar .btn-achievements {
-  border-color: #d79a00;
-  background: linear-gradient(135deg, #ffd968, #efb51d);
-  color: #3d2900;
-  box-shadow: 0 7px 18px rgba(205, 143, 0, .2);
+html .bottom-bar .btn.btn-achievements {
+  border-color: #d79a00 !important;
+  background: linear-gradient(135deg, #ffd968, #efb51d) !important;
+  color: #3d2900 !important;
+  box-shadow: 0 7px 18px rgba(205, 143, 0, .2) !important;
 }
 
-.bottom-bar .btn-achievements:hover:not(:disabled) {
-  border-color: #bd8100;
-  background: linear-gradient(135deg, #ffe38c, #f4c23b);
-  color: #302000;
-  box-shadow: 0 9px 22px rgba(205, 143, 0, .28);
+html .bottom-bar .btn.btn-achievements:hover:not(:disabled) {
+  border-color: #bd8100 !important;
+  background: linear-gradient(135deg, #ffe38c, #f4c23b) !important;
+  color: #302000 !important;
+  box-shadow: 0 9px 22px rgba(205, 143, 0, .28) !important;
 }
 
 .static-achievements-heading {

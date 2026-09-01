@@ -6,6 +6,16 @@ const readCss = (relativePath: string) =>
   readFileSync(resolve(__dirname, relativePath), 'utf8');
 
 describe('desktop/mobile layout contracts', () => {
+  it('keeps the static achievements action gold after shared theme button styles load', () => {
+    const staticCss = readCss('../../../static/src/static.css');
+    expect(staticCss).toMatch(
+      /html\s+\.bottom-bar\s+\.btn\.btn-achievements\s*\{[^}]*background:\s*linear-gradient\(135deg,\s*#ffd968,\s*#efb51d\)\s*!important;[^}]*color:\s*#3d2900\s*!important;/s
+    );
+    expect(staticCss).toMatch(
+      /html\s+\.bottom-bar\s+\.btn\.btn-achievements:hover:not\(:disabled\)\s*\{[^}]*background:\s*linear-gradient\(135deg,\s*#ffe38c,\s*#f4c23b\)\s*!important;/s
+    );
+  });
+
   it('keeps every admin tab content at the player change review width', () => {
     const admin = readCss('../../src/styles/data-admin.css');
     expect(admin).toMatch(
