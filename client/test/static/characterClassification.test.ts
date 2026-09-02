@@ -44,6 +44,9 @@ describe('static character classification', () => {
     expect(character('芙罗兰·克洛伊杜尼')).toMatchObject({ debutWork: '新约 魔法禁书目录', debutYear: 2012 });
     expect(character('博洛尼魅魔')).toMatchObject({ debutWork: '创约 魔法禁书目录', debutYear: 2021 });
     expect(character('弓箭猎虎')).toMatchObject({ debutWork: '某科学的超电磁炮（漫画）', debutYear: 2015 });
+    expect(character('亲船素甘')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2007 });
+    expect(character('倾国之女')).toMatchObject({ debutWork: '魔法禁书目录（旧约）', debutYear: 2010 });
+    expect(character('美山写影')).toMatchObject({ debutWork: '某科学的超电磁炮（漫画）', debutYear: 2014 });
   });
 
   it('uses the original Stiyl SS publication for Mark Space', () => {
@@ -64,6 +67,10 @@ describe('static character classification', () => {
     });
     expect(character('饭栖莉泽').organizations).toContainEqual({
       name: '食尸部队（Scavenger）',
+      parent: '暗部',
+    });
+    expect(character('佐久辰彦').organizations).toContainEqual({
+      name: 'BLOCK',
       parent: '暗部',
     });
     expect(character('黑妻绵流').organizations).toContainEqual({
@@ -123,6 +130,13 @@ describe('static character classification', () => {
       kind: 'corporation',
       entity: 'R&C超自然公司',
       role: 'founder-ceo',
+    });
+    expect(character('马太·利斯').identities).toContainEqual({
+      name: '罗马正教教皇',
+      group: 'religious',
+      kind: 'church',
+      entity: '罗马正教',
+      role: 'pope',
     });
   });
 

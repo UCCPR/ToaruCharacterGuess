@@ -10,6 +10,7 @@ describe('shared character classification', () => {
   it('resolves curated organization parents without overriding explicit parents', () => {
     expect(organizationParentName('道具（ITEM）')).toBe('暗部');
     expect(organizationParentName('食尸部队（Scavenger）')).toBe('暗部');
+    expect(organizationParentName('BLOCK')).toBe('暗部');
     expect(organizationParentName('大蜘蛛')).toBe('武装无能力集团（Skill-Out）');
     expect(organizationParentName('黑鸦部队')).toBe('轨道电梯公司');
     expect(organizationParentName('必要之恶教会')).toBe('英国清教');
@@ -75,6 +76,11 @@ describe('shared character classification', () => {
       type: 'corporation',
       relationship: 'founder-ceo',
     }).name).toBe('R&C超自然公司创始人兼CEO');
+    expect(organizationIdentity({
+      name: '罗马正教',
+      type: 'church',
+      relationship: 'pope',
+    }).name).toBe('罗马正教教皇');
   });
 
   it('classifies identity-only organization types and complete side identities', () => {

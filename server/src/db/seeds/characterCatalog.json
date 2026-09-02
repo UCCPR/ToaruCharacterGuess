@@ -1574,5 +1574,116 @@
       "year":2017
     },
     "source_page":"悠里千夜"
+  },
+  {
+    "nickname": "亲船素甘",
+    "name_ja": "親船素甘",
+    "name_en": "Oyafune Suama",
+    "gender": "female",
+    "aliases": [{"name":"Oyafune Suama","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"educator","primary":true}],
+    "organizations": [{"name":"某高中","type":"school","relationship":"teacher","primary":true}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
+    "appearance": {"work":"index-ot","reference":"第14卷","year":2007},
+    "source_page":"亲船素甘"
+  },
+  {
+    "nickname": "佐久辰彦",
+    "name_ja": "佐久辰彦",
+    "name_en": "Saku Tatsuhiko",
+    "gender": "male",
+    "aliases": [{"name":"Saku Tatsuhiko","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"dark-side-operative","primary":true}],
+    "organizations": [{"name":"BLOCK","type":"dark-side-group","parent":"暗部","relationship":"leader","primary":true}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
+    "appearance": {"work":"index-ot","reference":"第15卷","year":2008},
+    "source_page":"佐久辰彦"
+  },
+  {
+    "nickname": "手盐惠未",
+    "name_ja": "手塩恵未",
+    "name_en": "Teshio Megumi",
+    "gender": "female",
+    "aliases": [{"name":"Teshio Megumi","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"dark-side-operative","primary":true}],
+    "organizations": [
+      {"name":"BLOCK","type":"dark-side-group","parent":"暗部","relationship":"member","primary":true},
+      {"name":"警备员","type":"law-enforcement","relationship":"former-member","primary":false}
+    ],
+    "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
+    "appearance": {"work":"index-ot","reference":"第15卷","year":2008},
+    "source_page":"手盐惠未"
+  },
+  {
+    "nickname": "铁网",
+    "name_ja": "鉄網",
+    "name_en": "Tetsumou",
+    "gender": "female",
+    "aliases": [{"name":"Tetsumou","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"dark-side-operative","primary":true}],
+    "organizations": [{"name":"BLOCK","type":"dark-side-group","parent":"暗部","relationship":"member","primary":true}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"active","primary":true}],
+    "appearance": {"work":"index-ot","reference":"第15卷","year":2008},
+    "source_page":"铁网"
+  },
+  {
+    "nickname": "马太·利斯",
+    "name_ja": "マタイ＝リース",
+    "name_en": "Matthai Reese",
+    "gender": "male",
+    "aliases": [{"name":"Matthai Reese","locale":"en","type":"romanized"},{"name":"罗马教皇","locale":"zh-CN","type":"title"}],
+    "sides": [{"key":"magic","relationship":"bishop-magician","primary":true}],
+    "organizations": [{"name":"罗马正教","type":"church","relationship":"pope","primary":true}],
+    "locations": [{"name":"梵蒂冈","type":"city-state","relationship":"affiliated","primary":true}],
+    "appearance": {"work":"index-ot","reference":"第11卷","year":2006},
+    "source_page":"马太·利斯"
+  },
+  {
+    "nickname": "克兰斯·R·察尔斯基",
+    "name_ja": "クランス＝R＝ツァールスキー",
+    "name_en": "Krans R. Tsarskiy",
+    "gender": "male",
+    "aliases": [{"name":"Krans R. Tsarskiy","locale":"en","type":"romanized"}],
+    "sides": [{"key":"magic","relationship":"bishop-magician","primary":true}],
+    "organizations": [{"name":"俄罗斯成教","type":"church","relationship":"archbishop","primary":true}],
+    "locations": [{"name":"俄罗斯","type":"country","relationship":"affiliated","primary":true}],
+    "appearance": {"work":"index-ot","reference":"第22卷","year":2010},
+    "source_page":"克兰斯·R·察尔斯基"
+  },
+  {
+    "nickname": "伊莉莎莉娜",
+    "name_ja": "エリザリーナ",
+    "name_en": "Elizalina",
+    "gender": "female",
+    "aliases": [{"name":"Elizalina","locale":"en","type":"romanized"}],
+    "sides": [{"key":"magic","relationship":"magician","primary":true}],
+    "organizations": [{"name":"伊莉莎莉娜独立国同盟","type":"government","relationship":"leader","primary":true}],
+    "locations": [{"name":"欧洲","type":"continent","relationship":"active","primary":true}],
+    "appearance": {"work":"index-ot","reference":"第20卷","year":2010},
+    "source_page":"伊莉莎莉娜"
+  },
+  {
+    "nickname": "倾国之女",
+    "name_ja": "傾国の女",
+    "name_en": "Maiden of Versailles",
+    "gender": "female",
+    "aliases": [{"name":"Maiden of Versailles","locale":"en","type":"title"},{"name":"凡尔赛圣女","locale":"zh-CN","type":"title"}],
+    "sides": [{"key":"magic","relationship":"magician","primary":true}],
+    "organizations": [{"name":"法国政府","type":"government","relationship":"leader","primary":true}],
+    "locations": [{"name":"法国","type":"country","relationship":"affiliated","primary":true}],
+    "appearance": {"work":"index-ot","reference":"第20卷（第17卷仅间接提及）","year":2010},
+    "source_page":"倾国之女"
+  },
+  {
+    "nickname": "美山写影",
+    "name_ja": "美山写影",
+    "name_en": "Miyama Shaei",
+    "gender": "male",
+    "aliases": [{"name":"Miyama Shaei","locale":"en","type":"romanized"}],
+    "sides": [{"key":"science","relationship":"esper","primary":true}],
+    "organizations": [{"name":"松梅小学","type":"school","relationship":"student","primary":true}],
+    "locations": [{"name":"学园都市","type":"city","relationship":"resident","primary":true}],
+    "appearance": {"work":"railgun-manga","reference":"第73话","year":2014},
+    "source_page":"美山写影"
   }
 ]

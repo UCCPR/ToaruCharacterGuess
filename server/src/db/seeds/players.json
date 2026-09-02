@@ -1180,5 +1180,41 @@
     "difficulties": [
       "normal"
     ]
+  },
+  {
+    "nickname": "亲船素甘",
+    "difficulties": ["normal"]
+  },
+  {
+    "nickname": "佐久辰彦",
+    "difficulties": ["normal"]
+  },
+  {
+    "nickname": "手盐惠未",
+    "difficulties": ["normal"]
+  },
+  {
+    "nickname": "铁网",
+    "difficulties": ["normal"]
+  },
+  {
+    "nickname": "马太·利斯",
+    "difficulties": ["normal"]
+  },
+  {
+    "nickname": "克兰斯·R·察尔斯基",
+    "difficulties": ["normal"]
+  },
+  {
+    "nickname": "伊莉莎莉娜",
+    "difficulties": ["normal"]
+  },
+  {
+    "nickname": "倾国之女",
+    "difficulties": ["normal", "easy"]
+  },
+  {
+    "nickname": "美山写影",
+    "difficulties": ["normal", "easy"]
   }
 ]

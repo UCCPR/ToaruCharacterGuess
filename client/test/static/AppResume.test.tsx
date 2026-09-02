@@ -45,8 +45,8 @@ describe('static unfinished-game prompt', () => {
       'https://github.com/UCCPR/ToaruCharacterGuess',
     );
     expect(await screen.findByText('29 名角色')).toBeInTheDocument();
-    expect(screen.getByText('103 名角色')).toBeInTheDocument();
-    expect(screen.getByText('175 名角色')).toBeInTheDocument();
+    expect(screen.getByText('105 名角色')).toBeInTheDocument();
+    expect(screen.getByText('184 名角色')).toBeInTheDocument();
     expect(localStorage.getItem(key)).toBeNull();
   });
 });

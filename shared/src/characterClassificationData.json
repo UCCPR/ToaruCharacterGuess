@@ -7,6 +7,7 @@
     "猎犬部队（Hound Dog）": "暗部",
     "成员（MEMBER）": "暗部",
     "新生（Freshmen）": "暗部",
+    "BLOCK": "暗部",
     "黑鸦部队": "轨道电梯公司",
     "大蜘蛛": "武装无能力集团（Skill-Out）",
     "必要之恶教会": "英国清教"
@@ -30,7 +31,7 @@
     "agent": "成员", "combat-agent": "成员", "associate": "相关人员",
     "associated": "相关人员", "cooperator": "协力者", "administrator": "管理者", "dorm-supervisor": "舍监",
     "former-captive": "前被拘禁者", "infiltrator": "潜入人员",
-    "adept": "成员", "missionary": "传教士", "pope-substitute": "代理教皇"
+    "adept": "成员", "missionary": "传教士", "pope": "教皇", "pope-substitute": "代理教皇"
   },
   "sideIdentities": {
     "esper": { "name": "能力者", "group": "esper" },

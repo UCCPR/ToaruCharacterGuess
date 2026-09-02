@@ -203,6 +203,15 @@ describe('playable character catalog', () => {
     });
     expect(entry('介旅初矢')?.appearance).toEqual({ work: 'railgun-manga', reference: '第4话', year: 2007 });
     expect(entry('上里翔流')?.appearance).toEqual({ work: 'index-nt', reference: '新约第13卷终章', year: 2015 });
+    expect(entry('亲船素甘')?.appearance).toEqual({ work: 'index-ot', reference: '第14卷', year: 2007 });
+    expect(entry('倾国之女')?.appearance).toEqual({
+      work: 'index-ot', reference: '第20卷（第17卷仅间接提及）', year: 2010,
+    });
+    expect(entry('美山写影')?.appearance).toEqual({ work: 'railgun-manga', reference: '第73话', year: 2014 });
+    expect(entry('手盐惠未')?.organizations).toEqual(expect.arrayContaining([
+      { name: 'BLOCK', type: 'dark-side-group', parent: '暗部', relationship: 'member', primary: true },
+      { name: '警备员', type: 'law-enforcement', relationship: 'former-member', primary: false },
+    ]));
     expect(entry('多莉')?.organizations.map((organization) => organization.name)).not.toContain('御坂网络');
     expect(entry('最后之作')?.organizations.map((organization) => organization.name))
       .toEqual(expect.arrayContaining(['御坂网络', '妹妹们（SISTERS）']));
@@ -322,6 +331,14 @@ describe('playable character catalog', () => {
       ])
       .pluck('canonical_name_zh');
     expect(recognizableBatch).toHaveLength(8);
+
+    const importantAnimeBatch = await instance('characters')
+      .whereIn('canonical_name_zh', [
+        '亲船素甘', '佐久辰彦', '手盐惠未', '铁网',
+        '马太·利斯', '克兰斯·R·察尔斯基', '伊莉莎莉娜', '倾国之女', '美山写影',
+      ])
+      .pluck('canonical_name_zh');
+    expect(importantAnimeBatch).toHaveLength(9);
 
     const transcendents = await instance('character_organizations as membership')
       .join('characters as character', 'character.id', 'membership.character_id')
