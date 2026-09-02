@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { App } from '../../../static/src/App';
@@ -44,13 +44,29 @@ describe('static personal records page', () => {
     });
 
     renderWithProviders(<App />);
-    const achievementsButton = screen.getByRole('button', { name: '成就' });
+    const achievementsButton = await screen.findByRole('button', { name: '成就，2 项新成就' });
     expect(achievementsButton).toHaveClass('btn-achievements');
+    expect(achievementsButton).toHaveTextContent('2');
     await userEvent.click(achievementsButton);
 
     expect(await screen.findByText('已解锁 2 / 11')).toBeInTheDocument();
     expect(screen.getByText('踏出第一步')).toBeInTheDocument();
     expect(screen.getByText('身份确认')).toBeInTheDocument();
     expect(screen.queryByText('最近对局')).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole('button', { name: '主菜单' }));
+    expect(screen.getByRole('button', { name: '成就' })).not.toHaveTextContent('2');
+  });
+
+  it('shows newly unlocked achievements as a simple result hint', async () => {
+    const user = userEvent.setup();
+    renderWithProviders(<App />);
+
+    await user.click(screen.getByRole('button', { name: '开始游戏' }));
+    await user.click(screen.getByRole('button', { name: '查看答案' }));
+    const confirmDialog = await screen.findByRole('alertdialog', { name: '查看答案？' });
+    await user.click(within(confirmDialog).getByRole('button', { name: '查看答案' }));
+
+    expect(await screen.findByRole('status')).toHaveTextContent('解锁成就：踏出第一步');
   });
 });

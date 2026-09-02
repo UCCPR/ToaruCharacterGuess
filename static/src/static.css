@@ -233,10 +233,28 @@ html[data-theme='blast'] .toaru-title-mark img {
 }
 
 html .bottom-bar .btn.btn-achievements {
+  position: relative;
   border-color: #d79a00 !important;
   background: linear-gradient(135deg, #ffd968, #efb51d) !important;
   color: #3d2900 !important;
   box-shadow: 0 7px 18px rgba(205, 143, 0, .2) !important;
+}
+
+.achievement-unseen-badge {
+  display: grid;
+  place-items: center;
+  min-width: 19px;
+  height: 19px;
+  padding-inline: 5px;
+  border: 1px solid rgba(255, 255, 255, .72);
+  border-radius: 99px;
+  background: #6b4300;
+  color: #fff;
+  font-size: .65rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  box-shadow: 0 3px 8px rgba(70, 42, 0, .28);
 }
 
 html .bottom-bar .btn.btn-achievements:hover:not(:disabled) {
@@ -266,6 +284,23 @@ html .bottom-bar .btn.btn-achievements:hover:not(:disabled) {
   font-size: .8rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+}
+
+.static-achievements-overall-progress {
+  overflow: hidden;
+  height: 7px;
+  margin: -3px 0 16px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--border) 78%, transparent);
+}
+
+.static-achievements-overall-progress i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #d79a00, #ffd968);
+  box-shadow: 0 0 12px rgba(215, 154, 0, .28);
+  transition: width 280ms ease;
 }
 
 .static-achievements-grid {
@@ -344,6 +379,11 @@ html .bottom-bar .btn.btn-achievements:hover:not(:disabled) {
   height: 100%;
   border-radius: inherit;
   background: var(--primary);
+  transition: width 220ms ease;
+}
+
+.static-achievement.unlocked .static-achievement-progress i {
+  background: linear-gradient(90deg, #d79a00, #ffd968);
 }
 
 .static-achievement-status {
@@ -357,6 +397,29 @@ html .bottom-bar .btn.btn-achievements:hover:not(:disabled) {
 
 .static-achievement.unlocked .static-achievement-status {
   color: var(--primary);
+}
+
+.static-answer-extra {
+  display: grid;
+  gap: 8px;
+}
+
+.static-answer-extra > p {
+  margin: 0;
+}
+
+.static-achievement-unlock-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: #9a6500;
+  font-size: .82rem;
+  font-weight: 800;
+}
+
+html[data-theme='blast'] .static-achievement-unlock-hint {
+  color: #ffd968;
 }
 
 .static-stats-empty {

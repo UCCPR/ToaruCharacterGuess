@@ -230,10 +230,10 @@ export const resources = {
       },
       staticStats: {
         title: '个人记录', localOnly: '静态版记录仅保存在当前浏览器', losses: '单人失败', guessPerformance: '猜测表现', recentGames: '最近对局',
-        noRecords: '还没有符合当前难度的已完成对局', clear: '清空记录', clearTitle: '清空个人记录？', clearMessage: '所有静态版个人记录都会从当前浏览器永久删除。未结束的游戏存档和已解锁成就不会受到影响。', clearConfirm: '确认清空',
+        noRecords: '还没有符合当前难度的已完成对局', clear: '清空记录', clearTitle: '清空个人记录？', clearMessage: '所有静态版个人记录都会从当前浏览器永久删除。未结束的游戏存档、成就进度和已解锁成就不会受到影响。', clearConfirm: '确认清空',
       },
       staticAchievements: {
-        title: '成就', summary: '已解锁 {{unlocked}} / {{total}}', unlocked: '已解锁', progress: '{{current}} / {{target}}',
+        title: '成就', summary: '已解锁 {{unlocked}} / {{total}}', unlocked: '已解锁', progress: '{{current}} / {{target}}', overallProgress: '成就总进度', buttonWithNew: '成就，{{count}} 项新成就', unlockHint: '解锁成就：{{titles}}', titleSeparator: '、',
         items: {
           firstGame: { title: '踏出第一步', description: '完成第一局游戏' },
           firstWin: { title: '身份确认', description: '首次猜中目标角色' },
@@ -461,10 +461,10 @@ export const resources = {
       },
       staticStats: {
         title: 'Personal records', localOnly: 'Static-edition records are stored only in this browser', losses: 'Solo losses', guessPerformance: 'Guess performance', recentGames: 'Recent games',
-        noRecords: 'No completed games match this difficulty', clear: 'Clear records', clearTitle: 'Clear personal records?', clearMessage: 'All static-edition personal records will be permanently removed from this browser. Unfinished saves and unlocked achievements will not be affected.', clearConfirm: 'Clear records',
+        noRecords: 'No completed games match this difficulty', clear: 'Clear records', clearTitle: 'Clear personal records?', clearMessage: 'All static-edition personal records will be permanently removed from this browser. Unfinished saves, achievement progress, and unlocked achievements will not be affected.', clearConfirm: 'Clear records',
       },
       staticAchievements: {
-        title: 'Achievements', summary: '{{unlocked}} / {{total}} unlocked', unlocked: 'Unlocked', progress: '{{current}} / {{target}}',
+        title: 'Achievements', summary: '{{unlocked}} / {{total}} unlocked', unlocked: 'Unlocked', progress: '{{current}} / {{target}}', overallProgress: 'Overall achievement progress', buttonWithNew: 'Achievements, {{count}} new', unlockHint: 'Achievements unlocked: {{titles}}', titleSeparator: ', ',
         items: {
           firstGame: { title: 'First Step', description: 'Complete your first game' },
           firstWin: { title: 'Identity Confirmed', description: 'Guess the target character for the first time' },
@@ -687,10 +687,10 @@ export const resources = {
       },
       staticStats: {
         title: '個人記録', localOnly: '静的版の記録はこのブラウザにのみ保存されます', losses: 'ソロ敗北数', guessPerformance: '予想成績', recentGames: '最近のゲーム',
-        noRecords: 'この難易度の完了済みゲームはまだありません', clear: '記録を消去', clearTitle: '個人記録を消去しますか？', clearMessage: '静的版の個人記録をこのブラウザから完全に削除します。未終了のゲームデータと解除済みの実績には影響しません。', clearConfirm: '記録を消去',
+        noRecords: 'この難易度の完了済みゲームはまだありません', clear: '記録を消去', clearTitle: '個人記録を消去しますか？', clearMessage: '静的版の個人記録をこのブラウザから完全に削除します。未終了のゲームデータ、実績の進捗、解除済みの実績には影響しません。', clearConfirm: '記録を消去',
       },
       staticAchievements: {
-        title: '実績', summary: '{{unlocked}} / {{total}} 解除済み', unlocked: '解除済み', progress: '{{current}} / {{target}}',
+        title: '実績', summary: '{{unlocked}} / {{total}} 解除済み', unlocked: '解除済み', progress: '{{current}} / {{target}}', overallProgress: '実績の総合進捗', buttonWithNew: '実績、新規 {{count}} 件', unlockHint: '実績解除：{{titles}}', titleSeparator: '、',
         items: {
           firstGame: { title: '最初の一歩', description: '初めてゲームを完了する' },
           firstWin: { title: '正体確認', description: '初めて対象キャラクターを当てる' },

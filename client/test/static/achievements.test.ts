@@ -1,8 +1,14 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import {
   getStaticAchievementProgress,
+  getNewlyUnlockedStaticAchievements,
+  getUnseenStaticAchievements,
   loadStaticAchievementUnlocks,
+  loadStaticAchievementLifetime,
+  loadViewedStaticAchievements,
+  reconcileStaticAchievementLifetime,
   saveStaticAchievementUnlocks,
+  saveViewedStaticAchievements,
   unlockEarnedStaticAchievements,
 } from '../../../static/src/achievements';
 import type { StaticGameRecord } from '../../../static/src/stats';
@@ -37,7 +43,21 @@ describe('static achievements', () => {
     const restored = loadStaticAchievementUnlocks();
 
     expect(getStaticAchievementProgress([], restored).find((achievement) => achievement.id === 'firstWin'))
-      .toMatchObject({ unlocked: true, unlockedAt: '2026-08-28T04:00:00.000Z' });
+      .toMatchObject({ current: 1, target: 1, unlocked: true, unlockedAt: '2026-08-28T04:00:00.000Z' });
+  });
+
+  it('persists which unlocked achievements have been viewed', () => {
+    const unlocks = unlockEarnedStaticAchievements(records, {}, '2026-08-28T04:00:00.000Z');
+    expect(getNewlyUnlockedStaticAchievements({}, unlocks)).toEqual([
+      'firstGame', 'firstWin', 'oneGuess', 'dailyWin', 'allDifficulties', 'threeWinStreak',
+    ]);
+    expect(getUnseenStaticAchievements(unlocks, [])).toHaveLength(6);
+
+    saveViewedStaticAchievements(['firstGame', 'firstWin', 'firstGame']);
+    const viewed = loadViewedStaticAchievements();
+    expect(viewed).toEqual(['firstGame', 'firstWin']);
+    expect(getUnseenStaticAchievements(unlocks, viewed)).not.toContain('firstGame');
+    expect(getUnseenStaticAchievements(unlocks, viewed)).toHaveLength(4);
   });
 
   it('counts distinct winning answers instead of repeated wins against one character', () => {
@@ -72,6 +92,33 @@ describe('static achievements', () => {
       expect.objectContaining({ id: 'tenCharacters', current: 10, unlocked: true }),
       expect.objectContaining({ id: 'twentyCharacters', current: 20, unlocked: true }),
       expect.objectContaining({ id: 'fiftyCharacters', current: 50, unlocked: true }),
+    ]));
+  });
+
+  it('keeps lifetime achievement totals after older game records rotate out', () => {
+    let lifetime = loadStaticAchievementLifetime();
+    let recent: StaticGameRecord[] = [];
+    for (let index = 0; index < 250; index += 1) {
+      const won = index % 5 === 0;
+      const record: StaticGameRecord = {
+        id: `lifetime-${index}`,
+        mode: 'free',
+        difficulty: 'normal',
+        status: won ? 'won' : 'lost',
+        answerId: won ? index / 5 + 1 : 1,
+        guessIds: won ? [index / 5 + 1] : [1, 2],
+        finishedAt: new Date(Date.UTC(2026, 0, 1, 0, index)).toISOString(),
+      };
+      recent = [record, ...recent].slice(0, 200);
+      lifetime = reconcileStaticAchievementLifetime(recent, lifetime);
+    }
+
+    expect(recent.filter((record) => record.status === 'won')).toHaveLength(40);
+    expect(lifetime).toMatchObject({ totalGames: 250, wins: 50 });
+    expect(lifetime.wonAnswerIds).toHaveLength(50);
+    expect(getStaticAchievementProgress(recent, {}, lifetime)).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: 'fiftyCharacters', current: 50 }),
+      expect.objectContaining({ id: 'twentyFiveWins', current: 25 }),
     ]));
   });
 });

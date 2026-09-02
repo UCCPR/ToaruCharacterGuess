@@ -40,8 +40,13 @@ import {
 } from './stats';
 import {
   getStaticAchievementProgress,
+  getNewlyUnlockedStaticAchievements,
+  getUnseenStaticAchievements,
   loadStaticAchievementUnlocks,
+  loadViewedStaticAchievements,
   saveStaticAchievementUnlocks,
+  saveViewedStaticAchievements,
+  syncStaticAchievementLifetime,
   unlockEarnedStaticAchievements,
   type StaticAchievementId,
 } from './achievements';
@@ -147,6 +152,11 @@ export function App() {
   const [statsDifficulty, setStatsDifficulty] = useState('all');
   const [statsVersion, setStatsVersion] = useState(0);
   const [achievementUnlocks, setAchievementUnlocks] = useState(loadStaticAchievementUnlocks);
+  const [viewedAchievements, setViewedAchievements] = useState(loadViewedStaticAchievements);
+  const [recentAchievementIds, setRecentAchievementIds] = useState<StaticAchievementId[]>([]);
+  const [achievementLifetime, setAchievementLifetime] = useState(() => (
+    syncStaticAchievementLifetime(loadStaticGameRecords())
+  ));
   const boardEndRef = useRef<HTMLDivElement>(null);
   const resumePromptedRef = useRef(false);
 
@@ -228,6 +238,7 @@ export function App() {
     setGuesses([]);
     setStatus('playing');
     setShowAnswer(false);
+    setRecentAchievementIds([]);
     setScreen('game');
   };
 
@@ -312,6 +323,7 @@ export function App() {
   };
 
   const settleGame = (nextStatus: 'won' | 'lost', finalGuesses: Guess[]) => {
+    const finishedAt = new Date().toISOString();
     addStaticGameRecord({
       id: gameId,
       mode,
@@ -319,8 +331,23 @@ export function App() {
       status: nextStatus,
       answerId: target.id,
       guessIds: finalGuesses.map((guess) => guess.character.id),
-      finishedAt: new Date().toISOString(),
+      finishedAt,
     });
+    const nextRecords = loadStaticGameRecords();
+    const nextLifetime = syncStaticAchievementLifetime(nextRecords);
+    const nextUnlocks = unlockEarnedStaticAchievements(
+      nextRecords,
+      achievementUnlocks,
+      finishedAt,
+      nextLifetime,
+    );
+    const newlyUnlocked = getNewlyUnlockedStaticAchievements(achievementUnlocks, nextUnlocks);
+    if (nextUnlocks !== achievementUnlocks) {
+      saveStaticAchievementUnlocks(nextUnlocks);
+      setAchievementUnlocks(nextUnlocks);
+    }
+    setRecentAchievementIds(newlyUnlocked);
+    setAchievementLifetime(nextLifetime);
     setStatsVersion((version) => version + 1);
     setStatus(nextStatus);
   };
@@ -354,17 +381,37 @@ export function App() {
     : records.filter((record) => record.difficulty === statsDifficulty);
   const personalStats = summarizeStaticGameRecords(visibleRecords);
   const achievements = useMemo(
-    () => getStaticAchievementProgress(records, achievementUnlocks),
-    [achievementUnlocks, records],
+    () => getStaticAchievementProgress(records, achievementUnlocks, achievementLifetime),
+    [achievementLifetime, achievementUnlocks, records],
   );
   const unlockedAchievementCount = achievements.filter((achievement) => achievement.unlocked).length;
+  const unseenAchievements = useMemo(
+    () => getUnseenStaticAchievements(achievementUnlocks, viewedAchievements),
+    [achievementUnlocks, viewedAchievements],
+  );
 
   useEffect(() => {
-    const next = unlockEarnedStaticAchievements(records, achievementUnlocks);
+    const next = unlockEarnedStaticAchievements(
+      records,
+      achievementUnlocks,
+      new Date().toISOString(),
+      achievementLifetime,
+    );
     if (next === achievementUnlocks) return;
     saveStaticAchievementUnlocks(next);
     setAchievementUnlocks(next);
-  }, [achievementUnlocks, records]);
+  }, [achievementLifetime, achievementUnlocks, records]);
+
+  const openAchievements = () => {
+    setScreen('achievements');
+  };
+
+  useEffect(() => {
+    if (screen !== 'achievements' || !unseenAchievements.length) return;
+    const nextViewed = [...viewedAchievements, ...unseenAchievements];
+    saveViewedStaticAchievements(nextViewed);
+    setViewedAchievements(nextViewed);
+  }, [screen, unseenAchievements, viewedAchievements]);
 
   const clearRecords = async () => {
     if (!await confirm({
@@ -402,6 +449,16 @@ export function App() {
                 total: achievements.length,
               })}</span>
             </div>
+            <div
+              className="static-achievements-overall-progress"
+              role="progressbar"
+              aria-label={t('staticAchievements.overallProgress')}
+              aria-valuemin={0}
+              aria-valuemax={achievements.length}
+              aria-valuenow={unlockedAchievementCount}
+            >
+              <i style={{ width: `${unlockedAchievementCount / achievements.length * 100}%` }} />
+            </div>
             <div className="static-achievements-grid">
               {achievements.map((achievement) => (
                 <article
@@ -414,8 +471,15 @@ export function App() {
                   <span className="static-achievement-copy">
                     <strong>{t(`staticAchievements.items.${achievement.id}.title`)}</strong>
                     <small>{t(`staticAchievements.items.${achievement.id}.description`)}</small>
-                    <span className="static-achievement-progress" aria-hidden="true">
-                      <i style={{ width: `${achievement.current / achievement.target * 100}%` }} />
+                    <span
+                      className="static-achievement-progress"
+                      role="progressbar"
+                      aria-label={t(`staticAchievements.items.${achievement.id}.title`)}
+                      aria-valuemin={0}
+                      aria-valuemax={achievement.target}
+                      aria-valuenow={achievement.current}
+                    >
+                      <i aria-hidden="true" style={{ width: `${achievement.current / achievement.target * 100}%` }} />
                     </span>
                   </span>
                   <span className="static-achievement-status">
@@ -606,9 +670,21 @@ export function App() {
         </section>
         <GameRules />
         <div className="bottom-bar">
-          <button className="btn btn-achievements" type="button" onClick={() => setScreen('achievements')}>
+          <button
+            className="btn btn-achievements"
+            type="button"
+            aria-label={unseenAchievements.length
+              ? t('staticAchievements.buttonWithNew', { count: unseenAchievements.length })
+              : undefined}
+            onClick={openAchievements}
+          >
             <Trophy size={16} aria-hidden="true" />
             {t('staticAchievements.title')}
+            {unseenAchievements.length > 0 && (
+              <span className="achievement-unseen-badge" aria-hidden="true">
+                {unseenAchievements.length}
+              </span>
+            )}
           </button>
           <button className="btn" type="button" onClick={() => setScreen('stats')}>
             <BarChart3 size={16} aria-hidden="true" />
@@ -701,7 +777,21 @@ export function App() {
           answer={answerInfo(target)}
           tone={status === 'won' ? 'win' : 'lose'}
           onClose={() => setShowAnswer(false)}
-          extra={<p className="muted">{status === 'won' ? t('game.usedGuesses', { count: guesses.length }) : t('game.missed')}</p>}
+          extra={(
+            <div className="static-answer-extra">
+              <p className="muted">{status === 'won' ? t('game.usedGuesses', { count: guesses.length }) : t('game.missed')}</p>
+              {recentAchievementIds.length > 0 && (
+                <p className="static-achievement-unlock-hint" role="status">
+                  <Trophy size={15} aria-hidden="true" />
+                  {t('staticAchievements.unlockHint', {
+                    titles: recentAchievementIds
+                      .map((id) => t(`staticAchievements.items.${id}.title`))
+                      .join(t('staticAchievements.titleSeparator')),
+                  })}
+                </p>
+              )}
+            </div>
+          )}
           actions={
             <>
               <button className="btn" onClick={() => void restart()}><RotateCcw size={15} />{t('game.again')}</button>
